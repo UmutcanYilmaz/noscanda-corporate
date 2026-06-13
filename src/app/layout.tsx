@@ -32,7 +32,7 @@ export default function RootLayout({
         <link href="https://fonts.cdnfonts.com/css/century-gothic-paneuropean" rel="stylesheet" />
         <link href="https://fonts.cdnfonts.com/css/garet" rel="stylesheet" />
       </head>
-      <body className="min-h-screen flex flex-col font-body antialiased">
+      <body className="min-h-screen flex flex-col font-body antialiased" suppressHydrationWarning>
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

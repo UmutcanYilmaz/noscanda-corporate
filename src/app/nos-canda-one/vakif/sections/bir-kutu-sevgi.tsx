@@ -14,19 +14,19 @@ export function BirKutuSevgi() {
   return (
     <section
       id="bir-kutu-sevgi"
-      className="section-padding section-warm border-t border-[var(--border-subtle)] overflow-hidden relative"
+      className="py-10 md:py-14 section-warm border-t border-[var(--border-subtle)] overflow-hidden relative"
     >
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="max-w-[1320px] mx-auto px-6">
         
         {/* Parent Title (1 Column) */}
         <ScrollReveal direction="up" distance={30}>
-          <div className="max-w-4xl mb-16 md:mb-20">
+          <div className="max-w-4xl mb-4">
             <span 
-              className="inline-block font-gothic text-[0.65rem] tracking-[0.3em] uppercase px-5 py-2 rounded-full mb-6 font-semibold"
+              className="inline-block font-gothic text-[0.65rem] tracking-[0.3em] uppercase px-5 py-2 rounded-full mb-4 font-semibold"
               style={{
-                background: 'rgba(15, 37, 71, 0.05)',
-                color: '#0F2547',
-                border: '1px solid rgba(15, 37, 71, 0.1)'
+                background: 'rgba(50, 65, 174, 0.05)',
+                color: '#3241ae',
+                border: '1px solid rgba(50, 65, 174, 0.15)'
               }}
             >
               Bir Kutu Sevgi
@@ -50,32 +50,32 @@ export function BirKutuSevgi() {
           </div>
         </ScrollReveal>
 
-        {/* 2-Column Content Layout (Image on Left, Topics on Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        {/* 2-Column Content Layout (Image on Left, Topics on Right - Align start to remove empty gap) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column: Transparent Floating Illustration (Col span 5) */}
-          <div className="lg:col-span-5 flex justify-center order-2 lg:order-1 w-full">
+          {/* Left Column: Transparent Floating Illustration (Col span 6) */}
+          <div className="lg:col-span-6 flex justify-center order-2 lg:order-1 w-full">
             <ScrollReveal direction="left" distance={40} className="w-full flex justify-center">
-              <div className="relative w-full max-w-[440px] aspect-[966/1080]">
+              <div className="relative w-full max-w-[580px] xl:max-w-[620px] aspect-[966/1080]">
                 <Image
                   src="/images/vakif/bir-kutu-sevgi.png"
                   alt="Bir Kutu Sevgi — Nos Canda One"
                   fill
                   className="object-contain"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 440px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 620px"
                 />
               </div>
             </ScrollReveal>
           </div>
 
-          {/* Right Column: Topics with separators (Col span 7, order-1 on desktop to keep visual balance) */}
-          <div className="lg:col-span-7 space-y-10 order-1 lg:order-2">
+          {/* Right Column: Topics with separators (Col span 6, order-1 on desktop to keep visual balance) */}
+          <div className="lg:col-span-6 space-y-6 order-1 lg:order-2">
             <ScrollReveal direction="right" distance={40}>
-              <div className="space-y-4">
-                <h3 className="font-cinzel text-xl font-bold text-[#0F2547]">
+              <div className="space-y-2">
+                <h3 className="font-cinzel text-2xl md:text-3xl font-bold text-[#0F2547]">
                   Kapsamlı Yardım Ağı
                 </h3>
-                <p className="font-body text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
+                <p className="font-body text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
                   Bu yaklaşımımız, gıda, giyim, hijyen gibi temel ihtiyaçlardan başlayarak eğitim,
                   sağlık, kariyer ve toplumsal gelişime kadar uzanan geniş bir yelpazeyi kapsar.
                 </p>
@@ -88,11 +88,11 @@ export function BirKutuSevgi() {
             </ScrollReveal>
 
             <ScrollReveal direction="right" distance={40} delay={0.1}>
-              <div className="space-y-4">
-                <h3 className="font-cinzel text-xl font-bold text-[#0F2547]">
+              <div className="space-y-2">
+                <h3 className="font-cinzel text-2xl md:text-3xl font-bold text-[#0F2547]">
                   Umut Yeşerten Dokunuşlar
                 </h3>
-                <p className="font-body text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
+                <p className="font-body text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
                   Amacımız, her bir yardımın sadece bir ihtiyacı karşılamakla kalmayıp, aynı zamanda
                   umudu yeşertmesi ve kalıcı bir iyileşmeye kapı aralamasıdır.
                 </p>

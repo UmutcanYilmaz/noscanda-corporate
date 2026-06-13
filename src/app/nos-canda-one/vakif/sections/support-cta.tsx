@@ -14,7 +14,7 @@ import { ScrollReveal } from '@/components/core/ScrollReveal';
  */
 export function SupportCTA() {
   return (
-    <section id="iletisim" className="section-padding bg-[var(--bg-primary)] border-t border-[var(--border-subtle)] relative overflow-hidden">
+    <section id="iletisim" className="py-10 md:py-14 bg-[var(--bg-primary)] border-t border-[var(--border-subtle)] relative overflow-hidden">
       {/* Subtle background gradient features */}
       <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-[#0F2547]/[0.02] rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-[var(--color-gold)]/[0.02] rounded-full blur-[90px] pointer-events-none" />
@@ -23,13 +23,13 @@ export function SupportCTA() {
         
         {/* Parent Title (1 Column) */}
         <ScrollReveal direction="up" distance={30}>
-          <div className="max-w-4xl mb-16 md:mb-20">
+          <div className="max-w-4xl mb-4">
             <span 
-              className="inline-block font-gothic text-[0.65rem] tracking-[0.3em] uppercase px-5 py-2 rounded-full mb-6 font-semibold"
+              className="inline-block font-gothic text-[0.65rem] tracking-[0.3em] uppercase px-5 py-2 rounded-full mb-4 font-semibold"
               style={{
-                background: 'rgba(15, 37, 71, 0.05)',
-                color: '#0F2547',
-                border: '1px solid rgba(15, 37, 71, 0.1)'
+                background: 'rgba(50, 65, 174, 0.05)',
+                color: '#3241ae',
+                border: '1px solid rgba(50, 65, 174, 0.15)'
               }}
             >
               Bize Destek Olun
@@ -40,18 +40,18 @@ export function SupportCTA() {
           </div>
         </ScrollReveal>
 
-        {/* 2-Column Content Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        {/* 2-Column Content Layout (Align start to remove empty gap) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column: Detailed text and button (Col span 7) */}
-          <div className="lg:col-span-7 space-y-8">
+          {/* Left Column: Detailed text and button (Col span 6) */}
+          <div className="lg:col-span-6 space-y-8">
             <ScrollReveal direction="left" distance={40}>
               <div className="space-y-6">
-                <p className="font-body text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
-                  Projelerimizi sürdürebilmek og daha fazla hayata dokunabilmek için sizin desteğinize
+                <p className="font-body text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
+                  Projelerimizi sürdürebilmek ve daha fazla hayata dokunabilmek için sizin desteğinize
                   ihtiyacımız var. Bağışlarınızla veya gönüllü olarak katılımınızla fark yaratabilirsiniz.
                 </p>
-                <p className="font-body text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
+                <p className="font-body text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
                   Birlikte atacağımız her küçük adım, toplumsal dönüşümde büyük bir dalgaya dönüşecektir. 
                   Siz de Nos Canda One ailesine katılın, yarınları birlikte inşa edelim.
                 </p>
@@ -64,7 +64,7 @@ export function SupportCTA() {
                   href="/iletisim" 
                   className="inline-flex items-center justify-center px-10 py-4 rounded-full font-gothic text-[0.8125rem] tracking-[0.18em] uppercase text-white hover:text-white/95 transition-all duration-300 min-h-[44px] shadow-md hover:shadow-lg hover:-translate-y-0.5"
                   style={{
-                    background: '#0F2547',
+                    background: '#3241ae',
                   }}
                 >
                   Bize Ulaşın
@@ -73,16 +73,16 @@ export function SupportCTA() {
             </ScrollReveal>
           </div>
 
-          {/* Right Column: Transparent Floating Graphic (Col span 5) */}
-          <div className="lg:col-span-5 flex justify-center w-full">
+          {/* Right Column: Transparent Floating Graphic (Col span 6) */}
+          <div className="lg:col-span-6 flex justify-center w-full">
             <ScrollReveal direction="right" distance={40} delay={0.2} className="w-full flex justify-center">
-              <div className="relative w-full max-w-[440px] aspect-[966/1080]">
+              <div className="relative w-full max-w-[580px] xl:max-w-[620px] aspect-[966/1080]">
                 <Image
                   src="/images/vakif/iletisime-gecin.png"
                   alt="Bize Destek Olun — Nos Canda One"
                   fill
                   className="object-contain"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 440px"
+                  sizes="(max-width: 768px) 100vw, 620px"
                 />
               </div>
             </ScrollReveal>

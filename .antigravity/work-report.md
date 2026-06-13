@@ -754,3 +754,73 @@
 
 ### Build Status
 - ✅ `npm run build` — Compiled successfully with zero type or Turbopack errors.
+
+## Session: 2026-06-13T21:10 — Boxed Hero Layout & Accent Color Adaptation
+
+### Completed Tasks
+
+1. **Integrated Boxed Layout on Vakıf Page**
+   - Refactored `structure.tsx` to wrap the local sub-navigation header (`Header`) and the main hero block (`Hero`) inside a single, unified white card container.
+   - The outer container uses a deep navy blue background (`bg-[#0B1222]`) to highlight the boxed card, matching the reference design layout.
+   - Positioned an illustrated world map background (`world-map.png`) inside the hero frame at a subtle `opacity-[0.06]`.
+
+2. **Accent Color (#3241ae) Adaptation**
+   - Updated the hero section text highlight from gold to `#3241ae` accent blue.
+   - Applied `#3241ae` to the radial dot-matrix background pattern behind the hero illustration.
+   - Configured active and hover text links in the local sticky navigation header to use `#3241ae` with dynamic transition animations.
+   - Updated all section badges (Hakkımızda, Bir Kutu Sevgi, Temel İhtiyaç Destekleri, Bireysel & Sosyal Gelişim, Topluluk & Sürdürülebilirlik, Biz Olmanın Gücü, Bize Destek Olun) to use `#3241ae` borders, text highlights, and 5% opacity background accents.
+   - Styled all card badges across the support segments (Gıda, Sağlık, Eğitim, Kadın, Topluluk, vb.) with a background color of `#3241ae`.
+   - Updated the primary engagement button ("Bize Ulaşın") in the bottom CTA banner to use `#3241ae` as its solid background color.
+
+### Architectural Decisions
+- **Boxed Layout encapsulation**: Enclosing both local navigation and hero sections in a single container preserves absolute alignment of page boundaries and scroll triggers.
+- **Accented Information Hierarchy**: Introducing a specific blue accent (#3241ae) highlights important semantic information (active status, key words, action items) while keeping the main text elements clean and readable.
+
+### Build Status
+- ✅ `pnpm build` — Checked out successfully with zero static page pre-rendering, TypeScript, or layout errors.
+- ✅ Visual validation verified via browser agent, capturing the verified layout at `vakif_accent_validation_1781374202156.png`.
+
+## Session: 2026-06-13T22:30 — Support Sections Split, Header Cleaning & Design Refinements
+
+### Completed Tasks
+
+1. **Cleaned ACM Vakfı Branding References**
+   - Replaced all lingering references to "ACM Vakfı" with the unified brand identifier "Nos Canda One" across the entire Vakıf page codebase (`hero.tsx`, `about.tsx`, `bir-kutu-sevgi.tsx`, `transparency.tsx`, etc.).
+   - Removed the duplicate/redundant ACM logo container and the language selection box from the sticky local sub-navigation header (`header.tsx`).
+
+2. **Refactored Navigation Links**
+   - Cleaned the sticky navigation bar: removed the "Ana Sayfa" and "İletişim" buttons.
+   - Refined the remaining links: Hakkımızda (#hakkimizda), Bir Kutu Sevgi (#bir-kutu-sevgi), Temel Destekler (#temel-destekler), Eğitim (#egitim-destegi), Kariyer (#kariyer-destegi), Psikolojik (#psikolojik-destek), and Sürdürülebilirlik (#surdurulebilirlik-destekleri).
+   - Centered all navigation items on desktop and implemented touch-scroll support on mobile devices.
+
+3. **Separated Core Support Programs into Dedicated Sections**
+   - **Eğitim Desteği (`education-support.tsx`)**: Created a dedicated split-column layout showing academic bursaries, school equipment aid, and digital learning devices, paired with the student/book illustration.
+   - **Kariyer Desteği (`career-support.tsx`)**: Created a dedicated split-column layout featuring CV mentoring, certification courses, and recruitment network information, paired with the career target illustration.
+   - **Psikolojik Destek (`psychology-support.tsx`)**: Created a dedicated split-column layout for mental health counselling, stress therapy, and support groups, paired with the psychological health illustration.
+   - **Sosyal & Kadın Desteği (`social-support.tsx`)**: Combined the remaining volunteering aid and female entrepreneurship empowerment topics into a side-by-side column grid.
+   - Integrated all four newly separated components into `/nos-canda-one/vakif/structure.tsx`.
+
+4. **Polished Card Micro-interactions & Design Details**
+   - Upgraded `DetailedCard` inside `support-areas.tsx` and `sustainability-support.tsx` with premium micro-interactions.
+   - Added an animated horizontal line that expands from a 12px indicator to full-width on hover, combined with image zoom scales and color shifts.
+   - Added radial ambient glow blobs behind sections to provide layout depth.
+
+### Build Status
+- ✅ `pnpm build` — Statically compiled all 44 routes successfully with zero Turbopack or TypeScript errors.
+- ✅ Visual validation verified via browser subagent. Confirmed correct rendering of split sections, illustration scales, badge colors, and smooth fade-in reveal animations. Saved screenshots at multiple scroll offsets.
+
+### Aesthetic Upgrades (Post-Review Feedback)
+- Removed the dark navy `#0B1222` background wrapper.
+- Implemented a premium, soft ice-blue to ivory gradient (`bg-gradient-to-b from-[#e8effa] to-[var(--bg-primary)]`) behind the boxed hero.
+- Resolved the invisible global header issue by switching to the light background where the default charcoal Navbar elements and logo are fully visible and readable.
+- Set `pt-[92px] pb-4` to provide snug, elegant spacing from the sticky site navbar, while minimizing the gap to the About section.
+- Reduced the About section top padding to `pt-14` to make the content flow from the hero card seamless.
+- Expanded the boxed container width from `max-w-[1300px]` to `max-w-[1500px]` and reduced margins to maximize screen utilization.
+- Scaled down the hero H1 title typography from `text-[4.8rem]` to a balanced `text-[3.8rem]` to prevent overwhelming visual density.
+- Added decorative radial ambient blue-accented glows inside the white card backdrop to provide premium visual depth.
+- Rebalanced all content grids (Hakkımızda, Bir Kutu Sevgi, Eğitim, Kariyer, Psikolojik, Bize Destek Olun) using a 50/50 (`lg:grid-cols-12` splits with equal spans/large bounds) to accommodate larger `max-w-[620px]` illustrations, and changed layout alignment from `items-center` to `items-start` to eliminate vertical empty spacing.
+- Redesigned the **Şeffaflık ve Raporlama** section: introduced a 2-column header (text + illustration) at the top, and placed the three glassmorphic report download cards in a horizontal 3-column grid at the bottom to eliminate empty horizontal or vertical whitespace.
+- Removed the pathname filter inside `Footer.tsx` to restore the site-wide global mega-footer on all Nos Canda One pages.
+- Fixed a text typo in the CTA section ("og" changed to "ve").
+- Verified all layout features and responsiveness under Next.js server production compile checks.
+

@@ -11,18 +11,18 @@ import { ScrollReveal } from '@/components/core/ScrollReveal';
  */
 export function About() {
   return (
-    <section id="hakkimizda" className="section-padding bg-[var(--bg-primary)] overflow-hidden relative">
-      <div className="max-w-[1200px] mx-auto px-6">
+    <section id="hakkimizda" className="py-10 md:py-14 bg-[var(--bg-primary)] overflow-hidden relative">
+      <div className="max-w-[1320px] mx-auto px-6">
         
         {/* Parent Title (1 Column) */}
         <ScrollReveal direction="up" distance={30}>
-          <div className="max-w-4xl mb-16 md:mb-20">
+          <div className="max-w-4xl mb-4">
             <span 
-              className="inline-block font-gothic text-[0.65rem] tracking-[0.3em] uppercase px-5 py-2 rounded-full mb-6 font-semibold"
+              className="inline-block font-gothic text-[0.65rem] tracking-[0.3em] uppercase px-5 py-2 rounded-full mb-4 font-semibold"
               style={{
-                background: 'rgba(15, 37, 71, 0.05)',
-                color: '#0F2547',
-                border: '1px solid rgba(15, 37, 71, 0.1)'
+                background: 'rgba(50, 65, 174, 0.05)',
+                color: '#3241ae',
+                border: '1px solid rgba(50, 65, 174, 0.15)'
               }}
             >
               Hakkımızda
@@ -33,17 +33,17 @@ export function About() {
           </div>
         </ScrollReveal>
 
-        {/* 2-Column Content Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        {/* 2-Column Content Layout (Align start to remove empty gap) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column: Topics with separators (Col span 7) */}
-          <div className="lg:col-span-7 space-y-10">
+          {/* Left Column: Topics with separators (Col span 6) */}
+          <div className="lg:col-span-6 space-y-6">
             <ScrollReveal direction="left" distance={40}>
-              <div className="space-y-4">
-                <h3 className="font-cinzel text-xl font-bold text-[#0F2547]">
+              <div className="space-y-2">
+                <h3 className="font-cinzel text-2xl md:text-3xl font-bold text-[#0F2547]">
                   Kapsamlı Toplumsal Destek
                 </h3>
-                <p className="font-body text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
+                <p className="font-body text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
                   Temel amacımız, sadece bugünün ihtiyaçlarını karşılamak değil, aynı zamanda şeffaflık,
                   adalet ve sürdürülebilirlik ilkeleriyle geleceğe yatırım yaparak kalıcı çözümler
                   sunmaktır.
@@ -57,11 +57,11 @@ export function About() {
             </ScrollReveal>
 
             <ScrollReveal direction="left" distance={40} delay={0.1}>
-              <div className="space-y-4">
-                <h3 className="font-cinzel text-xl font-bold text-[#0F2547]">
+              <div className="space-y-2">
+                <h3 className="font-cinzel text-2xl md:text-3xl font-bold text-[#0F2547]">
                   Kalıcı ve Güçlü Değişim
                 </h3>
-                <p className="font-body text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
+                <p className="font-body text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
                   Toplumun farklı kesimlerine ulaşarak, kısa vadeli desteklerin ötesinde, uzun soluklu
                   ve pozitif değişimler yaratmayı hedefleriz. Eşit fırsatlar sunarak toplumsal potansiyeli 
                   açığa çıkarıyoruz.
@@ -70,16 +70,16 @@ export function About() {
             </ScrollReveal>
           </div>
 
-          {/* Right Column: Transparent Floating Illustration (Col span 5) */}
-          <div className="lg:col-span-5 flex justify-center w-full">
+          {/* Right Column: Transparent Floating Illustration (Col span 6) */}
+          <div className="lg:col-span-6 flex justify-center w-full">
             <ScrollReveal direction="right" distance={40} delay={0.2} className="w-full flex justify-center">
-              <div className="relative w-full max-w-[440px] aspect-[966/1080]">
+              <div className="relative w-full max-w-[580px] xl:max-w-[620px] aspect-[966/1080]">
                 <Image
                   src="/images/vakif/hakkimizda.png"
                   alt="Hakkımızda — Nos Canda One"
                   fill
                   className="object-contain"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 440px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 620px"
                   priority
                 />
               </div>

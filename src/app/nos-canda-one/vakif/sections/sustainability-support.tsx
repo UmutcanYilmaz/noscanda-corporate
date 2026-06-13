@@ -46,9 +46,9 @@ const SUSTAIN_ROW_2: SupportArea[] = [
 function CardBadge({ children }: { children: React.ReactNode }) {
   return (
     <span
-      className="inline-block font-gothic text-[0.7rem] tracking-[0.22em] uppercase px-5 py-2 rounded-full mb-5 self-start shadow-sm"
+      className="inline-block font-gothic text-[0.7rem] tracking-[0.22em] uppercase px-5 py-2 rounded-full mb-5 self-start shadow-sm transition-all duration-300 group-hover:bg-[#0F2547]"
       style={{
-        background: '#0F2547',
+        background: '#3241ae',
         color: '#FFFFFF',
       }}
     >
@@ -63,7 +63,7 @@ function DetailedCard({ area, delay }: { area: SupportArea; delay: number }) {
       <div className="flex flex-col h-full group cursor-pointer">
         <CardBadge>{area.title}</CardBadge>
         <div className="relative w-full aspect-square mb-6 overflow-hidden">
-          <div className="relative w-full h-full transition-transform duration-700 ease-out group-hover:scale-106">
+          <div className="relative w-full h-full transition-all duration-700 ease-out group-hover:scale-106 group-hover:-translate-y-1">
             <Image
               src={area.image}
               alt={area.title}
@@ -73,8 +73,12 @@ function DetailedCard({ area, delay }: { area: SupportArea; delay: number }) {
             />
           </div>
         </div>
+
+        {/* Animated separator line micro-interaction */}
+        <div className="w-12 group-hover:w-full transition-all duration-700 ease-out bg-[#3241ae] h-[2px] mb-4 opacity-80" />
+
         <div className="px-2 flex-1">
-          <p className="font-body text-base text-[var(--text-secondary)] leading-relaxed">
+          <p className="font-body text-base text-[var(--text-secondary)] leading-relaxed group-hover:text-neutral-900 transition-colors duration-300">
             {area.normalText}
             <span className="text-[#0F2547] font-semibold">{area.highlightedText}</span>
           </p>
@@ -104,9 +108,9 @@ export function SustainabilitySupport() {
             <span 
               className="inline-block font-gothic text-[0.65rem] tracking-[0.3em] uppercase px-5 py-2 rounded-full mb-6 font-semibold"
               style={{
-                background: 'rgba(15, 37, 71, 0.05)',
-                color: '#0F2547',
-                border: '1px solid rgba(15, 37, 71, 0.1)'
+                background: 'rgba(50, 65, 174, 0.05)',
+                color: '#3241ae',
+                border: '1px solid rgba(50, 65, 174, 0.15)'
               }}
             >
               Topluluk & Sürdürülebilirlik

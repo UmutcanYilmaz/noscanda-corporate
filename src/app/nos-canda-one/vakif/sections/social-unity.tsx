@@ -20,9 +20,9 @@ export function SocialUnity() {
             <span 
               className="inline-block font-gothic text-[0.65rem] tracking-[0.3em] uppercase px-5 py-2 rounded-full mb-6 font-semibold"
               style={{
-                background: 'rgba(15, 37, 71, 0.05)',
-                color: '#0F2547',
-                border: '1px solid rgba(15, 37, 71, 0.1)'
+                background: 'rgba(50, 65, 174, 0.05)',
+                color: '#3241ae',
+                border: '1px solid rgba(50, 65, 174, 0.15)'
               }}
             >
               Biz Olmanın Gücü
