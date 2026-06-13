@@ -39,7 +39,7 @@ export function ContactSection() {
     <section
       ref={containerRef}
       id="contact-homepage"
-      className="section-padding bg-[var(--bg-primary)] relative overflow-hidden"
+      className="section-padding bg-[var(--bg-secondary)] relative overflow-hidden"
     >
       {/* Floating orb */}
       <div className="floating-orb floating-orb-warm w-[350px] h-[350px] -bottom-[100px] -right-[100px]" />
@@ -59,7 +59,7 @@ export function ContactSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch">
           
           {/* Card 1: Genel Merkez */}
-          <div className="contact-card opacity-0 flex flex-col justify-between p-8 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] magnetic-hover">
+          <div className="contact-card opacity-0 flex flex-col justify-between p-8 rounded-2xl bg-white border border-[var(--border-subtle)] magnetic-hover">
             <div>
               <span className="font-gothic text-[0.6rem] tracking-[0.2em] uppercase text-[var(--accent-gold)] block mb-3">
                 Genel Merkez
@@ -92,7 +92,7 @@ export function ContactSection() {
           </div>
 
           {/* Card 2: Bayilik Başvurusu */}
-          <div className="contact-card opacity-0 flex flex-col justify-between p-8 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] card-hover">
+          <div className="contact-card opacity-0 flex flex-col justify-between p-8 rounded-2xl bg-white border border-[var(--border-subtle)] magnetic-hover">
             <div>
               <span className="font-gothic text-[0.6rem] tracking-[0.2em] uppercase text-[var(--accent-gold)] block mb-3">
                 Bayilik & Franchise

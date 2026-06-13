@@ -76,7 +76,7 @@ export function ProductsOverview() {
     <section
       ref={containerRef}
       id="products-overview"
-      className="section-padding bg-[var(--bg-primary)] border-b border-[var(--border-subtle)] relative overflow-hidden"
+      className="section-padding bg-[var(--bg-secondary)] border-b border-[var(--border-subtle)] relative overflow-hidden"
     >
       {/* Floating orbs */}
       <div className="floating-orb floating-orb-warm w-[350px] h-[350px] top-[10%] -right-[120px]" />
@@ -98,7 +98,7 @@ export function ProductsOverview() {
         {/* Categories Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Reed Diffusers Column */}
-          <div className="product-column opacity-0 flex flex-col justify-between rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] overflow-hidden magnetic-hover">
+          <div className="product-column opacity-0 flex flex-col justify-between rounded-2xl bg-white border border-[var(--border-subtle)] overflow-hidden magnetic-hover">
             {/* Product Image */}
             <div className="image-zoom-container relative aspect-[16/10]">
               <Image
@@ -109,7 +109,7 @@ export function ProductsOverview() {
                 sizes="(max-width: 768px) 100vw, 600px"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-secondary)] via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
               <div className="absolute top-4 left-4">
                 <span className="inline-block px-3 py-1.5 bg-white/80 backdrop-blur-sm rounded-full font-gothic text-[0.6rem] tracking-[0.2em] uppercase text-[var(--accent-gold)]">
                   Bestseller
@@ -161,7 +161,7 @@ export function ProductsOverview() {
           </div>
 
           {/* Auto Fragrances Column */}
-          <div className="product-column opacity-0 flex flex-col justify-between rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)] overflow-hidden magnetic-hover">
+          <div className="product-column opacity-0 flex flex-col justify-between rounded-2xl bg-white border border-[var(--border-subtle)] overflow-hidden magnetic-hover">
             {/* Product Image */}
             <div className="image-zoom-container relative aspect-[16/10]">
               <Image
@@ -172,7 +172,7 @@ export function ProductsOverview() {
                 sizes="(max-width: 768px) 100vw, 600px"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-secondary)] via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
               <div className="absolute top-4 left-4">
                 <span className="inline-block px-3 py-1.5 bg-white/80 backdrop-blur-sm rounded-full font-gothic text-[0.6rem] tracking-[0.2em] uppercase text-[var(--accent-gold)]">
                   Yeni Koleksiyon

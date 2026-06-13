@@ -39,7 +39,7 @@ export function IsModelleriSection() {
     <section
       ref={containerRef}
       id="is-modelleri-homepage"
-      className="section-padding bg-[var(--bg-secondary)] border-b border-[var(--border-subtle)] relative overflow-hidden"
+      className="section-padding bg-[var(--bg-primary)] border-b border-[var(--border-subtle)] relative overflow-hidden"
     >
       {/* Floating orbs */}
       <div className="floating-orb floating-orb-gold w-[300px] h-[300px] top-[5%] -right-[100px]" />
@@ -62,7 +62,7 @@ export function IsModelleriSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           
           {/* B2C */}
-          <div className="is-modelleri-card opacity-0 p-8 rounded-2xl bg-[var(--bg-primary)] border border-[var(--border-subtle)] flex flex-col justify-between magnetic-hover shadow-glass">
+          <div className="is-modelleri-card opacity-0 p-8 rounded-2xl bg-white border border-[var(--border-subtle)] flex flex-col justify-between magnetic-hover shadow-glass">
             <div>
               <span className="font-gothic text-[0.6rem] tracking-[0.2em] uppercase text-[var(--accent-gold)] block mb-3">
                 Modül 01
@@ -80,7 +80,7 @@ export function IsModelleriSection() {
           </div>
 
           {/* B2B */}
-          <div className="is-modelleri-card opacity-0 p-8 rounded-2xl bg-[var(--bg-primary)] border border-[var(--border-subtle)] flex flex-col justify-between card-hover shadow-glass">
+          <div className="is-modelleri-card opacity-0 p-8 rounded-2xl bg-white border border-[var(--border-subtle)] flex flex-col justify-between magnetic-hover shadow-glass">
             <div>
               <span className="font-gothic text-[0.6rem] tracking-[0.2em] uppercase text-[var(--accent-gold)] block mb-3">
                 Modül 02
@@ -98,7 +98,7 @@ export function IsModelleriSection() {
           </div>
 
           {/* Kurumsal Alan */}
-          <div className="is-modelleri-card opacity-0 p-8 rounded-2xl bg-[var(--bg-primary)] border border-[var(--border-subtle)] flex flex-col justify-between card-hover shadow-glass">
+          <div className="is-modelleri-card opacity-0 p-8 rounded-2xl bg-white border border-[var(--border-subtle)] flex flex-col justify-between magnetic-hover shadow-glass">
             <div>
               <span className="font-gothic text-[0.6rem] tracking-[0.2em] uppercase text-[var(--accent-gold)] block mb-3">
                 Modül 03
@@ -116,7 +116,7 @@ export function IsModelleriSection() {
           </div>
 
           {/* B2G */}
-          <div className="is-modelleri-card opacity-0 p-8 rounded-2xl bg-[var(--bg-primary)] border border-[var(--border-subtle)] flex flex-col justify-between card-hover shadow-glass">
+          <div className="is-modelleri-card opacity-0 p-8 rounded-2xl bg-white border border-[var(--border-subtle)] flex flex-col justify-between magnetic-hover shadow-glass">
             <div>
               <span className="font-gothic text-[0.6rem] tracking-[0.2em] uppercase text-[var(--accent-gold)] block mb-3">
                 Modül 04

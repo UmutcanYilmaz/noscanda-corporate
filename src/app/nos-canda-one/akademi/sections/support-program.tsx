@@ -92,7 +92,7 @@ export function SupportProgram() {
           <div className="lg:col-span-5 w-full flex justify-center">
             <ScrollReveal direction="right" distance={40} className="w-full max-w-[500px]">
               {/* Full Image design on transparent image - no card box, sits in borderless container */}
-              <div className="relative w-full aspect-[4/5] overflow-hidden transition-transform duration-500 hover:scale-105 select-none">
+              <div className="relative w-full aspect-square overflow-hidden transition-transform duration-500 hover:scale-105 select-none">
                 <Image
                   src="/images/akademi/genclericindestekprogrami.png"
                   alt="Gençler İçin Destek Programı"

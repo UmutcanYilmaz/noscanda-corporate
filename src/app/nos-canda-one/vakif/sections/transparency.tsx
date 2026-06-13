@@ -12,6 +12,7 @@ import { ScrollReveal } from '@/components/core/ScrollReveal';
 export function Transparency() {
   return (
     <section
+      id="seffaflik"
       className="section-padding relative overflow-hidden border-t"
       style={{
         background: 'radial-gradient(circle at 50% 50%, #172a45 0%, #0d1e36 60%, #051020 100%)',

@@ -84,7 +84,7 @@ function DetailedCard({ area, delay }: { area: SupportArea; delay: number }) {
         {/* Title badge pill at the top */}
         <CardBadge>{area.title}</CardBadge>
         {/* Naked image (no border or background container) */}
-        <div className="relative w-full aspect-[16/9] md:aspect-[16/10] mb-6 overflow-hidden">
+        <div className="relative w-full aspect-square mb-6 overflow-hidden">
           <div className="relative w-full h-full transition-transform duration-700 ease-out group-hover:scale-106">
             <Image
               src={area.image}

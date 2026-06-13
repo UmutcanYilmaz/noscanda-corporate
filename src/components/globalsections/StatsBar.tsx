@@ -37,7 +37,7 @@ export function StatsBar() {
   });
 
   return (
-    <section ref={containerRef} id="stats-bar" className="section-padding bg-[var(--bg-secondary)] relative overflow-hidden">
+    <section ref={containerRef} id="stats-bar" className="section-padding bg-[var(--bg-primary)] border-b border-[var(--border-subtle)] relative overflow-hidden">
       {/* Decorative orbs */}
       <div className="floating-orb floating-orb-gold w-[300px] h-[300px] -top-[100px] left-[20%]" />
       <div className="floating-orb floating-orb-warm w-[200px] h-[200px] bottom-[10%] right-[15%]" />
@@ -45,7 +45,7 @@ export function StatsBar() {
       <div className="relative z-10 max-w-[1200px] mx-auto">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
           {STATS.map((stat) => (
-            <div key={stat.label} className="stat-item text-center opacity-0 p-6 rounded-2xl bg-[var(--bg-primary)]/50 backdrop-blur-sm border border-[var(--border-subtle)]">
+            <div key={stat.label} className="stat-item text-center opacity-0 p-6 rounded-2xl bg-[var(--bg-secondary)]/50 backdrop-blur-sm border border-[var(--border-subtle)]">
               <div className="flex items-baseline justify-center gap-0.5 mb-2">
                 <AnimatedCounter
                   end={stat.value}

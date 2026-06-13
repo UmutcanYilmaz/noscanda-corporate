@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { label: 'Gelişim Destekleri', href: '#gelisim-destekleri' },
   { label: 'Sürdürülebilirlik', href: '#surdurulebilirlik-destekleri' },
   { label: 'Toplumsal Birlik', href: '#toplumsal-birlik' },
+  { label: 'Şeffaflık', href: '#seffaflik' },
 ];
 
 /**

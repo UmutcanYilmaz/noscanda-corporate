@@ -70,7 +70,7 @@ export function WhyUs() {
             >
               <div className="flex flex-col w-full text-center group">
                 {/* Premium Image Card Wrapper */}
-                <div className="relative aspect-[4/3] w-full mx-auto mb-6 select-none overflow-hidden">
+                <div className="relative aspect-square w-full mx-auto mb-6 select-none overflow-hidden">
                   <Image
                     src={card.image}
                     alt={card.title}

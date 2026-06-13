@@ -49,7 +49,7 @@ export function YatirimciIliskileriSection() {
     <section
       ref={containerRef}
       id="yatirimci-homepage"
-      className="section-padding bg-[var(--bg-secondary)] border-b border-[var(--border-subtle)] relative overflow-hidden"
+      className="section-padding bg-[var(--bg-primary)] border-b border-[var(--border-subtle)] relative overflow-hidden"
     >
       {/* Floating orb */}
       <div className="floating-orb floating-orb-gold w-[300px] h-[300px] -top-[100px] left-[15%]" />
@@ -72,7 +72,7 @@ export function YatirimciIliskileriSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           
           {/* Card 1 */}
-          <div className="yatirimci-card opacity-0 p-8 rounded-2xl bg-[var(--bg-primary)] border border-[var(--border-subtle)] flex flex-col justify-between magnetic-hover">
+          <div className="yatirimci-card opacity-0 p-8 rounded-2xl bg-white border border-[var(--border-subtle)] flex flex-col justify-between magnetic-hover">
             <div>
               <span className="font-gothic text-[0.6rem] tracking-[0.2em] uppercase text-[var(--accent-gold)] block mb-3">
                 İlkelerimiz
@@ -90,7 +90,7 @@ export function YatirimciIliskileriSection() {
           </div>
 
           {/* Card 2 */}
-          <div className="yatirimci-card opacity-0 p-8 rounded-2xl bg-[var(--bg-primary)] border border-[var(--border-subtle)] flex flex-col justify-between magnetic-hover">
+          <div className="yatirimci-card opacity-0 p-8 rounded-2xl bg-white border border-[var(--border-subtle)] flex flex-col justify-between magnetic-hover">
             <div>
               <span className="font-gothic text-[0.6rem] tracking-[0.2em] uppercase text-[var(--accent-gold)] block mb-3">
                 Mali Tablolar
@@ -108,7 +108,7 @@ export function YatirimciIliskileriSection() {
           </div>
 
           {/* Card 3 */}
-          <div className="yatirimci-card opacity-0 p-8 rounded-2xl bg-[var(--bg-primary)] border border-[var(--border-subtle)] flex flex-col justify-between magnetic-hover">
+          <div className="yatirimci-card opacity-0 p-8 rounded-2xl bg-white border border-[var(--border-subtle)] flex flex-col justify-between magnetic-hover">
             <div>
               <span className="font-gothic text-[0.6rem] tracking-[0.2em] uppercase text-[var(--accent-gold)] block mb-3">
                 Paydaş İletişimi
@@ -128,7 +128,7 @@ export function YatirimciIliskileriSection() {
         </div>
 
         {/* CTA Banner */}
-        <div className="yatirimci-content opacity-0 p-8 md:p-10 rounded-2xl bg-white/45 backdrop-blur-xl border border-[var(--border-gold)] flex flex-col md:flex-row items-center justify-between gap-8 shadow-glass">
+        <div className="yatirimci-content opacity-0 p-8 md:p-10 rounded-2xl bg-white/80 backdrop-blur-xl border border-[var(--border-gold)] flex flex-col md:flex-row items-center justify-between gap-8 shadow-glass">
           <div>
             <h3 className="font-cinzel text-lg font-semibold text-[var(--text-primary)]">Mali Raporlar Portalı</h3>
             <p className="font-body text-sm text-[var(--text-secondary)] mt-1">

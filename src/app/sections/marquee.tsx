@@ -17,5 +17,5 @@ const MARQUEE_ITEMS = [
  * Homepage Marquee Section Wrapper
  */
 export function Marquee() {
-  return <MarqueeStrip items={MARQUEE_ITEMS} speed={35} className="bg-[var(--bg-primary)]" />;
+  return <MarqueeStrip items={MARQUEE_ITEMS} speed={35} className="bg-[#12100F] text-white/90 border-y-0 py-4 shadow-[inset_0_4px_10px_rgba(0,0,0,0.6)]" />;
 }

@@ -82,7 +82,7 @@ export function Benefits() {
               <div className="flex flex-col w-full text-center sm:text-left group">
                 
                 {/* Image Container (transparent, cardless illustration) */}
-                <div className="relative aspect-[4/3] w-full mx-auto sm:mx-0 mb-6 select-none overflow-hidden transition-all duration-500">
+                <div className="relative aspect-square w-full mx-auto sm:mx-0 mb-6 select-none overflow-hidden transition-all duration-500">
                   <Image
                     src={benefit.image}
                     alt={benefit.title}

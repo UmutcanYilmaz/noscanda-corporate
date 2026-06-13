@@ -85,7 +85,7 @@ export function Offerings() {
           <div className="lg:col-span-5 order-last lg:order-first w-full flex justify-center">
             <ScrollReveal direction="left" distance={40} className="w-full max-w-[500px]">
               {/* Full Image design on transparent image - no card border/background box, scaled up */}
-              <div className="relative w-full aspect-[4/3] lg:aspect-[3/4] select-none overflow-hidden transition-transform duration-700 hover:scale-105">
+              <div className="relative w-full aspect-square select-none overflow-hidden transition-transform duration-700 hover:scale-105">
                 <Image
                   src="/images/akademi/sundugumuzimkanlar.png"
                   alt="Sunduğumuz İmkanlar"

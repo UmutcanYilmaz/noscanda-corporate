@@ -59,7 +59,7 @@ export function About() {
           {/* Right Column: Illustration (Col span 5) - Full Size & Enlarged */}
           <div className="lg:col-span-5 flex justify-center w-full">
             <ScrollReveal direction="right" distance={40} delay={0.3} className="w-full flex justify-center">
-              <div className="relative w-full max-w-[520px] aspect-[4/3] select-none overflow-hidden transition-transform duration-700 hover:scale-105">
+              <div className="relative w-full max-w-[520px] aspect-square select-none overflow-hidden transition-transform duration-700 hover:scale-105">
                 <Image
                   src="/images/akademi/hakkinda.png"
                   alt="Nos Canda One Akademi Hakkında"
