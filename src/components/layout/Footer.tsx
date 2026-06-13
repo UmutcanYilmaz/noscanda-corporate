@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { FOOTER_COLUMNS } from '@/lib/constants';
 
 /** SVG social icons — proper vector icons instead of text initials */
@@ -52,6 +53,13 @@ const CERTIFICATIONS = [
  * Client Component — requires event handler for newsletter form.
  */
 export function Footer() {
+  const pathname = usePathname();
+  const isNosCandaOneSubPage = pathname === '/nos-canda-one/akademi' || pathname === '/nos-canda-one/vakif';
+
+  if (isNosCandaOneSubPage) {
+    return null;
+  }
+
   return (
     <footer id="site-footer" className="relative bg-[var(--section-dark-bg)] text-[var(--section-dark-text)]">
       {/* NC Monogram Watermark */}

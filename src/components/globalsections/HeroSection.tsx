@@ -8,7 +8,8 @@ import { Button } from '@/components/core/Button';
 /**
  * Full-viewport cinematic hero section — warm ivory aesthetic.
  * Webflow-inspired design: floating orbs, staggered text reveal,
- * product image parallax, and ambient gradient drift.
+ * and ambient gradient drift.
+ * Background features a high-fidelity luxury YouTube video.
  */
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -16,7 +17,6 @@ export function HeroSection() {
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const manifestoRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -39,11 +39,6 @@ export function HeroSection() {
         { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' },
         '-=0.6'
       )
-      .fromTo(imageRef.current,
-        { opacity: 0, scale: 0.92, y: 20 },
-        { opacity: 1, scale: 1, y: 0, duration: 1.1, ease: 'power3.out' },
-        '-=0.7'
-      )
       .fromTo(ctaRef.current,
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
@@ -54,16 +49,6 @@ export function HeroSection() {
         { opacity: 0.4, y: 0, duration: 0.6, ease: 'power3.out' },
         '-=0.3'
       );
-
-      /* Continuous subtle float on the product image */
-      gsap.to(imageRef.current, {
-        y: -8,
-        duration: 3,
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true,
-        delay: 2,
-      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -73,56 +58,54 @@ export function HeroSection() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative h-screen flex items-center justify-center overflow-hidden bg-black"
     >
-      {/* Luxury Marble Background Image */}
-      <div className="absolute inset-0 z-0 pointer-events-none select-none opacity-45 mix-blend-multiply">
-        <Image
-          src="/images/placeholders/hero-background.png"
-          alt=""
-          fill
-          className="object-cover"
-          sizes="100vw"
-          priority
+      {/* YouTube Video Background */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0">
+        <iframe
+          src="https://www.youtube.com/embed/GjsWJj-8V-Q?autoplay=1&mute=1&loop=1&playlist=GjsWJj-8V-Q&controls=0&showinfo=0&rel=0&playsinline=1&enablejsapi=1&iv_load_policy=3"
+          className="absolute border-none"
+          style={{
+            top: '50%',
+            left: '50%',
+            width: '100vw',
+            height: '56.25vw',
+            minHeight: '100vh',
+            minWidth: '177.77vh',
+            transform: 'translate(-50%, -50%)',
+          }}
+          allow="autoplay; encrypted-media"
+          title="Noscanda Hero Background Video"
         />
       </div>
 
-      {/* Ambient Gradient Background */}
-      <div
-        className="absolute inset-0 animate-gradient-drift opacity-80"
-        style={{ background: 'var(--bg-hero-gradient)' }}
-      />
-
-      {/* Floating decorative orbs — parallax depth */}
-      <div className="floating-orb floating-orb-gold w-[600px] h-[600px] -top-[200px] -right-[200px]" />
-      <div className="floating-orb floating-orb-warm w-[400px] h-[400px] top-[60%] -left-[150px]" />
-      <div className="floating-orb floating-orb-ivory w-[300px] h-[300px] bottom-[10%] right-[5%]" />
-
-      {/* Decorative gold line accents */}
-      <div className="absolute top-[18%] left-0 right-0 h-px opacity-8"
-        style={{ background: 'linear-gradient(90deg, transparent 10%, var(--accent-gold) 50%, transparent 90%)' }} />
-      <div className="absolute bottom-[12%] left-0 right-0 h-px opacity-8"
-        style={{ background: 'linear-gradient(90deg, transparent 10%, var(--accent-gold) 50%, transparent 90%)' }} />
+      {/* Black Color Overlay */}
+      <div className="absolute inset-0 bg-black/65 z-10 pointer-events-none" />
 
       {/* NC Monogram Watermark */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none z-0">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none z-10">
         <Image
           src="/logolar/logolar-1024x1024/nos-canda-logo-bw.png"
           alt=""
           width={600}
           height={600}
-          className="w-[280px] md:w-[400px] lg:w-[500px] h-auto opacity-[0.035]"
+          className="w-[280px] md:w-[400px] lg:w-[500px] h-auto opacity-[0.05]"
           aria-hidden="true"
           priority
         />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+      <div className="relative z-20 text-center px-6 max-w-5xl mx-auto">
         {/* Corporate Badge */}
         <span
           ref={badgeRef}
           className="badge-corporate block mb-6 opacity-0"
+          style={{
+            background: 'rgba(255, 255, 255, 0.08)',
+            color: '#FFFFFF',
+            borderColor: 'rgba(255, 255, 255, 0.2)',
+          }}
         >
           Noscanda Group Corporate Portal
         </span>
@@ -130,7 +113,7 @@ export function HeroSection() {
         {/* Main Headline */}
         <h1
           ref={headlineRef}
-          className="font-cinzel text-hero font-bold text-[var(--text-primary)] mb-6 opacity-0"
+          className="font-cinzel text-hero font-bold text-white mb-6 opacity-0"
         >
           Görünmenin Ötesinde,{' '}
           <br className="hidden sm:block" />
@@ -139,27 +122,12 @@ export function HeroSection() {
 
         {/* Manifesto Quote + Description */}
         <div ref={manifestoRef} className="mb-10 opacity-0">
-          <p className="font-faraz text-subheading italic text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed">
+          <p className="font-faraz text-subheading italic text-white/90 max-w-2xl mx-auto leading-relaxed">
             &ldquo;İnsanlar kelimeleri unutur, yüzleri unutur ama kokuyu asla unutmaz.&rdquo;
           </p>
-          <p className="font-body text-body-lg text-[var(--text-secondary)] max-w-2xl mx-auto mt-4 leading-relaxed">
-            Modern dünyada herkes görünmek istiyor; biz, tene değdiği an başlayan o görünmez imzayı tasarlamak için kurulduk.
+          <p className="font-body text-body-lg text-white/75 max-w-2xl mx-auto mt-4 leading-relaxed">
+            Modern dünyada everyone wants to be seen; we were established to design that invisible signature that starts the moment it touches the skin.
           </p>
-        </div>
-
-        {/* Product Image — floating */}
-        <div ref={imageRef} className="mb-10 opacity-0 flex justify-center">
-          <div className="relative w-[180px] md:w-[220px] lg:w-[260px] aspect-square">
-            <Image
-              src="/images/placeholders/hero-diffuser.png"
-              alt="Nos Canda Premium Reed Diffuser"
-              fill
-              className="object-contain drop-shadow-2xl"
-              priority
-            />
-            {/* Glow ring under the product */}
-            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[80%] h-[20px] rounded-full bg-[var(--accent-gold)] opacity-[0.06] blur-xl" />
-          </div>
         </div>
 
         {/* Dual CTAs */}
@@ -167,18 +135,18 @@ export function HeroSection() {
           <Button variant="primary" href="/urunlerimiz/reed-diffusers" id="hero-cta-products">
             Ürünlerimizi Keşfedin
           </Button>
-          <Button variant="secondary" href="/girisimcilik/monolith-kiosk" id="hero-cta-franchise">
+          <Button variant="secondary" href="/girisimcilik/monolith-kiosk" id="hero-cta-franchise" className="border-white/30 text-white hover:bg-white/10">
             Franchise & Ortaklık
           </Button>
         </div>
       </div>
 
       {/* Bottom scroll indicator */}
-      <div ref={scrollIndicatorRef} className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0">
-        <span className="font-gothic text-[0.6rem] tracking-[0.3em] uppercase text-[var(--text-muted)]">
+      <div ref={scrollIndicatorRef} className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0 z-20">
+        <span className="font-gothic text-[0.6rem] tracking-[0.3em] uppercase text-white/60">
           Keşfet
         </span>
-        <div className="w-px h-8 bg-[var(--accent-gold)] animate-pulse" />
+        <div className="w-px h-8 bg-white/40 animate-pulse" />
       </div>
     </section>
   );

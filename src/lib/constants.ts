@@ -182,19 +182,34 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     label: 'Nos Canda One',
-    href: '/vakif',
+    href: '/nos-canda-one',
     icon: 'heart',
     image: '/images/vakif/ana-sayfa-2.png',
     teaserTitle: 'Nos Canda One',
-    teaserDesc: 'Birleşiyoruz, güçleniyoruz. Sağlık, eğitim, barınma ve topluluk geliştirme alanlarında kalıcı değişimler yaratıyoruz.'
-  },
-  {
-    label: 'Akademi',
-    href: '/akademi',
-    icon: 'academic-cap',
-    image: '/kokular/setler/odakokususet/revizeolacak/set-gorseller/karisik/fruity&floral/A_beautiful,_romantic_202604270600.jpeg',
-    teaserTitle: 'Nos Canda Akademi',
-    teaserDesc: 'Girişimci adaylarına yönelik eğitim programları, koku uzmanlığı stajları ve üniversite burs olanaklarımız.'
+    teaserDesc: 'Birleşiyoruz, güçleniyoruz. Toplumsal kalkınma, yeşil gelecek, eğitim ve staj fırsatlarıyla geleceği şekillendiriyoruz.',
+    children: [
+      {
+        label: 'Nos Canda One Giriş',
+        href: '/nos-canda-one',
+        image: '/images/vakif/ana-sayfa-2.png',
+        teaserTitle: 'Nos Canda One',
+        teaserDesc: 'Nos Canda One platformunun genel vizyonu, geleceğe köprü olan ana kapısı.'
+      },
+      {
+        label: 'Vakıf',
+        href: '/nos-canda-one/vakif',
+        image: '/images/vakif/ana-sayfa-2.png',
+        teaserTitle: 'Nos Canda One Vakfı',
+        teaserDesc: 'Kadın girişimci can suyu destekleri, temel insani yardımlar ve yeşil inisiyatifler.'
+      },
+      {
+        label: 'Akademi',
+        href: '/nos-canda-one/akademi',
+        image: '/images/akademi/hero.png',
+        teaserTitle: 'Nos Canda One Akademi',
+        teaserDesc: 'Genç yetenek eğitim bursları, staj ve mentorluk imkanları, uygulamalı atölyeler.'
+      }
+    ]
   },
   {
     label: 'Yatırımcı İlişkileri',
@@ -303,8 +318,9 @@ export const FOOTER_COLUMNS = [
   {
     title: 'Eko-Sosyal',
     links: [
-      { label: 'Nos Canda Akademi', href: '/akademi' },
-      { label: 'Nos Canda One', href: '/vakif' },
+      { label: 'Nos Canda One Giriş', href: '/nos-canda-one' },
+      { label: 'Vakıf', href: '/nos-canda-one/vakif' },
+      { label: 'Akademi', href: '/nos-canda-one/akademi' },
     ],
   },
   {

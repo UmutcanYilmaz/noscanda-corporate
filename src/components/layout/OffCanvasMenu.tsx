@@ -11,7 +11,7 @@ interface OffCanvasMenuProps {
 }
 
 /**
- * Minimalist vector SVG icon renderer.
+ * Minimalist vector SVG icon renderer for nav headers.
  */
 function renderIcon(iconName?: string) {
   if (!iconName) return null;
@@ -77,8 +77,8 @@ const DEFAULT_PREVIEW = {
 
 /**
  * Super modern, high-end Off-Canvas Menu for both mobile and desktop.
- * Slides in from the right, locks body scroll, features keyboard trapping & screen reader support,
- * and displays dynamic visual previews in an elegant 3:4 portrait layout.
+ * Re-designed to be ultra-premium, featuring full-screen glassmorphic layouts,
+ * frameless floating illustrations for the curated preview column, and highly responsive interactions.
  */
 export function OffCanvasMenu({ isOpen, onClose }: OffCanvasMenuProps) {
   const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
@@ -118,13 +118,11 @@ export function OffCanvasMenu({ isOpen, onClose }: OffCanvasMenuProps) {
         const lastEl = focusableElements[focusableElements.length - 1];
 
         if (e.shiftKey) {
-          // Shift + Tab (navigating backwards)
           if (document.activeElement === firstEl) {
             lastEl.focus();
             e.preventDefault();
           }
         } else {
-          // Tab (navigating forwards)
           if (document.activeElement === lastEl) {
             firstEl.focus();
             e.preventDefault();
@@ -135,7 +133,6 @@ export function OffCanvasMenu({ isOpen, onClose }: OffCanvasMenuProps) {
 
     window.addEventListener('keydown', handleKeyDown);
     
-    // Auto-focus the close button on open
     const closeBtn = document.getElementById('close-menu-button');
     if (closeBtn) closeBtn.focus();
 
@@ -155,143 +152,141 @@ export function OffCanvasMenu({ isOpen, onClose }: OffCanvasMenuProps) {
   return (
     <div
       id="off-canvas-menu-overlay"
-      className={`fixed inset-0 z-[60] transition-all duration-500 flex justify-end
+      className={`fixed inset-0 z-[60] transition-all duration-700 flex justify-end
         ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
       role="dialog"
       aria-modal="true"
       aria-label="Navigasyon Menüsü"
     >
-      {/* Dimmed glass background overlay */}
+      {/* Cinematic blurred overlay */}
       <div
-        className="absolute inset-0 bg-black/45 backdrop-blur-sm transition-opacity duration-500"
+        className="absolute inset-0 bg-neutral-950/90 backdrop-blur-3xl transition-opacity duration-700"
         onClick={onClose}
       />
 
-      {/* Main Drawer Panel */}
+      {/* Main Full-Screen Panel */}
       <div
-        className={`relative z-10 flex flex-col lg:flex-row h-full w-full lg:max-w-[960px] bg-[var(--bg-primary)] border-l border-[var(--border-subtle)] shadow-elevated transition-transform duration-500 ease-out
+        className={`relative z-10 flex flex-col lg:flex-row h-full w-full bg-neutral-950/70 backdrop-blur-3xl border-l border-white/5 shadow-2xl transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] text-white overflow-hidden
           ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         
+        {/* Radial ambient glow behind panel content */}
+        <div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-[0.04] blur-[140px] pointer-events-none z-0"
+          style={{
+            background: 'radial-gradient(circle, #BA5225 0%, #B8860B 50%, transparent 70%)'
+          }}
+        />
+
         {/* Floating Close Button */}
         <button
           id="close-menu-button"
           onClick={onClose}
-          className="absolute top-4 right-4 z-50 w-10 h-10 flex items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-white/10 hover:border-[var(--accent-gold)] hover:scale-105 transition-all duration-300 cursor-pointer text-white shadow-lg focus-visible:ring-2 focus-visible:ring-[var(--accent-gold)] focus-visible:outline-none"
+          className="absolute top-8 right-8 z-50 flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:border-[var(--accent-gold)] hover:bg-white/10 hover:scale-105 transition-all duration-300 cursor-pointer text-white shadow-xl focus-visible:ring-2 focus-visible:ring-[var(--accent-gold)] focus-visible:outline-none"
           aria-label="Menüyü Kapat"
         >
-          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <span className="font-gothic text-[0.65rem] tracking-[0.25em] uppercase text-white/80">Kapat</span>
+          <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-2.5 h-2.5">
             <line x1="2" y1="2" x2="14" y2="14" />
             <line x1="14" y1="2" x2="2" y2="14" />
           </svg>
         </button>
 
         {/* Decorative Watermark Logo */}
-        <div className="absolute bottom-10 left-10 pointer-events-none select-none opacity-[0.02] hidden lg:block">
+        <div className="absolute bottom-20 left-20 pointer-events-none select-none opacity-[0.015] hidden lg:block z-0">
           <Image
             src="/logolar/logolar-1024x1024/nos-canda-logo-bw.png"
             alt=""
-            width={350}
-            height={350}
+            width={550}
+            height={550}
             priority
           />
         </div>
 
-        {/* Desktop Left Column: Dynamic Visual 3:4 Portrait Curation Preview */}
-        <div className="hidden lg:flex w-[400px] flex-col justify-between p-10 border-r border-[var(--border-subtle)] bg-[var(--bg-secondary)] relative overflow-hidden select-none">
-          {/* Luxury background texture overlay */}
-          <div className="absolute inset-0 z-0 pointer-events-none opacity-30 mix-blend-multiply">
-            <Image
-              src="/images/placeholders/hero-background.png"
-              alt=""
-              fill
-              className="object-cover"
-              sizes="400px"
-            />
-          </div>
-
+        {/* Desktop Left Column: Curated Visual Preview (Curator Column) */}
+        <div className="hidden lg:flex lg:w-[42%] flex-col justify-between p-20 border-r border-white/5 bg-neutral-950/45 relative overflow-hidden select-none z-10">
           <div className="relative z-10 flex flex-col h-full justify-between">
-            <div>
-              <span className="badge-corporate inline-block mb-3 text-[0.6rem] tracking-[0.2em] font-gothic text-[var(--accent-gold)]">
+            <div className="space-y-5">
+              <span className="badge-corporate inline-block text-[0.65rem] tracking-[0.25em] font-gothic text-[var(--accent-gold)] px-4 py-1.5 rounded-full border border-[var(--accent-gold)]/20 bg-[var(--accent-gold)]/5">
                 Noscanda Keşif
               </span>
-              <h4 className="font-cinzel text-lg font-bold text-[var(--text-primary)] mb-2 transition-all duration-300">
+              <h4 className="font-cinzel text-3xl font-semibold text-white tracking-wide transition-all duration-500">
                 {hoveredPreview.title}
               </h4>
-              <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed mb-6 transition-all duration-300 min-h-[50px]">
+              <p className="font-body text-sm text-neutral-400 leading-relaxed max-w-sm transition-all duration-500 min-h-[60px] font-light">
                 {hoveredPreview.desc}
               </p>
             </div>
             
-            {/* Interactive portrait product image frame (3:4 aspect ratio) */}
-            <div className="relative aspect-[3/4] w-[260px] mx-auto rounded-2xl overflow-hidden border border-[var(--border-strong)] bg-[var(--bg-primary)] shadow-glass image-zoom-container mb-6">
+            {/* Curated Preview Container: Transparent, cardless, frameless image floating independently */}
+            <div className="relative aspect-[3/4] w-[320px] mx-auto select-none overflow-hidden transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.03]">
               <Image
                 key={hoveredPreview.image}
                 src={hoveredPreview.image}
                 alt={hoveredPreview.title}
                 fill
-                className="object-cover transition-all duration-500 animate-fade-in"
-                sizes="300px"
+                className="object-contain transition-all duration-700 animate-fade-in"
+                sizes="350px"
               />
             </div>
 
-            <div className="text-[var(--text-muted)] font-garet text-[0.55rem] tracking-[0.25em] uppercase">
+            <div className="text-neutral-600 font-gothic text-[0.6rem] tracking-[0.3em] uppercase">
               Olfaktif Sanat Evi
             </div>
           </div>
         </div>
 
-        {/* Mobile/Tablet Header: Premium Dynamic Horizontal Preview Card */}
-        <div className="lg:hidden w-full bg-[var(--bg-secondary)] p-4 pr-16 flex gap-4 border-b border-[var(--border-subtle)] relative overflow-hidden flex-shrink-0 select-none">
-          {/* Framed portrait 3:4 preview image */}
-          <div className="w-[70px] sm:w-[80px] aspect-[3/4] relative rounded-xl overflow-hidden border border-[var(--border-strong)] bg-[var(--bg-primary)] shadow-glass flex-shrink-0">
+        {/* Mobile/Tablet Header Preview Card */}
+        <div className="lg:hidden w-full bg-neutral-950/60 p-6 pr-24 flex gap-5 border-b border-white/5 relative overflow-hidden flex-shrink-0 select-none z-10">
+          <div className="w-[65px] aspect-[3/4] relative overflow-hidden flex-shrink-0">
             <Image
               key={hoveredPreview.image}
               src={hoveredPreview.image}
               alt={hoveredPreview.title}
               fill
-              className="object-cover transition-all duration-500 animate-fade-in"
+              className="object-contain transition-all duration-500 animate-fade-in"
               sizes="120px"
             />
           </div>
 
-          {/* Text Overlay Details */}
-          <div className="flex-1 flex flex-col justify-center">
-            <span className="font-gothic text-[0.52rem] tracking-[0.18em] text-[var(--accent-gold)] uppercase block mb-0.5">
+          <div className="flex-1 flex flex-col justify-center space-y-1">
+            <span className="font-gothic text-[0.55rem] tracking-[0.2em] text-[var(--accent-gold)] uppercase block">
               Noscanda Keşif
             </span>
-            <h4 className="font-cinzel text-xs sm:text-sm font-bold text-[var(--text-primary)] mb-0.5 leading-snug line-clamp-1">
+            <h4 className="font-cinzel text-sm font-semibold text-white leading-snug line-clamp-1">
               {hoveredPreview.title}
             </h4>
-            <p className="font-body text-[0.68rem] text-[var(--text-secondary)] leading-relaxed line-clamp-2">
+            <p className="font-body text-[0.7rem] text-neutral-400 leading-relaxed line-clamp-2 font-light">
               {hoveredPreview.desc}
             </p>
           </div>
         </div>
 
-        {/* Right Column: Menu Navigation Links & Socials */}
-        <div className="flex-1 flex flex-col h-[calc(100%-110px)] lg:h-full justify-between overflow-y-auto bg-[var(--bg-primary)]">
+        {/* Right Column: Full-Screen Navigation Links & Coordinates */}
+        <div className="flex-1 flex flex-col h-[calc(100%-120px)] lg:h-full justify-between overflow-y-auto bg-neutral-950/40 z-10">
           
-          <div className="p-6 sm:p-10 flex flex-col justify-between min-h-full">
+          <div className="p-8 sm:p-20 flex flex-col justify-between min-h-full">
+            
             {/* Header branding logo */}
-            <div className="pb-6 border-b border-[var(--border-subtle)] flex items-center">
+            <div className="pb-10 border-b border-white/5 flex items-center">
               <Image
                 src="/logolar/logolar-781x125/nos-canda-logo-bw.png"
                 alt="Logo"
-                width={120}
-                height={20}
-                className="h-[16px] w-auto object-contain"
+                width={170}
+                height={28}
+                className="h-[22px] w-auto object-contain brightness-200"
               />
             </div>
 
             {/* Navigation Items (Accordion & Links) */}
-            <nav className="my-8 space-y-1" aria-label="Ana Menü">
+            <nav className="my-12 space-y-4" aria-label="Ana Menü">
               {NAV_ITEMS.map((item, idx) => {
                 const hasChildren = !!item.children;
                 const isExpanded = expandedIdx === idx;
+                const paddedIndex = String(idx + 1).padStart(2, '0');
                 
                 return (
-                  <div key={item.label} className="border-b border-[var(--border-subtle)] last:border-0">
+                  <div key={item.label} className="border-b border-white/5 last:border-0 pb-3">
                     {hasChildren ? (
                       <>
                         <button
@@ -301,17 +296,21 @@ export function OffCanvasMenu({ isOpen, onClose }: OffCanvasMenuProps) {
                           }}
                           onMouseEnter={() => handleHoverItem(item)}
                           onFocus={() => handleHoverItem(item)}
-                          className="w-full flex items-center justify-between py-4 font-cinzel text-base sm:text-lg text-[var(--text-primary)] hover:text-[var(--accent-gold)] focus-visible:text-[var(--accent-gold)] focus-visible:outline-none transition-colors duration-300 cursor-pointer group"
+                          className="w-full flex items-center justify-between py-4 font-cinzel text-xl sm:text-2xl lg:text-3xl text-neutral-300 hover:text-white focus-visible:text-white focus-visible:outline-none transition-colors duration-300 cursor-pointer group"
                           aria-expanded={isExpanded}
                           aria-controls={`menu-sub-${idx}`}
                         >
-                          <div className="flex items-center gap-3">
-                            {renderIcon(item.icon)}
-                            <span className="tracking-wide group-hover:translate-x-1 group-focus-visible:translate-x-1 transition-transform duration-300">{item.label}</span>
+                          <div className="flex items-center gap-5">
+                            <span className="font-cinzel text-xs text-[var(--accent-gold)] tracking-widest font-light select-none">
+                              {paddedIndex}
+                            </span>
+                            <span className="tracking-wide group-hover:translate-x-2 group-focus-visible:translate-x-2 transition-transform duration-300 relative py-1">
+                              {item.label}
+                            </span>
                           </div>
                           <svg
-                            className={`w-3.5 h-3.5 transition-transform duration-300 ${isExpanded ? 'rotate-180 text-[var(--accent-gold)]' : ''}`}
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+                            className={`w-4 h-4 text-neutral-500 transition-transform duration-300 ${isExpanded ? 'rotate-180 text-[var(--accent-gold)]' : ''}`}
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}
                           >
                             <path d="M19 9l-7 7-7-7" />
                           </svg>
@@ -319,11 +318,11 @@ export function OffCanvasMenu({ isOpen, onClose }: OffCanvasMenuProps) {
                         <div
                           id={`menu-sub-${idx}`}
                           className={`overflow-hidden transition-all duration-500 ease-in-out
-                            ${isExpanded ? 'max-h-[380px] opacity-100 py-2' : 'max-h-0 opacity-0'}`}
+                            ${isExpanded ? 'max-h-[380px] opacity-100 py-4' : 'max-h-0 opacity-0'}`}
                           role="region"
                           aria-label={`${item.label} Alt Menüsü`}
                         >
-                          <div className="pl-6 space-y-1">
+                          <div className="pl-10 space-y-3 border-l border-white/10 ml-[26px]">
                             {item.children!.map((child) => (
                               <Link
                                 key={child.href}
@@ -331,13 +330,11 @@ export function OffCanvasMenu({ isOpen, onClose }: OffCanvasMenuProps) {
                                 onClick={onClose}
                                 onMouseEnter={() => handleHoverItem(child)}
                                 onFocus={() => handleHoverItem(child)}
-                                className="flex items-center gap-3 py-2.5 font-body text-sm text-[var(--text-secondary)] hover:text-[var(--accent-gold)] focus-visible:text-[var(--accent-gold)] focus-visible:outline-none transition-colors duration-200 group/child"
+                                className="flex items-center gap-3 py-2.5 font-body text-sm lg:text-base text-neutral-400 hover:text-[var(--accent-gold)] focus-visible:text-[var(--accent-gold)] focus-visible:outline-none transition-colors duration-250 group/child"
                               >
-                                {/* Animated Curation Line */}
-                                <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-gold)] opacity-40 group-hover/child:scale-125 group-focus-visible/child:scale-125 transition-transform" />
-                                <span className="group-hover/child:translate-x-1 group-focus-visible/child:translate-x-1 transition-transform duration-200">{child.label}</span>
+                                <span className="group-hover/child:translate-x-1 group-focus-visible/child:translate-x-1 transition-transform duration-250">{child.label}</span>
                                 {child.badge && (
-                                  <span className="text-[0.55rem] tracking-widest uppercase px-2 py-0.5 rounded-full border border-[var(--accent-gold)] text-[var(--accent-gold)] font-gothic ml-auto">
+                                  <span className="text-[0.55rem] tracking-widest uppercase px-2 py-0.5 rounded-full border border-[var(--accent-gold)]/30 bg-[var(--accent-gold)]/5 text-[var(--accent-gold)] font-gothic ml-auto scale-90">
                                     {child.badge}
                                   </span>
                                 )}
@@ -352,11 +349,15 @@ export function OffCanvasMenu({ isOpen, onClose }: OffCanvasMenuProps) {
                         onClick={onClose}
                         onMouseEnter={() => handleHoverItem(item)}
                         onFocus={() => handleHoverItem(item)}
-                        className="w-full flex items-center py-4 font-cinzel text-base sm:text-lg text-[var(--text-primary)] hover:text-[var(--accent-gold)] focus-visible:text-[var(--accent-gold)] focus-visible:outline-none transition-colors duration-300 group"
+                        className="w-full flex items-center py-4 font-cinzel text-xl sm:text-2xl lg:text-3xl text-neutral-300 hover:text-white focus-visible:text-white focus-visible:outline-none transition-colors duration-300 group"
                       >
-                        <div className="flex items-center gap-3">
-                          {renderIcon(item.icon)}
-                          <span className="tracking-wide group-hover:translate-x-1 group-focus-visible:translate-x-1 transition-transform duration-300">{item.label}</span>
+                        <div className="flex items-center gap-5">
+                          <span className="font-cinzel text-xs text-[var(--accent-gold)] tracking-widest font-light select-none">
+                            {paddedIndex}
+                          </span>
+                          <span className="tracking-wide group-hover:translate-x-2 group-focus-visible:translate-x-2 transition-transform duration-300 relative py-1">
+                            {item.label}
+                          </span>
                         </div>
                       </Link>
                     )}
@@ -366,26 +367,26 @@ export function OffCanvasMenu({ isOpen, onClose }: OffCanvasMenuProps) {
             </nav>
 
             {/* Footer Coordinates & Socials */}
-            <div className="pt-6 border-t border-[var(--border-subtle)] space-y-6">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="pt-10 border-t border-white/5 space-y-8">
+              <div className="grid grid-cols-2 gap-8">
                 <div>
-                  <span className="font-gothic text-[0.6rem] tracking-[0.2em] uppercase text-[var(--text-muted)] block mb-1">
+                  <span className="font-gothic text-[0.6rem] tracking-[0.25em] uppercase text-neutral-500 block mb-1.5">
                     E-Posta
                   </span>
                   <a 
                     href="mailto:info@noscanda.net" 
-                    className="font-body text-xs text-[var(--text-secondary)] hover:text-[var(--accent-gold)] focus-visible:text-[var(--accent-gold)] focus-visible:outline-none transition-colors"
+                    className="font-body text-xs sm:text-sm text-neutral-300 hover:text-[var(--accent-gold)] focus-visible:text-[var(--accent-gold)] focus-visible:outline-none transition-colors"
                   >
                     info@noscanda.net
                   </a>
                 </div>
                 <div>
-                  <span className="font-gothic text-[0.6rem] tracking-[0.2em] uppercase text-[var(--text-muted)] block mb-1">
+                  <span className="font-gothic text-[0.6rem] tracking-[0.25em] uppercase text-neutral-500 block mb-1.5">
                     Telefon
                   </span>
                   <a 
                     href="tel:+902120000000" 
-                    className="font-body text-xs text-[var(--text-secondary)] hover:text-[var(--accent-gold)] focus-visible:text-[var(--accent-gold)] focus-visible:outline-none transition-colors"
+                    className="font-body text-xs sm:text-sm text-neutral-300 hover:text-[var(--accent-gold)] focus-visible:text-[var(--accent-gold)] focus-visible:outline-none transition-colors"
                   >
                     +90 212 000 0000
                   </a>
@@ -393,47 +394,56 @@ export function OffCanvasMenu({ isOpen, onClose }: OffCanvasMenuProps) {
               </div>
 
               <div>
-                <span className="font-gothic text-[0.6rem] tracking-[0.2em] uppercase text-[var(--text-muted)] block mb-1">
+                <span className="font-gothic text-[0.6rem] tracking-[0.25em] uppercase text-neutral-500 block mb-1.5">
                   Genel Merkez
                 </span>
-                <p className="font-body text-[0.7rem] text-[var(--text-secondary)] leading-relaxed">
+                <p className="font-body text-xs text-neutral-300 leading-relaxed">
                   Noscanda Tower, Maslak, İstanbul, Türkiye
                 </p>
               </div>
 
-              {/* Social Icons Row */}
+              {/* Social Icons Row with real SVG vector symbols */}
               <div className="flex items-center gap-4">
                 <a 
                   href="#" 
-                  className="w-8 h-8 rounded-full border border-[var(--border-subtle)] hover:border-[var(--accent-gold)] focus-visible:border-[var(--accent-gold)] focus-visible:text-[var(--accent-gold)] focus-visible:outline-none flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors duration-300"
+                  className="w-10 h-10 rounded-full border border-white/5 hover:border-[var(--accent-gold)] bg-white/5 hover:bg-white/10 focus-visible:border-[var(--accent-gold)] focus-visible:text-[var(--accent-gold)] focus-visible:outline-none flex items-center justify-center text-neutral-400 hover:text-[var(--accent-gold)] transition-all duration-300"
                   aria-label="Instagram sayfamız"
                 >
-                  <span className="font-gothic text-[0.6rem]">IG</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" />
+                    <circle cx="12" cy="12" r="5" />
+                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                  </svg>
                 </a>
                 <a 
                   href="#" 
-                  className="w-8 h-8 rounded-full border border-[var(--border-subtle)] hover:border-[var(--accent-gold)] focus-visible:border-[var(--accent-gold)] focus-visible:text-[var(--accent-gold)] focus-visible:outline-none flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors duration-300"
+                  className="w-10 h-10 rounded-full border border-white/5 hover:border-[var(--accent-gold)] bg-white/5 hover:bg-white/10 focus-visible:border-[var(--accent-gold)] focus-visible:text-[var(--accent-gold)] focus-visible:outline-none flex items-center justify-center text-neutral-400 hover:text-[var(--accent-gold)] transition-all duration-300"
                   aria-label="LinkedIn sayfamız"
                 >
-                  <span className="font-gothic text-[0.6rem]">LN</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z" />
+                    <rect x="2" y="9" width="4" height="12" />
+                    <circle cx="4" cy="4" r="2" />
+                  </svg>
                 </a>
                 <a 
                   href="#" 
-                  className="w-8 h-8 rounded-full border border-[var(--border-subtle)] hover:border-[var(--accent-gold)] focus-visible:border-[var(--accent-gold)] focus-visible:text-[var(--accent-gold)] focus-visible:outline-none flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors duration-300"
-                  aria-label="YouTube kanalımız"
+                  className="w-10 h-10 rounded-full border border-white/5 hover:border-[var(--accent-gold)] bg-white/5 hover:bg-white/10 focus-visible:border-[var(--accent-gold)] focus-visible:text-[var(--accent-gold)] focus-visible:outline-none flex items-center justify-center text-neutral-400 hover:text-[var(--accent-gold)] transition-all duration-300"
+                  aria-label="X sayfamız"
                 >
-                  <span className="font-gothic text-[0.6rem]">YT</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
                 </a>
               </div>
 
-              <p className="font-body text-[0.65rem] text-[var(--text-muted)]">
+              <p className="font-body text-[0.65rem] text-neutral-500">
                 © {new Date().getFullYear()} Noscanda Group. Tüm Hakları Saklıdır.
               </p>
             </div>
           </div>
 
         </div>
-
       </div>
     </div>
   );

@@ -1,11 +1,8 @@
-import type { Metadata } from 'next';
-import { Structure } from './structure';
+import { redirect } from 'next/navigation';
 
-export const metadata: Metadata = {
-  title: "Nos Canda One | Akademi",
-  description: "Nos Canda One | Akademi — Genç yeteneklere staj, eğitim bursları ve profesyonel gelişim fırsatları sunan kurumsal sosyal sorumluluk platformu.",
-};
-
-export default function AkademiPage() {
-  return <Structure />;
+/**
+ * Legacy route — redirects to the new /nos-canda-one/akademi page.
+ */
+export default function AkademiLegacyRedirect() {
+  redirect('/nos-canda-one/akademi');
 }

@@ -3,21 +3,27 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { OffCanvasMenu } from './OffCanvasMenu';
 
 /**
  * Premium minimalist visual navigation bar.
  * Contains only the brand logo and the Off-Canvas Menu trigger button.
+ * Adapts dynamically to light and dark backgrounds depending on page path and scroll position.
  */
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  const isHomepage = pathname === '/';
+  const useDarkStyles = isHomepage && !scrolled;
 
   return (
     <>
@@ -37,7 +43,8 @@ export function Navbar() {
               alt="Nos Canda Group Logo"
               width={160}
               height={26}
-              className="h-[22px] w-auto object-contain"
+              className={`h-[22px] w-auto object-contain transition-all duration-500
+                ${useDarkStyles ? 'invert brightness-200' : ''}`}
               priority
             />
           </Link>
@@ -45,11 +52,34 @@ export function Navbar() {
           {/* Menu Trigger (Hamburger) */}
           <button
             onClick={() => setMenuOpen(true)}
-            className="flex items-center gap-2.5 px-4 py-2 border border-[var(--border-subtle)] rounded-full hover:border-[var(--accent-gold)] transition-colors duration-300 cursor-pointer shadow-glass group bg-white/30 backdrop-blur-md"
+            className={`flex items-center gap-2.5 px-4 py-2 border rounded-full transition-all duration-500 cursor-pointer shadow-glass group backdrop-blur-md
+              ${useDarkStyles
+                ? 'border-white/20 hover:border-[var(--accent-gold)] bg-white/10'
+                : 'border-[var(--border-subtle)] hover:border-[var(--accent-gold)] bg-white/30'
+              }`}
             aria-label="Menüyü Aç"
           >
-            <span className="font-gothic text-[0.62rem] tracking-[0.25em] uppercase text-[var(--text-secondary)] pl-1 group-hover:text-[var(--accent-gold)] transition-colors">Menü</span>
-            <svg width="14" height="10" viewBox="0 0 18 14" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors">
+            <span className={`font-gothic text-[0.62rem] tracking-[0.25em] uppercase pl-1 transition-colors duration-300
+              ${useDarkStyles
+                ? 'text-white/80 group-hover:text-[var(--accent-gold)]'
+                : 'text-[var(--text-secondary)] group-hover:text-[var(--accent-gold)]'
+              }`}
+            >
+              Menü
+            </span>
+            <svg
+              width="14"
+              height="10"
+              viewBox="0 0 18 14"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={1.5}
+              className={`transition-colors duration-300
+                ${useDarkStyles
+                  ? 'text-white group-hover:text-[var(--accent-gold)]'
+                  : 'text-[var(--text-primary)] group-hover:text-[var(--accent-gold)]'
+                }`}
+            >
               <line x1="0" y1="1" x2="18" y2="1" />
               <line x1="4" y1="7" x2="18" y2="7" />
               <line x1="0" y1="13" x2="18" y2="13" />

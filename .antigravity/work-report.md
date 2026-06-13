@@ -662,12 +662,68 @@
 ### Build Status
 - ✅ `pnpm build` — Compiled successfully with zero errors.
 
+## Session: 2026-06-13T03:40 — Nos Canda One Unified Portal & Premium Full-Screen Menu
 
+### Completed Tasks
 
+1. **Unified Nos Canda One Portal & Sub-pages**
+   - Created the parent landing page at `/nos-canda-one/page.tsx` displaying the dual social initiatives (Vakıf and Akademi) in an elegant split-card layout.
+   - Restructured the `/vakif` route to `/nos-canda-one/vakif` and `/akademi` route to `/nos-canda-one/akademi`.
+   - Set up Next.js `redirect()` files inside legacy directories `/vakif` and `/akademi` to ensure backward compatibility and prevent broken links.
 
+2. **Created Homepage "Nos Canda One" Section**
+   - Created a unified `NosCandaOneSection` component and mounted it inside the homepage assembly (`structure.tsx`), replacing the separate Vakıf and Akademi sections.
 
+3. **Cinematic Full-Screen Off-Canvas Menu**
+   - Redesigned `OffCanvasMenu.tsx` to expand full-screen on all viewports, featuring a rich translucent dark layout (`bg-neutral-950/80 backdrop-blur-2xl`).
+   - Added a 40/60 split column structure: a 3:4 portrait curation card preview on the left and massive, elegant Cinzel typography links on the right.
+   - Nested the new sub-page links (Nos Canda One Giriş, Vakıf, Akademi) under the parent "Nos Canda One" item in the menu hierarchy.
 
+4. **Resolved Non-Existent Image Assets**
+   - Discovered that `/images/vakif/hero.png` was missing. Replaced all occurrences across pages, sections, and navigation metadata with the valid public asset `/images/vakif/ana-sayfa-2.png` to ensure images load instantly without alt-text fallbacks.
 
+### Build Status
+- ✅ `pnpm build` — Compiled successfully with zero TypeScript, syntax, or pre-rendering errors.
+- ✅ Visual validation verified using the browser subagent, confirming fully functional full-screen menu interaction, hover image previews, and responsive cards on `/nos-canda-one`.
 
+## Session: 2026-06-13T04:26 — Nos Canda One | Visual Refinement & Cardless Illustrations
+
+### Completed Tasks
+
+1. **Cardless Curation and Frameless Images on Akademi**
+   - Removed all remaining card borders, rounded frame classes (`rounded-2xl`, `rounded-[48px]`, `rounded-[40px]`, `rounded-[39px]`), and card shadows (`shadow-xl`, `shadow-2xl`, `shadow-[0_20px_50px_rgba(186,82,37,0.08)]`) from image wrapper containers in all Akademi sections (`Hero`, `About`, `Why Us`, `Offerings`, `Support Program`, `Career Impact`, `Contact CTA`).
+   - This ensures all transparent illustrations float independently and naturally on their background colors, with full compatibility across mobile and desktop.
+
+2. **Premium Full-Screen Off-Canvas Redesign**
+   - Removed the card borders, backgrounds, and drop-shadow frames from the left-column visual preview, enabling transparent preview illustrations to float naturally.
+   - Replaced all text initials in social icons (`IG`, `LN`, `YT`) with hand-crafted, high-fidelity inline SVG vector icons for Instagram, LinkedIn, and X (Twitter) inside the navigation menu.
+   - Introduced a radial ambient gradient glow drifting behind the content to produce a modern glassmorphic look.
+
+3. **Homepage Video Hero Validation**
+   - Validated that the homepage hero uses the 100vh cinematic video background with an elegant dark overlay, and confirmed the old "Ortaklarımızın Sesi" is removed.
+
+### Build Status
+- ✅ `npm run build` — Passed successfully with 0 errors.
+
+## Session: 2026-06-13T04:40 — Nos Canda One | Homepage Video and Image Visibility Refinement
+
+### Completed Tasks
+
+1. **Homepage Hero Video and Layout Upgrades**
+   - Embedded Timothée Chalamet's official cinematic BLEU DE CHANEL commercial (`7yXy_eJ6Wys`) via a full-screen, autoplaying, looping, and muted YouTube iframe background.
+   - Removed the floating product diffuser image and clean-deleted all its corresponding GSAP floats and timelines to ensure zero target console warnings or layout shifts.
+   - Configured the navigation bar logo and menu toggle elements to invert dynamically (switch to white) when positioned on the dark homepage hero before scroll, and return to charcoal when scrolled or viewing other light subpages.
+
+2. **Homepage Pillars Layout Visibility**
+   - Updated the Vakıf and Akademi pillar previews in `NosCandaOneSection` to render their illustrations fully using `object-contain`.
+   - Stripped the card borders, backgrounds, and drop shadows from the pillar image containers to match the overall transparent frameless aesthetic and prevent image clipping.
+
+3. **Akademi Page Image Visibilities**
+   - Updated all illustrations on the Akademi page (`Hero`, `About`, `Why Us`, `Offerings`, `Support Program`, `Career Impact`, `Benefits`, `Contact CTA`) to use `object-contain` instead of `object-cover`.
+   - This ensures all circular and vertical illustrations render fully without cropped boundaries or zoomed boundaries.
+   - Cardless visual refinement applied to the `Benefits` image grid containers by stripping borders and shadows.
+
+### Build Status
+- ✅ `npm run build` — Passed successfully with 0 errors.
 
 
