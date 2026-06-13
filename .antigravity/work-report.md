@@ -1,0 +1,673 @@
+# Noscanda Corporate Portal — Work Report
+
+## Session: 2026-06-04T16:13 — Full Site Redesign
+
+### Completed Tasks
+
+1. **Removed Dark Theme Engine**
+   - Deleted `ThemeProvider.tsx` and `ThemeToggle.tsx`
+   - Removed Luna/Sol CSS variable system from `globals.css`
+   - Removed anti-FOUC script and `suppressHydrationWarning` from `layout.tsx`
+   - Removed `useTheme` hook calls from Navbar and HeroSection
+   - Removed theme-dependent logo swapping
+
+2. **Established Single Light-Mode Design System**
+   - Warm ivory background (`#FAFAF7`)
+   - Rich gold accents (`#B8860B` / `#D4A017`)
+   - Refined glassmorphism with light-mode tuning
+   - New utility classes: `.section-dark`, `.section-warm`, `.surface-elevated`, `.gold-line`, `.page-header`, `.stat-value`
+   - Shimmer animation for gold divider lines
+
+3. **Akademi & Vakıf as Separate Pages**
+   - `/akademi` — Full content: mission, stats (120+ stajyer, 45 burs, 8 üniversite), 4 programs
+   - `/vakif` — Full content: vision, impact numbers (35+ girişimci, ₺2.5M hibe), 4 initiatives, values
+   - `/hakkimizda/vakif` — Redirects to `/vakif` for backward compat
+
+4. **Real Content for All Pages** (replaced all PlaceholderPage usage)
+   - `/felsefe` — Concentration philosophy, comparison chart, 3 principles
+   - `/hakkimizda/hikayemiz` — Origin story, 6 values grid, timeline
+   - `/iletisim/genel-merkez` — Contact info, department emails, contact form
+   - `/iletisim/bayilik-basvurusu` — Full franchise application form
+   - `/dmo-katalogu` — İRAY partnership, 4 product cards
+   - `/girisimcilik/monolith-kiosk` — Concept description, financials, feature list
+   - `/girisimcilik/bolge-kalkani` — 3-step process explanation
+   - `/girisimcilik/dijital-ortaklik` — Digital partnership features
+   - `/is-modellerimiz/b2c` — 3 retail channel cards
+   - `/is-modellerimiz/b2b` — Corporate scenting solutions
+   - `/is-modellerimiz/b2g` — DMO public procurement
+   - `/is-modellerimiz/kurumsal-alan` — Ambient scenting for venues
+   - `/hakkimizda/duyurular` — Timeline-style announcements
+   - `/urunlerimiz/parfumler` — Golden Chapter & Niche teasers
+
+5. **Navigation Restructured**
+   - Akademi and Vakıf promoted to top-level nav items
+   - Simplified from 8 to 7 nav entries
+   - Footer columns reorganized with 5 columns
+
+6. **Homepage Redesigned**
+   - Hero with decorative gold line accents
+   - DualitySplit with Turkish headings and section-dark/warm backgrounds
+   - NEW: StatsBar section (25%+, 8-16, 3-5km, 120+) with GSAP stagger animations
+   - EcosystemPillars cards now link to respective pages
+   - IrayBanner uses section-dark utility
+   - TerritoryShield adjusted for light-mode colors
+
+### Session: 2026-06-04T16:44 — Polish Pass
+
+7. **Navbar Dropdown Enhancement**
+   - Added click-outside dismiss handler
+   - Improved dropdown shadow/border contrast (shadow-xl + border-strong)
+   - Dropdown items close on click
+   - Toggle behavior: re-click closes same dropdown
+
+8. **Form Page Upgrades**
+   - `/iletisim/genel-merkez` — Converted to client component, controlled form, preventDefault, success toast
+   - `/iletisim/bayilik-basvurusu` — Converted to client component, full franchise form with validation
+
+9. **Footer Social Icons**
+   - Replaced text initials (I, L, T) with proper SVG vector icons (Instagram, LinkedIn, X)
+   - Icons now render in circular bordered buttons with hover gold effect
+
+10. **CSS Polish Layer**
+    - Added `a:focus-visible` outline for keyboard accessibility
+    - Added form `input/textarea/select:focus-visible` gold ring
+    - Added `.section-dark .btn-primary/.btn-secondary` overrides
+    - Added image shimmer loading animation (`img[loading="lazy"]`)
+    - Added smooth `pageEnter` animation for `<main>`
+    - Added responsive page-header padding for mobile
+
+11. **GoldCard JSDoc Updated**
+    - Removed reference to deprecated "Duality Theme Engine" / "Luna/Sol"
+
+### Session: 2026-06-04T17:15 — Layout Centering Fix
+
+12. **Fixed Layout Specificity Issue**
+    - Wrapped global base reset rules (`*, *::before, *::after { margin: 0; padding: 0; }`) in Tailwind's `@layer base` block.
+    - Prevents unlayered global styles from overriding Tailwind's layered layout utilities (e.g. `mx-auto`, `ml-auto`).
+    - Successfully centered all page sections, cards, footers, forms, and headers across the website.
+
+### Session: 2026-06-04T17:28 — Product Section & Redirects
+
+13. **De-emphasized Products on Homepage**
+    - Replaced the large side-by-side product image layout (`DualitySplit`) on the homepage with a clean, text-based `ProductsOverview` component.
+    - Grouped items under two main categories: *Premium Reed Diffusers* and *Premium Auto Fragrances*.
+    - Showcased the four main collection scents (*Floral Amber*, *Fruity Amber*, *Lavender Jasmine*, *Orange Jasmine*) under each category, listing olfactory notes and styling with smooth gold hover effects.
+
+14. **Created Individual Product Pages with Storefront Links**
+    - Added static dynamic-slug pages for each category: `/urunlerimiz/reed-diffusers/[slug]` and `/urunlerimiz/auto-fragrances/[slug]`.
+    - Designed these pages to showcase the high-quality product images, olfactory scent pyramids (Top, Heart, and Base notes), and detailed technical specifications (esans konsantrasyonu, yayılım süresi, menşei).
+    - Added a prominent "Buy Now" CTA button ("noscanda.net üzerinden satın al") that links visitors to their corresponding purchase page on the `https://noscanda.net` storefront.
+    - Updated the main listing category pages (`/urunlerimiz/reed-diffusers` and `/urunlerimiz/auto-fragrances`) to display grids of the 4 scents featuring their spec badges and dual actions: "Detayları İncele" and "Satın Al".
+
+### Session: 2026-06-04T17:40 — Navigation & Landing Pages
+
+15. **Renamed Corporate Group Dropdown**
+    - Renamed the header navigation and footer category "Kurumsal" to "Kurumsal Bilgiler" for improved contextual clarity.
+
+16. **Relocated Felsefe Page**
+    - Moved the brand concentration manifesto page from the root route `/felsefe` to `/hakkimizda/felsefe` inside the corporate sub-folder.
+    - Set up a clean server-side redirect at `/felsefe` pointing to `/hakkimizda/felsefe` to preserve backward compatibility.
+    - Added the page under the renamed "Kurumsal Bilgiler" dropdown list.
+
+17. **Clickable Dropdown Headers & Portal Pages**
+    - Converted dropdown menu titles ("Ürünlerimiz" and "Girişimcilik") into clickable Links directing users to their respective portal landing pages.
+    - Designed and created `/urunlerimiz` page, showcasing cards for all three product families (Reed Diffusers, Auto Fragrances, Niche Perfumes).
+    - Designed and created `/girisimcilik` page, detailing our partnership models (Monolith Kiosk, Bölge Kalkanı, Dijital Ortaklık) with inline CTAs to the bayilik form.
+    - Refactored `MobileMenu` accordion to include landing page links inside the dropdown lists.
+
+18. **Created Dedicated Homepage Sections for Parent Pages**
+    - Built a comprehensive **Girişimcilik** section detailing modular business models and embedding the interactive Bölge Kalkanı postcode validator directly.
+    - Built a dedicated **Akademi** section presenting training programs, university relations, and key talent statistics.
+    - Built a dedicated **Vakıf** section showcasing female entrepreneurship grants, zero-waste initiatives, and Telsiz emergency radio support metrics.
+    - Built a dedicated **Manifesto** (About) section detailing the brand story and high-concentration Extrait de Parfum philosophy.
+    - Retired generic/redundant landing page cards in favor of these custom immersive sections.
+
+### Session: 2026-06-04T17:48 — Homepage Section Priority & Additions
+
+19. **Re-ordered Homepage Sections**
+    - Restructured the root page `src/app/page.tsx` layout to adhere strictly to the requested user priority:
+      `Hero` -> `About` -> `Girişimcilik` -> `İş Modelleri` -> `Product Catalogue` -> `Vakıf` -> `Akademi` -> `Contact`.
+
+20. **Created Business Models Section (`IsModelleriSection`)**
+    - Showcases B2C Retail, B2B Wholesale, Kurumsal İmza (branding), and B2G Kamu (DMO) channels.
+    - Integrated direct detail links to their sub-sites.
+
+21. **Created Contact Section (`ContactSection`)**
+    - Positioned at the bottom of the homepage containing distinct CTA cards for Headquarters coordinates and Franchise application forms.
+
+### Session: 2026-06-04T17:54 — Navbar Re-ordering, Investor Relations & B2G/İRAY Page
+
+22. **Re-ordered Navbar & Footers**
+    - Refactored `NAV_ITEMS` and `FOOTER_COLUMNS` inside `src/lib/constants.ts` to follow the homepage layout priority:
+      `Kurumsal Bilgiler` (About) -> `Girişimcilik` -> `İş Modellerimiz` (promoted to top-level) -> `Ürünlerimiz` -> `Vakıf` -> `Akademi` -> `Yatırımcı İlişkileri` (new) -> `İletişim`.
+
+23. **Created Investor Relations Page & Section**
+    - Designed `/src/app/yatirimci-iliskileri/page.tsx` with shareholding structure, financial calendar, download links for quarterly reports, and corporate governance principles.
+    - Designed and integrated `YatirimciIliskileriSection.tsx` on the homepage between Akademi and Contact sections.
+
+24. **Upgraded B2G Kamu Tedariği (İRAY & DMO)**
+    - Designed a comprehensive B2G Modeli page at `/src/app/is-modellerimiz/b2g/page.tsx` titled **Kamu Tedariği (B2G)**, placing the **İRAY** brand segment, catalog details, and paper standards cleanly *under* this main Kamu Tedariği headline.
+    - Set up a clean server-side redirect at `/dmo-katalogu` pointing to `/is-modellerimiz/b2g` for route consolidation.
+     - Renamed all navbar and footer links from `B2G Kamu (DMO - İRAY)` to `B2G Kamu Tedariği`.
+
+## Session: 2026-06-04T19:00 — Navbar & Portal Redesign
+
+### Completed Tasks
+
+25. **Renamed Portal and Main Route to E-Katalog**
+    - Created `src/app/e-katalog/page.tsx` displaying the complete product family overview (diffusers, auto-fragrances, niche perfumes).
+    - Set up a clean server-side redirect at `src/app/urunlerimiz/page.tsx` pointing to `/e-katalog` for URL cleanliness.
+    - Updated navigation labels and footers from "Ürünlerimiz" to "E-Katalog".
+
+26. **Added Investor Relations Sub-pages**
+    - Created `/yatirimci-iliskileri/finansal-raporlar` displaying quarterly reports, financial calendars, and PDF download lists.
+    - Created `/yatirimci-iliskileri/kurumsal-yonetim` explaining Board structures, committees, ethics codes, and compliance guidelines.
+    - Added quick-access cards linking to these subpages directly from the main Investor Relations parent page.
+
+27. **Designed Parent landing pages**
+    - Created `/kurumsal-bilgiler` grouping and linking to Hikayemiz, Felsefemiz, and Duyurular.
+    - Created `/is-modellerimiz` summarizing B2C, B2B, Kurumsal, and B2G Kamu Tedariği models.
+    - Created `/iletisim` linking to Genel Merkez coordinates and Bayilik Başvurusu forms.
+
+28. **Refactored Mega-Menu with Icons & Teaser Images**
+    - Designed custom inline vector SVG icons for all main menu headers (`building`, `rocket`, `briefcase`, `book-open`, etc.).
+    - Implemented a premium 2-column dropdown panel in `Navbar.tsx` for desktop users. The right side features a gorgeous, high-contrast product or corporate teaser photo matching the page category, while the left side displays structured links.
+    - Added corresponding vector icons to `MobileMenu.tsx` for visual alignment.
+    - Set dropdown positioning to `z-[100]` with `bg-[var(--bg-elevated)]` background to prevent text overlapping and ensure clean reading.
+
+### Architectural Decisions
+- **No theme system remaining** — CSS vars are flat, no class-based switching.
+- **Backward compatibility** — `/hakkimizda/vakif` redirects to `/vakif`, `/felsefe` redirects to `/hakkimizda/felsefe`, `/dmo-katalogu` redirects to `/is-modellerimiz/b2g`, `/urunlerimiz` redirects to `/e-katalog`.
+- **E-Commerce Offloading** — Product details are showcased locally in the corporate portal for brand storytelling, while checkout transactions are routed to the consumer store `noscanda.net` via dedicated CTA links.
+- **Forms are client-side only** — `onSubmit` handlers use `preventDefault` but do not call backend yet.
+- **Mega-Menu layout** — Structured dynamically in `constants.ts` with teaser titles, descriptions, and static images from public folders.
+
+### Build Status
+- ✅ `pnpm build` — 37 static routes compile with zero TypeScript or Turbopack errors.
+- ✅ Visual validation via browser agent (Verified z-index stacking, card blur/opacity contrast, and icon positioning in header).
+
+### Pending Pipeline
+- Connect contact/franchise forms to backend API (Resend, SendGrid, or MedusaJS workflow).
+- Mobile responsive testing (cross-device audit).
+- Lighthouse performance/accessibility audit.
+
+## Session: 2026-06-04T19:15 — Mega-Menu Dynamic Preview & Page Headers
+
+### Completed Tasks
+
+29. **Dynamic Mega-Menu Hover Swapping**
+    - Updated `Navbar.tsx` to declare a `hoveredChildIndex` state variable.
+    - Bound `onMouseEnter` and `onMouseLeave` handlers to each dropdown child link, allowing the right-side visual teaser card's image, title, and description to dynamically switch preview context on hover (falling back to the parent item's defaults if no child is hovered).
+
+30. **PageHeader Component Consolidation**
+    - Created a highly reusable, responsive grid-based `PageHeader.tsx` component.
+    - Designed the component to display a structured title and category badge on the left, and a beautifully framed featured image on the right with custom shadow parameters and overlays.
+
+31. **Featured Images on Pages**
+    - Standardized page headers across all primary and secondary routes (`/kurumsal-bilgiler`, `/hakkimizda/hikayemiz`, `/hakkimizda/felsefe`, `/hakkimizda/duyurular`, `/girisimcilik`, `/is-modellerimiz`, `/e-katalog`, `/yatirimci-iliskileri`, `/iletisim`, `/vakif`, `/akademi`) using the new `PageHeader` component with custom, context-specific imagery.
+
+### Architectural Decisions
+- **Unified Sub-page Branding** — Page header layouts are encapsulated, guaranteeing spacing symmetry and visual consistency.
+- **Dynamic Interaction Layer** — Dropdown menu interactivity is handled entirely client-side without layout-shifting, leveraging React state bindings.
+
+### Build Status
+- ✅ `pnpm build` — 41 static routes compile with zero TypeScript or Turbopack errors.
+- ✅ Visual validation via browser agent (Verified dynamic teaser updates, image swap smooth transitions, and grid alignment on mobile layouts).
+
+## Session: 2026-06-04T22:20 — Rich Page Content Upgrades
+
+### Completed Tasks
+
+32. **Enriched Kurumsal Bilgiler Page**
+    - Appended a dedicated "Liderlik Mesajı" section featuring a signed message from the Board of Directors.
+    - Integrated a values grid block detailing the four core pillars: *Dürüst Formülasyon*, *Sosyal Katkı*, *Küresel Standart*, and *Yeşil Kozmetik*.
+
+33. **Enriched Girişimcilik Page**
+    - Appended a 4-step interactive timeline ("Bayilik Katılım Süreci") detailing onboarding steps from application to setup.
+    - Added a structured accordion-style FAQ section addressing regional security, kiosk pricing, payouts, and certifications.
+
+34. **Enriched İş Modellerimiz Page**
+    - Added a quality assurance block highlighting compliance standards (*IFRA*, *Grasse natural oils*, *ISO 9001*, and *Post-Sales support*).
+
+35. **Enriched E-Katalog Page**
+    - Added a comprehensive Fragrance Family and Olfactory Notes profiling guide (categorizing *Woody & Amber*, *Floral & Sweet*, *Citrus & Fresh*, and *Niche & Leather*).
+    - Fixed a minor nested tag syntax error (`</span>` replaced with `</h2>` in previous refactoring).
+
+36. **Enriched Yatırımcı İlişkileri Page**
+    - Designed and implemented a detailed shareholder structure table showcasing capital allocations and ownership percentages.
+
+37. **Enriched İletişim Page**
+    - Built a department-specific contact grid directing media, B2B/B2G partnerships, and customer support queries to respective mail coordinates.
+
+38. **Enriched Vakıf Page**
+    - Added a milestone timeline detailing upcoming 2026/2027 activities (Women Entrepreneurs Summit, Zero-Waste Audit, and Green Chemistry sponsorships).
+
+39. **Enriched Akademi Page**
+    - Appended curriculum details describing the three core tracks: *Olfaktif Kimya*, *Lüks Marka Yönetimi*, and *Dijital Perakende & Omnichannel*.
+
+### Build Status
+- ✅ `pnpm build` — All 41 static routes compiled successfully with zero syntax, TypeScript, or layout regressions.
+- ✅ Visual validation via browser subagent confirmed aligned table structures, clean grids, and correct font styling under light-mode layout sheets.
+
+
+
+
+## Session: 2026-06-06T12:57 — Premium Design Enrichment & Animation Integration
+
+### Completed Tasks
+
+40. **Deployed Generated Media Assets**
+    - Copied and deployed `corporate-hq.png` (luxury headquarters lobby) and `perfume-grid.png` (niche perfume collection) to the public folder.
+    - Updated all interior page headers and product display components to resolve missing assets and point to the newly integrated high-end visuals.
+
+41. **Integrated Page Scroll Animations & Staggers**
+    - Integrated `<ScrollReveal>` wrappers across all primary sub-pages (`/kurumsal-bilgiler`, `/hakkimizda/hikayemiz`, `/hakkimizda/felsefe`, `/hakkimizda/duyurular`, `/girisimcilik`, `/vakif`, `/iletisim`, `/e-katalog`, `/yatirimci-iliskileri`).
+    - Staggered animation entrance timings (`delay={0.1}`, `delay={0.2}`, etc.) for layout grids and lists to ensure fluid, sequential visual reveals.
+
+42. **Upgraded Card Interactions**
+    - Migrated card elements across all subpages from basic `.card-hover` to `.magnetic-hover` to leverage modern scale reveals, soft glow scaling, and smooth GPU-accelerated translate-Y animations.
+
+43. **Refactored & Fixed Type Safety**
+    - Resolved a Next.js Turbopack compiler error in `ScrollReveal.tsx` by upgrading the dynamic element tag type from `keyof JSX.IntrinsicElements` to React's standard `ElementType`, eliminating compiler namespace clashes under React 19 / TypeScript strict mode.
+    - Removed redundant `@ts-expect-error` directives which became unused after type refactoring.
+
+### Architectural Decisions
+- **GPU-Accelerated Smoothness** — Card hover actions exclusively animate transforms and opacity properties, avoiding layout-forcing properties to prevent layout reflow thrashing.
+- **Scroll Memory Garbage Collection** — GSAP context scopes are maintained inside the layout triggers to avoid memory leaks during page navigation.
+
+### Build Status
+- ✅ `pnpm build` — All 41 static routes compiled successfully with zero type check or Turbopack compilation errors.
+- ✅ Visual validation via browser subagent confirmed aligned structures, beautiful typography rendering, and perfect light-mode warm ivory contrast.
+
+## Session: 2026-06-06T16:05 — Standardized Inner Pages & Interactive Animation Polish
+
+### Completed Tasks
+
+44. **Enriched Inner Pages with Standardized PageHeader**
+    - Updated `/iletisim/bayilik-basvurusu` and `/iletisim/genel-merkez` pages to use the standardized `PageHeader` component instead of basic layout headers.
+    - Set custom high-quality background imagery (`kiosk-franchise.png` and `manifesto-atelier.png`) for consistent aesthetic integration.
+
+45. **Integrated Subpage Scroll Transitions**
+    - Wrapped subpage layout elements on both contact and application forms in `<ScrollReveal>` wrappers to support unified scroll entry animations.
+    - Configured staggered entrance delays on contact forms to match the premium homepage experience.
+
+46. **Refactored Contact Forms Layout & Styling**
+    - Upgraded the card layouts inside `/iletisim/bayilik-basvurusu` and `/iletisim/genel-merkez` to utilize `.shadow-glass` and custom border classes.
+    - Added floating ambient orbs behind the form containers for visual depth and consistency.
+
+47. **Standardized Card Hover Behaviors**
+    - Upgraded the card blocks inside `YatirimciIliskileriSection.tsx` and contact portal directories from standard `.card-hover` to `.magnetic-hover` utility classes.
+
+48. **Resolved JSX Parsing & Next.js Build Errors**
+    - Fixed a compile-blocking runtime error in the Footer component due to `onSubmit` usage in a Server Component environment by declaring `'use client'` mode.
+    - Resolved a syntax parsing regression in `src/app/iletisim/genel-merkez/page.tsx` by eliminating a misplaced nested `</div>` container.
+
+### Build Status
+- ✅ `pnpm build` — All 41 static routes compiled successfully with zero type check, JSX, or Next.js static generation errors.
+
+## Session: 2026-06-06T13:17 — Section-by-Section Refactoring
+
+### Completed Tasks
+
+49. **Refactored B2B, B2C, B2G and Kurumsal Alan Pages**
+    - Split B2B, B2C, B2G, and Kurumsal Alan pages into self-contained modular components inside respective `sections/` subfolders (`header.tsx`, `details.tsx`, `products.tsx`, `channels.tsx`, `workflow.tsx`, `cta.tsx`).
+    - Renamed all main `page.tsx` files to `structure.tsx` and created a fresh `page.tsx` that exports server-side metadata and renders the client-side `Structure` component.
+
+50. **Refactored Yatırımcı İlişkileri Subpages**
+    - Split Finansal Raporlar and Kurumsal Yönetim subpages into modular section files (`header.tsx`, `reports.tsx`, `content.tsx`).
+    - Standardized page structure architecture with `structure.tsx` and clean SEO server metadata blocks.
+
+51. **Refactored Product Listing & Detail Pages**
+    - Refactored Reed Diffusers and Auto Fragrances listing pages, as well as their dynamic `[slug]` detail pages, into modular section patterns.
+    - Resolved TypeScript category type filtering constraint on product detail grid files.
+    - Converted dynamic detail routes into clean static server pages while delegating interactive rendering to local `structure.tsx` components.
+
+52. **Refactored Parfumler Page**
+    - Refactored Parfumler page into modular sections (`header.tsx`, `collections.tsx`, `cta.tsx`) combined inside `structure.tsx`.
+
+### Build Status
+- ✅ `pnpm build` — All static routes compiled successfully with 0 TypeScript/tsc compilation errors.
+
+## Session: 2026-06-06T13:26 — Directory Structure Cleanup
+
+### Completed Tasks
+
+53. **Renamed Component Folders & Updated Imports**
+    - Renamed the low-level primitive components folder `src/components/ui/` to `src/components/core/` to clarify low-level core primitives.
+    - Renamed `src/components/sections/` to `src/components/globalsections/` to differentiate global shared sections from page-specific sections.
+    - Recursively updated 82 files containing `@/components/ui/` imports to `@/components/core/`.
+    - Recursively updated 11 files containing `@/components/sections/` imports to `@/components/globalsections/`.
+    - Updated folder layout specifications inside `CLAUDE.md`.
+
+### Build Status
+- ✅ `pnpm build` — Compiled and optimized all 41 static routes successfully with zero TypeScript, import, or syntax errors.
+
+## Session: 2026-06-06T13:43 — Off-Canvas Navigation & Interactive Scent Discovery
+
+### Completed Tasks
+
+54. **Integrated Premium Off-Canvas Drawer Navigation**
+    - Updated `Navbar.tsx` to support the custom sliding side-drawer off-canvas panel.
+    - Added desktop burger menu button labeled "MENÜ" next to standard header links.
+    - Wireframe transitions and click triggers link correctly, and old `MobileMenu.tsx` was fully removed.
+
+55. **Designed & Deployed Interactive Scent Discovery Tool**
+    - Created `ScentDiscovery.tsx` questionnaire wizard under `@/components/core/ScentDiscovery.tsx` using a premium glassmorphic UI.
+    - Maps dynamic recommendations precisely to existing Medusa database product slugs (`floral-amber`, `fruity-amber`, `orange-jasmine`, `lavender-jasmine`) to prevent 404 links.
+    - Embedded the wizard seamlessly into the E-Katalog guide component (`/e-katalog`).
+
+56. **Enriched Inner Business Pages with Process and Standards**
+    - Added a structured "Methodology & Olfaktif İmza" process timeline to the B2B Wholesale page.
+    - Added an "Olfaktif Kalite Standartları" key features list to the B2C Retail page.
+    - Added a "Profesyonel Difüzyon Teknolojisi" engineering features block to the Kurumsal Alan page.
+
+### Build Status
+- ✅ `pnpm build` — All 41 static pages compiled successfully with zero TypeScript, syntax, or static generation errors.
+- ✅ Visual validation verified via browser agent (Verified header watermark placement, off-canvas menu layout, and ScentDiscovery wizard walkthrough).
+
+## Session: 2026-06-06T16:55 — Minimalism & Visual Off-Canvas Hover Previews
+
+### Completed Tasks
+
+57. **Minimalist Navbar Transition**
+    - Removed all inline category text links and sub-menus from the desktop header navigation bar.
+    - Left only the brand logo on the left and the glassmorphic "MENÜ" burger button on the right for both desktop and mobile viewports.
+
+58. **Dynamic Visual Hover Previews inside Off-Canvas Drawer**
+    - Rewrote `OffCanvasMenu.tsx` to include stateful preview variables (`hoveredPreview`).
+    - Added `onMouseEnter`, `onFocus`, and `onClick` (for touch) handlers on all parent and child navigation items.
+    - Hovering/tapping any menu item immediately swaps the preview image, title, and description smoothly utilizing the new `.animate-fade-in` utility animation.
+
+59. **Full-Screen Mobile Menu & Responsive Stack Layout**
+    - Redesigned the drawer panel to fill 100% viewport width and height (`w-full h-full`) on mobile and tablet devices.
+    - Restructured the mobile off-canvas menu layout vertically: the top 220px serves as the dynamic visual preview card with a dark gradient and white text overlay, while the bottom section scrolls the list of navigation options.
+    - Placed the close icon absolutely at the top right corner inside a blurred glass circle so it remains floating and highly accessible.
+
+### Build Status
+- ✅ `pnpm build` — All 41 static pages built successfully with zero compilation or TypeScript errors.
+- ✅ Interaction and layout validation verified via browser subagent on both desktop and mobile viewports.
+
+## Session: 2026-06-06T17:05 — Aspect Ratio & Accessibility UX Polish
+
+### Completed Tasks
+
+60. **Adopted 3:4 Portrait Editorial Previews**
+    - Transitioned desktop visual previews to a premium `3:4` portrait aspect ratio (editorial publication format) inside a gold-bordered glass card.
+
+61. **Responsive Mobile Curation Header Row**
+    - Refined mobile top header to display as a compact horizontal preview card row (combining a `3:4` portrait image thumbnail on the left side, side-by-side with titles and descriptions).
+    - Reduced vertical footprint to 110px-120px to prevent menu item occlusion and minimize scroll requirements.
+
+62. **Hardened Focus Trap Loop & Escape Handler (Accessibility/WCAG)**
+    - Implemented a focus trap loop using `Tab`/`Shift+Tab` key down interceptors to prevent focus bleeding outside the open menu drawer.
+    - Standardized Escape-key binding to trigger immediate `onClose()` drawer closing.
+    - Set auto-focus to target the close button immediately on drawer entry.
+
+63. **Polished Interactive UX Semantics & Cues**
+    - Configured explicit focus rings (`focus-visible:ring-2 focus-visible:ring-[var(--accent-gold)]`) on all buttons, links, and icons.
+    - Embedded clear ARIA structures (`role="dialog"`, `aria-modal`, `aria-expanded`, `aria-controls`, and descriptive labels).
+    - Animated inner accordion sub-link bullet markers on link hover and focus.
+
+### Build Status
+- ✅ `pnpm build` — Built successfully with zero compilation or static pre-rendering warnings.
+- ✅ Accessibility, keyboard trapping, and responsive layouts verified via browser subagent.
+
+## Session: 2026-06-12T22:54 — Nos Canda One Vakıf Page Rebuild
+
+### Completed Tasks
+
+64. **Rebuilt /vakif Page as "Nos Canda One" Foundation Landing Page**
+    - Deleted all 6 existing section files (header, vision, initiatives, values, timeline, cta).
+    - Created 6 new sections following the established design system:
+      - `hero.tsx` — Full-width split hero with unity H1 and gold gradient text.
+      - `about.tsx` — Hakkımızda split section (illustration left, text right).
+      - `bir-kutu-sevgi.tsx` — Bir Kutu Sevgi intro (text left, illustration right) on warm background.
+      - `support-areas.tsx` — Data-driven 14-card responsive grid using all provided illustration images.
+      - `transparency.tsx` — Şeffaflık ve Raporlama split section with CTA button.
+      - `support-cta.tsx` — Dark-themed CTA banner with illustration.
+
+65. **Updated Page Metadata & Navigation Constants**
+    - page.tsx metadata updated: title → "Nos Canda One | Birleşiyoruz, Güçleniyoruz".
+    - constants.ts nav entry rebranded from "Vakıf" → "Nos Canda One".
+    - Footer link updated from "Nos Canda Vakfı" → "Nos Canda One".
+
+66. **Rebranded Homepage VakifSection**
+    - Homepage VakifSection heading → "Nos Canda One".
+    - CTA button → "Nos Canda One →".
+
+### Build Status
+- ✅ `pnpm build` — All 41 static routes compiled successfully with zero errors.
+- ✅ Visual validation verified via browser agent.
+
+## Session: 2026-06-12T23:33 — Adoption of Design References & Visual Polish
+
+### Completed Tasks
+
+1. **Updated Hero Headline & Description**
+   - Updated `hero.tsx` to match the exact copy of the reference design: "Hayallere Köprü, Hayatlara Dokunuş."
+
+2. **Re-designed Support Areas Layout Pattern**
+   - Re-designed `support-areas.tsx` to display an alternating row layout pattern (4-col -> 2-col -> 2-col -> 2-col -> 4-col).
+   - Designed compact cards with an image-only border box and title/description below, mirroring the reference screenshot.
+   - Designed wide cards with badge pills at the top, naked illustrations, and highlighted text segments utilizing the dark teal brand color.
+
+3. **Re-designed Transparency Section**
+   - Modified `transparency.tsx` into a centered layout: centered heading, three-column grid (left text | center illustration | right text), teal background, and centered CTA button.
+
+4. **Re-designed Support CTA & Contact Banner**
+   - Transformed the primary Support CTA layout in `support-cta.tsx` into a light ivory theme with a dark teal main CTA button.
+   - Styled the bottom contact block into a vibrant cyan/blue banner (`#00aeef`) with a white button and secondary illustration.
+
+5. **Updated Global CSS Variables**
+   - Added teal section palette variables (`--section-teal-bg`, `--section-teal-text`, etc.) to `globals.css` for clean theme rendering.
+
+6. **Hardened JSDoc/TSDoc Comments**
+   - Updated JSDoc headers on all `/vakif` route components to explicitly specify "Why" architectural, performance, and styling decisions were made, in strict compliance with developer rules.
+
+### Architectural Decisions
+- **Storytelling Flow Preservation**: Layout grids align with standard visual reading order (left-to-right on desktop, vertical stacking on mobile).
+- **Separation of Concerns**: Kept route metadata rendering on the server for SEO optimization, delegating GSAP scroll transitions to client components.
+- **Visual Branding Distinction**: Applied a specialized teal color palette to highlight Nos Canda One foundation-specific activities, contrasting cohesively with the corporate gold/ivory color system.
+
+### Build Status
+- ✅ `pnpm build` — Compiled and generated all 41 static routes successfully with zero TypeScript or Turbopack compiler warnings.
+
+## Session: 2026-06-13T01:21 — Premium Storytelling Layout & Readability Upgrades
+
+### Completed Tasks
+
+1. **Enhanced Typography Readability Across All Sections**
+   - Upgraded all compact support card description text sizes from `text-xs` to `text-sm` (supporting viewports to `text-base` for enhanced clarity).
+   - Upgraded all wide support card description text sizes from `text-sm` to `text-base`.
+   - Upgraded primary body narrative texts inside `hero.tsx`, `about.tsx`, `bir-kutu-sevgi.tsx`, `transparency.tsx`, and `support-cta.tsx` to `text-base md:text-lg lg:text-xl` to ensure clean, publication-level readability.
+
+2. **Resolved Small Image Constraints**
+   - Minimized internal padding inside compact card containers from `p-6` to `p-3`, expanding image visual space.
+   - Refactored wide card images to a wider aspect frame (`aspect-[16/9]` on mobile, scaling to `md:aspect-[16/8.5]`) to present full-width illustrations beautifully.
+   - Scaled up the primary Hero illustration, About illustration, Bir Kutu Sevgi illustration, and support contact illustrations to maximize visual impact.
+
+3. **Integrated GPU-Accelerated Floating Animations**
+   - Added a global `.animate-float` CSS keyframe utility inside `globals.css` that performs a translation and scaling animation loop (`translateY(-10px) scale(1.015)`) for key graphics.
+   - Applied the floating effect to illustrations in the Hero, About, Bir Kutu Sevgi, Transparency, and Support CTA sections.
+   - Added a hover rotation animation to the leaf SVG separator inside `bir-kutu-sevgi.tsx`.
+
+4. **Polished Transparency and CTA Sections**
+   - Redesigned `transparency.tsx` with a rich radial gradient (`radial-gradient(circle at 50% 50%, #207D81 0%, #155356 60%, #0E3D3E 100%)`) to create visual depth, scaling up the magnifying glass illustration by 20%.
+   - Redesigned `support-cta.tsx` contact block to feature a smooth gradient `bg-gradient-to-r from-[#00aeef] via-[#0098d3] to-[#0082b4]`, adding hover micro-interactions and elevation scales.
+
+### Architectural Decisions
+- **Storytelling Visual Pace**: Rebalanced column weight distributions to assign Col-span 7 to text blocks and Col-span 5 to visuals, ensuring comfortable reading spacing on large monitors.
+- **Hardware Acceleration**: Animations target only opacity, scale, and transforms, avoiding repaint triggers to preserve a solid 60fps scrolling experience.
+
+### Build Status
+- ✅ `pnpm build` — Statically compiled all 41 routes successfully with 0 errors.
+
+## Session: 2026-06-13T01:34 — Narrative Storytelling Structure & Navy Blue Theme
+
+### Completed Tasks
+
+1. **Integrated Navy Blue Color Palette**
+   - Added `--section-navy-bg`, `--section-navy-text`, `--section-navy-accent` variables to `globals.css` matching the primary illustration colors.
+   - Replaced all green-teal highlighting, badges, and background zones with the Navy Blue theme (#0F2547).
+
+2. **Transitioned Grid Components to Storytelling Layout**
+   - Restructured `about.tsx`, `bir-kutu-sevgi.tsx`, and `transparency.tsx` to feature a 1-column parent title spanning full width at the top, and a 2-column detail grid below.
+   - Designed custom gradient line separators between topics inside the 2-column detailed grids.
+
+3. **Repurposed Communication Illustration into Social Unity Section**
+   - Renamed `acmvakif-iletisim.png` to `toplumsal-birlik.png`.
+   - Created a new storytelling component `social-unity.tsx` ("Biz Olmanın Gücü") centered on community involvement and collective action.
+   - Removed duplicate contact info block from `support-cta.tsx` to streamline page actions.
+
+4. **Rendered Fully Transparent Illustrations in Support Areas**
+   - Removed all border wraps and background boxes from compact and wide support cards.
+   - Illustrations now sit directly on the page background with responsive hover transforms.
+
+### Build Status
+- ✅ `pnpm build` — Successfully compiled all 41 pages.
+
+## Session: 2026-06-13T02:12 — Support Sections Split & Rank of Importance
+
+### Completed Tasks
+
+1. **Partitioned 14 Support areas into Three Thematic Sections**
+   - Restructured `support-areas.tsx` (Temel İhtiyaç Destekleri) to contain Gıda Yardımı, Sağlık Yardımı, Barınma Desteği, Giyim Yardımı, and Hijyen Yardımı.
+   - Created `development-support.tsx` (Bireysel ve Sosyal Gelişim) containing Eğitim Desteği, Sosyal Destek, Kadın Desteği, Kariyer Desteği, and Psikolojik Destek.
+   - Created `sustainability-support.tsx` (Topluluk ve Sürdürülebilirlik) containing Topluluk Geliştirme, Ekonomik Destek ve Girişimcilik, Erişilebilir Konutlar, and Çeşitlilik ve Kapsayıcılık.
+
+2. **Ranked Topics by Sociological Importance & Structured Grids**
+   - Ordered Basic Needs topics inside a 3+2 structure (Gıda, Sağlık, Barınma in Row 1; Giyim, Hijyen in Row 2).
+   - Ordered Empowerment topics inside a 3+2 structure (Eğitim, Sosyal Destek, Kadın Desteği in Row 1; Kariyer Desteği, Psikolojik Destek in Row 2).
+   - Ordered Sustainability topics inside a 2+2 structure (Topluluk, Ekonomik in Row 1; Erişilebilir Konutlar, Çeşitlilik in Row 2).
+
+3. **Restructured Page Assembly sequence**
+   - Integrated the new section imports into `structure.tsx` and refreshed ScrollTrigger layout on mount.
+
+### Build Status
+- ✅ `pnpm build` — Compiled successfully with zero errors.
+
+## Session: 2026-06-13T02:19 — Hero Image Visibility & World Map Background
+
+### Completed Tasks
+
+1. **Resolved Hero Image Visibility**
+   - Added `className="w-full flex justify-center"` to the `ScrollReveal` wrapping the hero illustration, resolving the width collapse.
+
+2. **Added Premium Illustrated World Map Background**
+   - Generated and placed an illustrated world map outline (`world-map.png`) behind the title and the hero illustration with a subtle `opacity-[0.06]`.
+
+3. **Removed Floating Animations behind Hero**
+   - Removed moving orbs and the `animate-float` animations from the hero layout to preserve visual stability.
+
+### Build Status
+- ✅ `pnpm build` — Compiled successfully with zero errors.
+
+## Session: 2026-06-13T02:35 — HTML Background Image & Lazy Loading Shimmer Fix
+
+### Completed Tasks
+
+1. **Ensured Background Visibility**
+   - Replaced Next.js `<Image>` with a standard HTML `<img>` tag in the background layer of `hero.tsx`.
+   - Appended a cache-buster query parameter (`background.png?v=2`) and removed opacity filter containers, allowing the background to render immediately and reliably.
+
+2. **Resolved Infinite Image Shimmer Bug**
+   - Removed the `img[loading="lazy"]` shimmer style rule from `globals.css` which caused transparent images to show a continuous loading animation after they were loaded.
+
+### Build Status
+- ✅ `pnpm build` — Compiled successfully with zero errors.
+
+## Session: 2026-06-13T02:38 — Next.js Image sizes Prop Fixes
+
+### Completed Tasks
+
+1. **Added sizes Prop to Background and Preview Images**
+   - Added `sizes="100vw"` to the background layout images inside `HeroSection.tsx` and `PageHeader.tsx` to optimize layout shifts and LCP.
+   - Added `sizes="400px"` to the portrait hover preview background inside `OffCanvasMenu.tsx`.
+
+### Build Status
+- ✅ `pnpm build` — Compiled successfully with zero errors.
+
+## Session: 2026-06-13T03:00 — Nos Canda One | Akademi Page Creation
+
+### Completed Tasks
+
+1. **Integrated Poppins Font & Styling**
+   - Added Poppins stylesheet link to the main HTML template (`layout.tsx`).
+   - Mapped `--font-poppins` Tailwind token inside `@theme` in `globals.css`.
+
+2. **Renamed Page Titles for Branding**
+   - Changed `/vakif` page title to `"Nos Canda One | Vakıf"`.
+   - Changed `/akademi` page title to `"Nos Canda One | Akademi"`.
+
+3. **Created 11 Content Sections**
+   - Created all sections under `/app/akademi/sections/` including the local sticky scroll-nav header, responsive hero, about block, why us grid, offerings, checklist target, support program with gradient panel, benefits, vertical journey timeline, career impact list, local FAQ accordion, contact CTA cards, and custom footer.
+   - Cleaned up old placeholder files (`cta.tsx`, `curriculum.tsx`, `mission.tsx`, `programs.tsx`).
+
+4. **Verified Layout & Build Status**
+   - Built successfully via `pnpm build` (route `/akademi` compiled as static page).
+   - Validated layouts, image loading, contrast, and responsiveness using the browser subagent.
+
+### Build Status
+- ✅ `pnpm build` — Compiled successfully with zero errors.
+
+## Session: 2026-06-13T03:12 — Nos Canda One | Page Refinements & Vakıf Submenu
+
+### Completed Tasks
+
+1. **Akademi Submenu & Layout Cleanup**
+   - Removed logo, "Ana Sayfa", and "İletişim" links from Akademi sub-navigation header.
+   - Removed Akademi Footer component and deleted `footer.tsx`.
+
+2. **Cardless Layout Redesigns**
+   - Removed grey background cards and card borders from `WhyUs`, `Offerings`, `TargetAudience`, `SupportProgram`, and `Benefits` sections, allowing transparent images to float naturally.
+
+3. **Journey Timeline Redesign**
+   - Built a fully visible, vertical steps path timeline with an accent connector line tracking the steps.
+
+4. **Contact CTA Simplification**
+   - Removed phone and email info blocks, keeping a clean visual layout with only the text block and the transparent illustration.
+
+5. **Vakıf Page Sub-Navigation**
+   - Created a sticky local sub-navigation header for `/vakif` styled with active dot highlights in gold (`#B8860B`) and mounted it inside `structure.tsx`.
+
+### Build Status
+- ✅ `pnpm build` — Compiled successfully with zero errors.
+
+## Session: 2026-06-13T03:30 — Nos Canda One | Visual Polish & Accent Enhancements
+
+### Completed Tasks
+
+1. **New Split Hero Layout**
+   - Generated a premium custom vector illustration featuring collaborating students and modern campus buildings, matching the warm orange `#BA5225` and navy blue theme colors.
+   - Redesigned the hero section into a clean split layout with text copywriting on the left, and the large illustration on the right, backed by an elegant warm-orange backdrop gradient.
+
+2. **Interactive "Sunduğumuz İmkanlar" (Offerings) Section**
+   - Added custom gradient circular badges using HSL brand colors.
+   - Added active micro-animations: on card hover, the badge background rotates and becomes transparent, while the internal SVG icon color transitions from orange to white.
+   - Implemented sliding chevron details link animations.
+   - Enlarged the primary side illustration `sundugumuzimkanlar.png` to take full container space.
+
+3. **Enlarged Full-Size Illustrations Across All Sections**
+   - **About (`about.tsx`)**: Removed the square crop card background, scaling the illustration to `max-w-[520px]` in a clean transparent setup.
+   - **Why Us (`why-us.tsx`)**: Scaled up all 4 columns illustrations to `280px` to stand out.
+   - **Support Program (`support-program.tsx`)**: Increased the cream gradient illustration panel container to `500px`.
+   - **Benefits (`benefits.tsx`)**: Expanded the 6 grid images to `340px`.
+   - **Career Impact (`career-impact.tsx`)**: Removed the grey crop card envelope, displaying `kariyerinizeetkisi.png` in full-size (`object-contain`) at `max-w-[500px]`.
+   - **Contact CTA (`contact-cta.tsx`)**: Enlarged the transparent illustration container to `480px`.
+
+4. **Accent Color Integration**
+   - Added radial gradient accent glow spots behind the sections to tie the page design together.
+   - Embedded custom text-hover effects, underlines, chevron arrows, and list indicators using the dark orange accent.
+
+### Build Status
+- ✅ `pnpm build` — Compiled successfully with zero errors.
+
+
+
+
+
+
+
+
+
+
