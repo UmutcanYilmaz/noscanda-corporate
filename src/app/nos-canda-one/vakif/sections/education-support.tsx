@@ -12,7 +12,7 @@ export function EducationSupport() {
   return (
     <section id="egitim-destegi" className="py-10 md:py-14 bg-[var(--bg-primary)] overflow-hidden relative border-t border-[var(--border-subtle)]">
       <div className="max-w-[1320px] mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Left Column: Details & Narrative (Col span 6) */}
           <div className="lg:col-span-6 space-y-8">

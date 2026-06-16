@@ -18,40 +18,8 @@ export function BirKutuSevgi() {
     >
       <div className="max-w-[1320px] mx-auto px-6">
         
-        {/* Parent Title (1 Column) */}
-        <ScrollReveal direction="up" distance={30}>
-          <div className="max-w-4xl mb-4">
-            <span 
-              className="inline-block font-gothic text-[0.65rem] tracking-[0.3em] uppercase px-5 py-2 rounded-full mb-4 font-semibold"
-              style={{
-                background: 'rgba(50, 65, 174, 0.05)',
-                color: '#3241ae',
-                border: '1px solid rgba(50, 65, 174, 0.15)'
-              }}
-            >
-              Bir Kutu Sevgi
-            </span>
-            <div className="relative flex items-start gap-4 mb-6">
-              <h2 className="font-cinzel text-section-heading md:text-4xl font-bold text-[#0F2547] leading-[1.25]">
-                &ldquo;Bir Kutu Sevgi&rdquo;, vakfımızın temel yardım felsefesini temsil eder: İhtiyaç duyulan her alanda özenle ve sevgiyle destek sunmak.
-              </h2>
-              {/* Decorative leaf flourish with hover rotate interaction */}
-              <div className="relative flex-shrink-0 cursor-help group pt-1 hidden sm:block">
-                <Image
-                  src="/images/vakif/beeco4-home-sep1.svg"
-                  alt=""
-                  width={36}
-                  height={26}
-                  className="opacity-70 transition-transform duration-700 ease-out group-hover:rotate-[15deg]"
-                  aria-hidden="true"
-                />
-              </div>
-            </div>
-          </div>
-        </ScrollReveal>
-
-        {/* 2-Column Content Layout (Image on Left, Topics on Right - Align start to remove empty gap) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        {/* 2-Column Content Layout (Image on Left, Topics on Right - Align center to center text with image) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Left Column: Transparent Floating Illustration (Col span 6) */}
           <div className="lg:col-span-6 flex justify-center order-2 lg:order-1 w-full">
@@ -68,36 +36,70 @@ export function BirKutuSevgi() {
             </ScrollReveal>
           </div>
 
-          {/* Right Column: Topics with separators (Col span 6, order-1 on desktop to keep visual balance) */}
-          <div className="lg:col-span-6 space-y-6 order-1 lg:order-2">
+          {/* Right Column: Title + Topics with separators (Col span 6, order-1 on desktop to keep visual balance) */}
+          <div className="lg:col-span-6 space-y-8 order-1 lg:order-2">
             <ScrollReveal direction="right" distance={40}>
-              <div className="space-y-2">
-                <h3 className="font-cinzel text-2xl md:text-3xl font-bold text-[#0F2547]">
-                  Kapsamlı Yardım Ağı
-                </h3>
-                <p className="font-body text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
-                  Bu yaklaşımımız, gıda, giyim, hijyen gibi temel ihtiyaçlardan başlayarak eğitim,
-                  sağlık, kariyer ve toplumsal gelişime kadar uzanan geniş bir yelpazeyi kapsar.
-                </p>
+              <div className="space-y-1.5">
+                <span 
+                  className="inline-block font-gothic text-[0.65rem] tracking-[0.3em] uppercase px-5 py-2 rounded-full mb-2 font-semibold"
+                  style={{
+                    background: 'rgba(50, 65, 174, 0.05)',
+                    color: '#3241ae',
+                    border: '1px solid rgba(50, 65, 174, 0.15)'
+                  }}
+                >
+                  Bir Kutu Sevgi
+                </span>
+                <div className="relative flex items-start gap-4">
+                  <h2 className="font-cinzel text-3xl md:text-4xl font-bold text-[#0F2547] leading-[1.2]">
+                    &ldquo;Bir Kutu Sevgi&rdquo;, vakfımızın temel yardım felsefesini temsil eder: İhtiyaç duyulan her alanda özenle ve sevgiyle destek sunmak.
+                  </h2>
+                  {/* Decorative leaf flourish with hover rotate interaction */}
+                  <div className="relative flex-shrink-0 cursor-help group pt-1 hidden sm:block">
+                    <Image
+                      src="/images/vakif/beeco4-home-sep1.svg"
+                      alt=""
+                      width={36}
+                      height={26}
+                      className="opacity-70 transition-transform duration-700 ease-out group-hover:rotate-[15deg]"
+                      aria-hidden="true"
+                    />
+                  </div>
+                </div>
               </div>
             </ScrollReveal>
 
-            {/* Custom Separator */}
-            <ScrollReveal direction="none">
-              <div className="h-px bg-gradient-to-r from-transparent via-[#0F2547]/10 to-transparent w-full" />
-            </ScrollReveal>
+            {/* Sub-topics list */}
+            <div className="space-y-6 pt-4">
+              <ScrollReveal direction="right" distance={40} delay={0.1}>
+                <div className="space-y-2">
+                  <h3 className="font-cinzel text-xl md:text-2xl font-bold text-[#0F2547]">
+                    Kapsamlı Yardım Ağı
+                  </h3>
+                  <p className="font-body text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
+                    Bu yaklaşımımız, gıda, giyim, hijyen gibi temel ihtiyaçlardan başlayarak eğitim,
+                    sağlık, kariyer ve toplumsal gelişime kadar uzanan geniş bir yelpazeyi kapsar.
+                  </p>
+                </div>
+              </ScrollReveal>
 
-            <ScrollReveal direction="right" distance={40} delay={0.1}>
-              <div className="space-y-2">
-                <h3 className="font-cinzel text-2xl md:text-3xl font-bold text-[#0F2547]">
-                  Umut Yeşerten Dokunuşlar
-                </h3>
-                <p className="font-body text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
-                  Amacımız, her bir yardımın sadece bir ihtiyacı karşılamakla kalmayıp, aynı zamanda
-                  umudu yeşertmesi ve kalıcı bir iyileşmeye kapı aralamasıdır.
-                </p>
-              </div>
-            </ScrollReveal>
+              {/* Custom Separator */}
+              <ScrollReveal direction="none">
+                <div className="h-px bg-gradient-to-r from-transparent via-[#0F2547]/10 to-transparent w-full" />
+              </ScrollReveal>
+
+              <ScrollReveal direction="right" distance={40} delay={0.2}>
+                <div className="space-y-2">
+                  <h3 className="font-cinzel text-xl md:text-2xl font-bold text-[#0F2547]">
+                    Umut Yeşerten Dokunuşlar
+                  </h3>
+                  <p className="font-body text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
+                    Amacımız, her bir yardımın sadece bir ihtiyacı karşılamakla kalmayıp, aynı zamanda
+                    umudu yeşertmesi ve kalıcı bir iyileşmeye kapı aralamasıdır.
+                  </p>
+                </div>
+              </ScrollReveal>
+            </div>
           </div>
 
         </div>

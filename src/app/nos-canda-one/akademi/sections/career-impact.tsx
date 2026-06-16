@@ -24,37 +24,48 @@ const IMPACT_ITEMS = [
 
 /**
  * Career Impact Section (#kariyerinize-etkisi) for Nos Canda One | Akademi.
- * Updated to display full size expanded illustration and integrate background glow details.
+ * Upgraded to align with the Vakıf page layout specs:
+ * - Alternating bg-white background.
+ * - 50/50 column layout.
+ * - Custom pill badge and font-cinzel typography.
+ * - Enlarged illustration.
  */
 export function CareerImpact() {
   return (
     <section
       id="kariyerinize-etkisi"
-      className="py-20 md:py-32 bg-[#FFFFFF] font-poppins relative z-10 border-t border-neutral-100 overflow-hidden"
+      className="py-16 md:py-20 bg-white font-poppins relative z-10 border-t border-neutral-100/50 overflow-hidden"
     >
       {/* Decorative Brand Accent Background Glow */}
       <div 
-        className="absolute top-1/2 right-1/4 translate-x-1/2 w-[600px] h-[600px] rounded-full opacity-[0.06] blur-[130px] pointer-events-none z-0"
+        className="absolute top-1/2 right-1/4 translate-x-1/2 w-[600px] h-[600px] rounded-full opacity-[0.05] blur-[130px] pointer-events-none z-0"
         style={{
           background: 'radial-gradient(circle, #BA5225 0%, transparent 70%)'
         }}
       />
 
-      <div className="relative z-10 max-w-[1280px] mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+      <div className="relative z-10 max-w-[1320px] mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Left Column: Heading + Description + Bullets (Col span 7) */}
-          <div className="lg:col-span-7 space-y-8">
+          {/* Left Column: Heading + Description + Bullets (Col span 6) */}
+          <div className="lg:col-span-6 space-y-8">
             <ScrollReveal direction="up" distance={30}>
-              <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#BA5225] block mb-3">
+              <span 
+                className="inline-block font-gothic text-[0.65rem] tracking-[0.3em] uppercase px-5 py-2 rounded-full mb-3 font-semibold"
+                style={{
+                  background: 'rgba(186, 82, 37, 0.05)',
+                  color: '#BA5225',
+                  border: '1px solid rgba(186, 82, 37, 0.15)'
+                }}
+              >
                 Kariyer Gelişimi & Sertifikasyon
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-[54px] font-medium text-[#212121] leading-[1.2] tracking-tight">
+              <h2 className="font-cinzel text-3xl md:text-4xl lg:text-5xl font-bold text-[#212121] leading-[1.2]">
                 Kariyerinize Etkisi
               </h2>
               <div className="h-1 w-16 bg-[#BA5225] rounded-full mt-6 mb-8" />
               
-              <p className="text-sm sm:text-base text-[#555555] leading-relaxed font-light">
+              <p className="font-body text-base text-[var(--text-secondary)] leading-relaxed">
                 Nos Canda One Akademi programlarını tamamladıktan ve süreçleri başarıyla geçtikten sonra,
                 size stajlar, mentorluk ve sosyal projeler aracılığıyla kazandığınız kapsamlı becerileri ve deneyimleri
                 belgeleyen bir sertifika verilecektir. Bu sertifika, pratik bilgi birikiminizi, sektör farkındalığınızı ve
@@ -85,10 +96,10 @@ export function CareerImpact() {
                     </div>
 
                     <div>
-                      <h3 className="text-sm sm:text-base font-semibold text-[#212121] mb-1">
+                      <h3 className="font-cinzel text-sm sm:text-base font-bold text-[#212121] mb-1">
                         {item.title}
                       </h3>
-                      <p className="text-xs sm:text-sm text-[#555555] leading-relaxed font-light">
+                      <p className="font-body text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
                         {item.desc}
                       </p>
                     </div>
@@ -98,17 +109,17 @@ export function CareerImpact() {
             </div>
           </div>
 
-          {/* Right Column: Illustration (Col span 5) - Full Size & Enlarged */}
-          <div className="lg:col-span-5 w-full flex justify-center">
-            <ScrollReveal direction="right" distance={40} className="w-full max-w-[500px]">
-              {/* Full Image design on transparent image - no card box, scaled up */}
-              <div className="relative w-full aspect-square select-none overflow-hidden transition-transform duration-700 hover:scale-105">
+          {/* Right Column: Illustration (Col span 6) */}
+          <div className="lg:col-span-6 w-full flex justify-center">
+            <ScrollReveal direction="right" distance={40} className="w-full max-w-[580px] xl:max-w-[620px]">
+              <div className="relative w-full aspect-[960/672] select-none overflow-hidden transition-transform duration-700 hover:scale-102">
                 <Image
-                  src="/images/akademi/kariyerinizeetkisi.png"
+                  src="/images/akademi/career-impact-graduation.png"
                   alt="Kariyerinize Etkisi"
                   fill
                   className="object-contain"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 500px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 620px"
+                  priority
                 />
               </div>
             </ScrollReveal>

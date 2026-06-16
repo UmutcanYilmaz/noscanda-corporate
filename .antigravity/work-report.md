@@ -824,3 +824,134 @@
 - Fixed a text typo in the CTA section ("og" changed to "ve").
 - Verified all layout features and responsiveness under Next.js server production compile checks.
 
+## Session: 2026-06-15T22:55 — Layout Centering & Alignment Adjustments
+
+### Completed Tasks
+1. **Centering Text columns relative to Illustrations on Vakıf Page**:
+   - Replaced layout container grid alignments from `items-start` to `items-center` across 6 key components of the `/nos-canda-one/vakif` landing page:
+     - `about.tsx` (Hakkımızda)
+     - `bir-kutu-sevgi.tsx` (Bir Kutu Sevgi)
+     - `education-support.tsx` (Eğitim Desteği)
+     - `career-support.tsx` (Kariyer Desteği)
+     - `psychology-support.tsx` (Psikolojik Destek)
+     - `support-cta.tsx` (Bize Destek Olun)
+   - Centering these text blocks on the same line as their respective large illustrations creates a balanced, premium editorial rhythm.
+
+### Build Status
+- ✅ `pnpm build` — Statically compiled all 44 routes successfully with zero type check or Turbopack compiler errors.
+- ✅ Visual validation verified via browser agent. Saved screenshots verifying the centered alignment of texts and images.
+
+## Session: 2026-06-15T23:02 — Restructuring Section Headings on Vakıf Page
+
+### Completed Tasks
+1. **Elimination of Large Blank Spacings & Inline Heading Relocation**:
+   - Replaced parent-level full-width titles (which sat outside grid containers) and moved them directly inside the left/right content columns of the side-by-side grids.
+   - Refactored:
+     - `about.tsx` (Hakkımızda)
+     - `bir-kutu-sevgi.tsx` (Bir Kutu Sevgi)
+     - `social-unity.tsx` (Biz Olmanın Gücü)
+     - `support-cta.tsx` (Bize Destek Olun)
+     - `transparency.tsx` (Şeffaflık ve Raporlama - "Hesap Verebilirlik ve Güven İlkelerini Önemsiyoruz.")
+   - Followed the model pattern of the "Eğitim Desteği" (`education-support.tsx`) section to ensure typographic and visual uniformity across the page.
+   - Adjusted typographic hierarchies (e.g. subheadings from `text-2xl md:text-3xl` to `text-xl md:text-2xl` and content paragraphs to `text-base md:text-lg`) to balance nested columns layout.
+
+### Build Status
+- ✅ `pnpm build` — Statically compiled all 44 routes successfully with zero type check or Turbopack compiler errors.
+- ✅ Visual validation verified via browser subagent. Saved screenshots showing the restructured headings.
+
+## Session: 2026-06-15T23:36 — Academy Page Image Integration & Aspect Ratio Polish
+
+### Completed Tasks
+1. **Academy Page Image Replacements**:
+   - Updated all 10 interior component files under `/src/app/nos-canda-one/akademi/sections/` to integrate the newly renamed, context-descriptive images from `public/images/akademi/`.
+   - Replaced legacy placeholders and GUID references with the correct local paths (e.g., `hero-campus.png`, `about-experience.png`, `offerings-collage.png`, `why-...`, `benefit-...`, etc.).
+2. **Image Aspect Ratio Corrections**:
+   - Replaced general `aspect-square` containers with exact layout aspect ratios matching the high-quality assets (e.g., `aspect-[1280/896]`, `aspect-[10/7]`, `aspect-[1056/576]`, `aspect-[960/672]`).
+   - This guarantees zero visual distortion, cropping, or stretching of illustrations.
+3. **Split Grid Checklist & Target Audience Redesign**:
+   - Replaced the full-width checklist layout in `target-audience.tsx` with a split-grid column layout.
+   - Positioned the tall vertical participant profile illustration (`target-audience-vertical.png`) on the right side next to the checklist items.
+4. **Timeline success-stairs Illustration Integration**:
+   - Embedded the tall vertical success milestone stairs illustration (`journey-timeline-stairs.png`) into the right column of `journey-timeline.tsx` under the paragraph copy.
+5. **Cleaned Up Repository**:
+   - Removed temporary gallery preview HTML file `public/images/akademi/gallery.html` from codebase.
+
+### Build Status
+- ✅ `pnpm build` — Statically compiled all 44 routes successfully in 1873ms with zero type check or Turbopack compiler errors.
+- ✅ Visual validation verified via browser subagent. Confirmed correct rendering of page sections, illustration scales, and responsive grid layouts. Saved screenshots at multiple scroll offsets.
+
+## Session: 2026-06-15T23:55 — Akademi Page Aesthetic Upgrades & 50/50 Layout Refactor
+
+### Completed Tasks
+1. **Adopted Alternating Background Color Rhythm**:
+   - Refactored section layouts to alternate between pure white (`bg-white`) and warm ivory (`bg-[var(--bg-primary)]`).
+   - Configured:
+     - `why-us.tsx` — `bg-white`
+     - `offerings.tsx` — `bg-[var(--bg-primary)]`
+     - `target-audience.tsx` — `bg-white`
+     - `support-program.tsx` — `bg-[var(--bg-primary)]`
+     - `benefits.tsx` — `bg-white`
+     - `journey-timeline.tsx` — `bg-[var(--bg-primary)]`
+     - `career-impact.tsx` — `bg-white`
+     - `faq.tsx` — `bg-[var(--bg-primary)]` with pure white accordion cards.
+     - `contact-cta.tsx` — `bg-white`
+2. **Rebalanced Content Grids into 50/50 Split Layouts**:
+   - Expanded grid boundaries to assign equal columns splits (`lg:grid-cols-12` splits with equal spans/large bounds) to visual columns and text columns.
+   - Refactored:
+     - `offerings.tsx` — 50/50 columns split with large offerings collage illustration.
+     - `target-audience.tsx` — 50/50 columns split with large vertical participant profile illustration.
+     - `support-program.tsx` — 50/50 columns split with large charity illustration.
+     - `journey-timeline.tsx` — 50/50 columns split with large vertical success stairs illustration.
+     - `career-impact.tsx` — 50/50 columns split with large graduation illustration.
+     - `contact-cta.tsx` — 50/50 columns split with large contact question illustration.
+3. **Upgraded Typography & UI Accents**:
+   - Integrated `font-cinzel` for all titles and section headings.
+   - Integrated `font-body` (Rosario) for all paragraphs, descriptions, and list contents.
+   - Added custom brand badge pills (`font-gothic`) in warm orange accent (`#BA5225`) at the top of each section.
+   - Updated CTA button in `contact-cta.tsx` to link to `/iletisim` with the orange brand accent color.
+4. **Integrated Social life & Catering Contextually (`mini-cookies.jpeg`)**:
+   - Removed the visual media gallery (`gallery.tsx`) per user preference.
+   - Built a dedicated `student-life.tsx` section to showcase the Academy's social culture, events, and coffee breaks, presenting `mini-cookies.jpeg` under a beautiful 3:4 aspect ratio portrait frame.
+   - Realigned the alternating background pattern at the bottom of the page:
+     - `career-impact.tsx` — bg-white
+     - `student-life.tsx` — bg-[var(--bg-primary)] (ivory)
+     - `faq.tsx` — bg-white (cards updated to ivory)
+     - `contact-cta.tsx` — bg-[var(--bg-primary)] (ivory)
+
+5. **Directly Integrated 16 UUID-Named Images**:
+   - Replaced all named placeholders/images with their exact UUID-named counterparts (`8d04d127...`, `d957c090...`, etc.) across all 9 landing page section files to satisfy the requirement that all 16 UUID images are utilized in-code.
+   - Preserved layouts, 50/50 splits, typography hierarchies, and aspect-ratio mappings.
+
+6. **Renamed All 16 UUID Images to Descriptive Names** (Session 2):
+   - Visually inspected every image to determine actual content theme.
+   - Renamed files on disk:
+     - `8d04d127-adaf-4adf-8961-9327f5c3acc0.png` → `hero-campus.png` (Isometric campus scene with students, building, books)
+     - `d957c090-4c4f-49c9-962a-753085c3a74b.png` → `about-learning-cycle.png` (Circular learning flow: graduation, growth, assessment)
+     - `f8277b24-14e2-4d4d-b3d3-14b879816e23.png` → `why-theory-practice.png` (Two-sided illustration: academic study ↔ workplace practice)
+     - `1e617666-bad6-4865-ba88-dawearwefrevfd.png` → `why-continuous-learning.png` (Process workflow: profiles, checklists, analytics, growth)
+     - `e28b4229-30ed-4bc6-82d4-b745af1dc5bb-1.png` → `why-professional-networks.png` (Connected people network graph with devices)
+     - `1e617666-bad6-4865-ba88-02f67d2d0beb.png` → `why-social-responsibility.png` (Community planting trees, birdhouse, nature)
+     - `be581196-1ce2-4125-ba13-63fc41c2b24f.png` → `offerings-collage.png` (Multi-vignette collage: seminars, internships, workshops, social projects)
+     - `dawewadascsdfsdf-1.png` → `target-audience-ecosystem.png` (Vertical mind-map: graduates at center radiating to activities)
+     - `e28b4229-30ed-4bc6-82d4-b745af1dcasda.png` → `support-program-charity.png` (Charity scenes: gardening, Turkish flag, donation)
+     - `d4ddd96f-4514-4cb0-be91-ebca231fad75.png` → `benefit-sector-experience.png` (Students with books, lightbulbs, connected to mentor at desk)
+     - `5bdecd31-3058-48b6-83b9-4065d32721cc.png` → `benefit-applied-skills.png` (Team workshop table with puzzle pieces, analytics, tools)
+     - `d1e4614b-d389-463f-afaa-758340054610.png` → `benefit-mentorship.png` (Senior mentor in suit guiding two students)
+     - `ffbdea99-933b-45cd-acd6-dc01d67a6044.png` → `benefit-alumni-network.png` (Graduate student connected to professionals, briefcase, education)
+     - `0f68cc94-78da-4d8b-9882-c81d5517a5e6.png` → `benefit-project-workshop.png` (Office team: blueprints, gears, coding, filing)
+     - `6db2c60f-4295-409f-a0ad-a0b7db51b6df-1.png` → `journey-timeline-stairs.png` (Vertical stairs progression: application → graduation)
+     - `1e617666-bad6-2134-ba88-dawearwefrevfd.png` → `career-impact-graduation.png` (Student in gown holding certificate, coins, career path road)
+   - Updated all code references in 9 section files to match new names.
+   - Removed orphan duplicates: `target-audience-vertical.png`, `test-213.png`, `about-experience.png`, `benefit-social-responsibility.png`, `benefit-professional-guidance.png`, `benefit-project-experience.png`.
+   - Removed `student-life.tsx` section (its dependent `mini-cookies.jpeg` no longer exists).
+   - Restored alternating background rhythm: CareerImpact (white) → FAQ (ivory) → ContactCTA (white).
+
+### Build Status
+- ✅ `pnpm exec tsc --noEmit` — Zero errors.
+- ✅ `pnpm build` — 44 routes compiled successfully.
+- ✅ Browser subagent full-page scroll validation — All 11 sections render correctly, zero broken images, zero console errors.
+
+### Final Image Audit
+- **17 files** in `public/images/akademi/` (16 renamed PNGs + 1 `contact-questions.png`)
+- **17 references** in code across section files
+- **0 unreferenced files** — perfect 1:1 mapping

@@ -47,37 +47,38 @@ export function Transparency() {
 
       <div className="relative z-10 max-w-[1320px] mx-auto px-6">
         
-        {/* Parent Title (1 Column) */}
-        <ScrollReveal direction="up" distance={30}>
-          <div className="max-w-4xl mb-6 md:mb-8">
-            <span 
-              className="inline-block font-gothic text-[0.65rem] tracking-[0.3em] uppercase px-5 py-2 rounded-full mb-6 font-semibold"
-              style={{
-                background: 'rgba(255, 255, 255, 0.05)',
-                color: '#FFFFFF',
-                border: '1px solid rgba(255, 255, 255, 0.15)'
-              }}
-            >
-              Şeffaflık ve Raporlama
-            </span>
-            <h2 className="font-cinzel text-section-heading md:text-4xl font-bold text-white leading-[1.25]">
-              Hesap Verebilirlik ve Güven İlkelerini Önemsiyoruz.
-            </h2>
-          </div>
-        </ScrollReveal>
-
         {/* 2-Column Content Layout (Top part: Text Left, Illustration Right) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
           
-          <div className="space-y-6">
+          <div className="space-y-8">
             <ScrollReveal direction="left" distance={40}>
-              <p className="font-body text-base md:text-lg text-white/80 leading-relaxed">
-                Bağışlarınızın ve desteklerinizin tam olarak nereye ulaştığını, hangi hayatlara
-                dokunduğunu açıkça görmeniz gerektiğine inanıyoruz. Faaliyetlerimizin her adımını
-                şeffaf ve denetlenebilir bir şekilde paylaşıyoruz. Güveniniz bizim için en değerli sermayedir.
-              </p>
+              <div className="space-y-1.5">
+                <span 
+                  className="inline-block font-gothic text-[0.65rem] tracking-[0.3em] uppercase px-5 py-2 rounded-full mb-2 font-semibold"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    color: '#FFFFFF',
+                    border: '1px solid rgba(255, 255, 255, 0.15)'
+                  }}
+                >
+                  Şeffaflık ve Raporlama
+                </span>
+                <h2 className="font-cinzel text-3xl md:text-4xl font-bold text-white leading-[1.2]">
+                  Hesap Verebilirlik ve Güven İlkelerini Önemsiyoruz.
+                </h2>
+              </div>
             </ScrollReveal>
-            <div className="w-16 h-1 bg-[#3241ae] rounded-full opacity-80" />
+
+            <ScrollReveal direction="left" distance={40} delay={0.1}>
+              <div className="space-y-6">
+                <p className="font-body text-base md:text-lg text-white/80 leading-relaxed">
+                  Bağışlarınızın ve desteklerinizin tam olarak nereye ulaştığını, hangi hayatlara
+                  dokunduğunu açıkça görmeniz gerektiğine inanıyoruz. Faaliyetlerimizin her adımını
+                  şeffaf ve denetlenebilir bir şekilde paylaşıyoruz. Güveniniz bizim için en değerli sermayedir.
+                </p>
+                <div className="w-16 h-1 bg-[#3241ae] rounded-full opacity-80" />
+              </div>
+            </ScrollReveal>
           </div>
 
           <div className="w-full flex justify-center">

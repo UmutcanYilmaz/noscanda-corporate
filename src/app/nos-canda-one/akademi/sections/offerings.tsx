@@ -62,55 +62,63 @@ const OFFERINGS = [
 
 /**
  * Offerings Section (#imkanlar) for Nos Canda One | Akademi.
- * Upgraded with premium micro-animations, color shifting icons, and full-size expanded illustration.
+ * Upgraded to align with the Vakıf page layout specs:
+ * - Alternating bg-[var(--bg-primary)] background.
+ * - 50/50 column layout.
+ * - Custom pill badge and font-cinzel typography.
+ * - Enlarged illustration of offerings collage.
  */
 export function Offerings() {
   return (
     <section
       id="imkanlar"
-      className="py-20 md:py-32 bg-[#FFFFFF] font-poppins relative z-10 border-t border-neutral-100 overflow-hidden"
+      className="py-16 md:py-20 bg-[var(--bg-primary)] font-poppins relative z-10 border-t border-neutral-100/50 overflow-hidden"
     >
-      {/* Decorative background glow using the accent orange color */}
+      {/* Decorative background glow */}
       <div 
-        className="absolute top-1/2 right-0 translate-x-1/3 -translate-y-1/2 w-[550px] h-[550px] rounded-full opacity-[0.07] blur-[120px] pointer-events-none z-0"
+        className="absolute top-1/2 right-0 translate-x-1/3 -translate-y-1/2 w-[550px] h-[550px] rounded-full opacity-[0.05] blur-[120px] pointer-events-none z-0"
         style={{
           background: 'radial-gradient(circle, #BA5225 0%, transparent 70%)'
         }}
       />
 
-      <div className="relative z-10 max-w-[1280px] mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      <div className="relative z-10 max-w-[1320px] mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Left Column: Visual Illustration (Col span 5) - Expanded to full-size */}
-          <div className="lg:col-span-5 order-last lg:order-first w-full flex justify-center">
-            <ScrollReveal direction="left" distance={40} className="w-full max-w-[500px]">
-              {/* Full Image design on transparent image - no card border/background box, scaled up */}
-              <div className="relative w-full aspect-square select-none overflow-hidden transition-transform duration-700 hover:scale-105">
+          {/* Left Column: Visual Illustration (Col span 6) */}
+          <div className="lg:col-span-6 order-last lg:order-first w-full flex justify-center">
+            <ScrollReveal direction="left" distance={40} className="w-full max-w-[580px] xl:max-w-[620px]">
+              <div className="relative w-full aspect-[1056/576] select-none overflow-hidden transition-transform duration-700 hover:scale-102">
                 <Image
-                  src="/images/akademi/sundugumuzimkanlar.png"
+                  src="/images/akademi/offerings-collage.png"
                   alt="Sunduğumuz İmkanlar"
                   fill
                   className="object-contain"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 500px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 620px"
                   priority
                 />
               </div>
             </ScrollReveal>
           </div>
 
-          {/* Right Column: Title + Grid (Col span 7) */}
-          <div className="lg:col-span-7 space-y-12">
-            <div>
-              <ScrollReveal direction="up" distance={30}>
-                <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#BA5225] block mb-3">
-                  Ayrıcalıklar & Fırsatlar
-                </span>
-                <h2 className="text-3xl sm:text-4xl lg:text-[54px] font-medium text-[#212121] leading-[1.2] tracking-tight">
-                  Sunduğumuz İmkanlar
-                </h2>
-                <div className="h-1 w-16 bg-[#BA5225] rounded-full mt-6" />
-              </ScrollReveal>
-            </div>
+          {/* Right Column: Title + Grid (Col span 6) */}
+          <div className="lg:col-span-6 space-y-10">
+            <ScrollReveal direction="up" distance={30}>
+              <span 
+                className="inline-block font-gothic text-[0.65rem] tracking-[0.3em] uppercase px-5 py-2 rounded-full mb-3 font-semibold"
+                style={{
+                  background: 'rgba(186, 82, 37, 0.05)',
+                  color: '#BA5225',
+                  border: '1px solid rgba(186, 82, 37, 0.15)'
+                }}
+              >
+                Ayrıcalıklar & Fırsatlar
+              </span>
+              <h2 className="font-cinzel text-3xl md:text-4xl font-bold text-[#212121] leading-[1.2]">
+                Sunduğumuz İmkanlar
+              </h2>
+              <div className="h-1 w-16 bg-[#BA5225] rounded-full mt-6" />
+            </ScrollReveal>
 
             {/* 6 Grid (2 columns, dynamic cardless interactive items) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10">
@@ -122,14 +130,13 @@ export function Offerings() {
                   delay={idx * 0.05}
                 >
                   <div className="flex flex-col group cursor-default">
-                    {/* Animated Icon Badge: Shifts background & icon color on hover */}
+                    {/* Animated Icon Badge */}
                     <div
                       className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-all duration-500 shadow-[0_4px_20px_rgba(186,82,37,0.06)] group-hover:shadow-[0_10px_25px_rgba(186,82,37,0.18)] group-hover:scale-110 group-hover:rotate-3 relative overflow-hidden"
                       style={{
                         background: 'linear-gradient(135deg, #E9A993 0%, #BA5225 50%, #682E15 100%)',
                       }}
                     >
-                      {/* Inner mask to create borders and hover reveal */}
                       <div className="absolute inset-[1.5px] rounded-[14px] bg-white flex items-center justify-center group-hover:bg-transparent transition-all duration-500">
                         <span className="text-[#BA5225] group-hover:text-white transition-colors duration-500">
                           {offering.icon}
@@ -137,11 +144,11 @@ export function Offerings() {
                       </div>
                     </div>
 
-                    <h3 className="text-lg md:text-xl font-medium text-[#212121] mb-2 group-hover:text-[#BA5225] transition-colors duration-300">
+                    <h3 className="font-cinzel text-lg font-bold text-[#212121] mb-2 group-hover:text-[#BA5225] transition-colors duration-300">
                       {offering.title}
                     </h3>
                     
-                    <p className="text-xs md:text-sm text-[#555555] leading-relaxed font-light transition-colors duration-300 group-hover:text-[#333333]">
+                    <p className="font-body text-xs md:text-sm text-[var(--text-secondary)] leading-relaxed transition-colors duration-300 group-hover:text-[#333333]">
                       {offering.desc}
                     </p>
 

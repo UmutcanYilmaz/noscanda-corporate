@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { ScrollReveal } from '@/components/core/ScrollReveal';
 
 const AUDIENCE_ITEMS = [
@@ -13,53 +14,87 @@ const AUDIENCE_ITEMS = [
 
 /**
  * Target Audience Section (#hedef-kitle) for Nos Canda One | Akademi.
- * Redesigned checklist removing box envelopes for a spacious typographic layout.
+ * Redesigned checklist layout with a tall, custom vertical illustration side-by-side:
+ * - 50/50 grid alignment.
+ * - Custom pill badge and font-cinzel headers.
+ * - Enlarged vertical profile image with aspect-ratio preservation.
+ * - Alternating white background.
  */
 export function TargetAudience() {
   return (
     <section
       id="hedef-kitle"
-      className="py-20 md:py-32 bg-[#F2F2F2] font-poppins relative z-10"
+      className="py-16 md:py-20 bg-white font-poppins relative z-10"
     >
-      <div className="max-w-[1000px] mx-auto px-6">
+      <div className="max-w-[1320px] mx-auto px-6">
         
         {/* Section Heading */}
         <div className="text-center mb-16 md:mb-20">
           <ScrollReveal direction="up" distance={30}>
-            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#BA5225] block mb-3">
+            <span 
+              className="inline-block font-gothic text-[0.65rem] tracking-[0.3em] uppercase px-5 py-2 rounded-full mb-3 font-semibold"
+              style={{
+                background: 'rgba(186, 82, 37, 0.05)',
+                color: '#BA5225',
+                border: '1px solid rgba(186, 82, 37, 0.15)'
+              }}
+            >
               Katılım Şartları & Profil
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-medium text-[#212121] leading-tight">
-              <span className="text-[#BA5225] font-semibold">Nos Canda One Akademi</span>&apos;ye kimler katılabilir?
+            <h2 className="font-cinzel text-3xl md:text-4xl font-bold text-[#212121] leading-tight">
+              Nos Canda One Akademi&apos;ye Kimler Katılabilir?
             </h2>
             <div className="h-1 w-16 bg-[#BA5225] rounded-full mx-auto mt-6" />
           </ScrollReveal>
         </div>
 
-        {/* 2-Column Grid Checklist */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-          {AUDIENCE_ITEMS.map((item, idx) => (
-            <ScrollReveal
-              key={idx}
-              direction="up"
-              distance={25}
-              delay={idx * 0.08}
-              className="flex"
-            >
-              <div className="flex items-start gap-4 w-full group">
-                {/* Custom Checkmark Bullet (no card boxes, sits directly on background) */}
-                <div className="w-6 h-6 rounded-full bg-[#BA5225]/10 flex-shrink-0 flex items-center justify-center text-[#BA5225] group-hover:bg-[#BA5225] group-hover:text-white transition-colors duration-300 mt-1">
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                
-                <p className="text-base sm:text-lg text-[#333333] font-light leading-relaxed">
-                  {item}
-                </p>
+        {/* Split Grid: Checklist Left, Illustration Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          {/* Left Column: Checklist (Col span 6) */}
+          <div className="lg:col-span-6 space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
+              {AUDIENCE_ITEMS.map((item, idx) => (
+                <ScrollReveal
+                  key={idx}
+                  direction="up"
+                  distance={25}
+                  delay={idx * 0.08}
+                  className="flex"
+                >
+                  <div className="flex items-start gap-4 w-full group">
+                    {/* Custom Checkmark Bullet */}
+                    <div className="w-6 h-6 rounded-full bg-[#BA5225]/10 flex-shrink-0 flex items-center justify-center text-[#BA5225] group-hover:bg-[#BA5225] group-hover:text-white transition-colors duration-300 mt-1">
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    
+                    <p className="font-body text-base text-[var(--text-secondary)] leading-relaxed">
+                      {item}
+                    </p>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Column: Tall vertical illustration (Col span 6) */}
+          <div className="lg:col-span-6 flex justify-center w-full">
+            <ScrollReveal direction="right" distance={40} delay={0.2} className="w-full flex justify-center">
+              <div className="relative w-full max-w-[340px] xl:max-w-[380px] aspect-[672/1232] select-none overflow-hidden transition-transform duration-700 hover:scale-102">
+                <Image
+                  src="/images/akademi/target-audience-ecosystem.png"
+                  alt="Nos Canda One Akademi Katılım Profili"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 380px"
+                  priority
+                />
               </div>
             </ScrollReveal>
-          ))}
+          </div>
+
         </div>
 
       </div>

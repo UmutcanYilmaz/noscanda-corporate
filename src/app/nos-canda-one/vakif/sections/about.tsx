@@ -14,60 +14,62 @@ export function About() {
     <section id="hakkimizda" className="py-10 md:py-14 bg-[var(--bg-primary)] overflow-hidden relative">
       <div className="max-w-[1320px] mx-auto px-6">
         
-        {/* Parent Title (1 Column) */}
-        <ScrollReveal direction="up" distance={30}>
-          <div className="max-w-4xl mb-4">
-            <span 
-              className="inline-block font-gothic text-[0.65rem] tracking-[0.3em] uppercase px-5 py-2 rounded-full mb-4 font-semibold"
-              style={{
-                background: 'rgba(50, 65, 174, 0.05)',
-                color: '#3241ae',
-                border: '1px solid rgba(50, 65, 174, 0.15)'
-              }}
-            >
-              Hakkımızda
-            </span>
-            <h2 className="font-cinzel text-section-heading md:text-4xl font-bold text-[#0F2547] leading-[1.25]">
-              İhtiyaç sahibi bireylerin ve toplulukların yaşam kalitesini artırmak için kapsamlı projeler hayata geçiriyoruz.
-            </h2>
-          </div>
-        </ScrollReveal>
-
-        {/* 2-Column Content Layout (Align start to remove empty gap) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        {/* 2-Column Content Layout (Align center to center text with image) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Left Column: Topics with separators (Col span 6) */}
-          <div className="lg:col-span-6 space-y-6">
+          {/* Left Column: Title + Topics with separators (Col span 6) */}
+          <div className="lg:col-span-6 space-y-8">
             <ScrollReveal direction="left" distance={40}>
-              <div className="space-y-2">
-                <h3 className="font-cinzel text-2xl md:text-3xl font-bold text-[#0F2547]">
-                  Kapsamlı Toplumsal Destek
-                </h3>
-                <p className="font-body text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
-                  Temel amacımız, sadece bugünün ihtiyaçlarını karşılamak değil, aynı zamanda şeffaflık,
-                  adalet ve sürdürülebilirlik ilkeleriyle geleceğe yatırım yaparak kalıcı çözümler
-                  sunmaktır.
-                </p>
+              <div className="space-y-1.5">
+                <span 
+                  className="inline-block font-gothic text-[0.65rem] tracking-[0.3em] uppercase px-5 py-2 rounded-full mb-2 font-semibold"
+                  style={{
+                    background: 'rgba(50, 65, 174, 0.05)',
+                    color: '#3241ae',
+                    border: '1px solid rgba(50, 65, 174, 0.15)'
+                  }}
+                >
+                  Hakkımızda
+                </span>
+                <h2 className="font-cinzel text-3xl md:text-4xl font-bold text-[#0F2547] leading-[1.2]">
+                  İhtiyaç sahibi bireylerin ve toplulukların yaşam kalitesini artırmak için kapsamlı projeler hayata geçiriyoruz.
+                </h2>
               </div>
             </ScrollReveal>
 
-            {/* Custom Separator */}
-            <ScrollReveal direction="none">
-              <div className="h-px bg-gradient-to-r from-[#0F2547]/10 via-[#0F2547]/5 to-transparent w-full" />
-            </ScrollReveal>
+            {/* Sub-topics list */}
+            <div className="space-y-6 pt-4">
+              <ScrollReveal direction="left" distance={40} delay={0.1}>
+                <div className="space-y-2">
+                  <h3 className="font-cinzel text-xl md:text-2xl font-bold text-[#0F2547]">
+                    Kapsamlı Toplumsal Destek
+                  </h3>
+                  <p className="font-body text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
+                    Temel amacımız, sadece bugünün ihtiyaçlarını karşılamak değil, aynı zamanda şeffaflık,
+                    adalet ve sürdürülebilirlik ilkeleriyle geleceğe yatırım yaparak kalıcı çözümler
+                    sunmaktır.
+                  </p>
+                </div>
+              </ScrollReveal>
 
-            <ScrollReveal direction="left" distance={40} delay={0.1}>
-              <div className="space-y-2">
-                <h3 className="font-cinzel text-2xl md:text-3xl font-bold text-[#0F2547]">
-                  Kalıcı ve Güçlü Değişim
-                </h3>
-                <p className="font-body text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
-                  Toplumun farklı kesimlerine ulaşarak, kısa vadeli desteklerin ötesinde, uzun soluklu
-                  ve pozitif değişimler yaratmayı hedefleriz. Eşit fırsatlar sunarak toplumsal potansiyeli 
-                  açığa çıkarıyoruz.
-                </p>
-              </div>
-            </ScrollReveal>
+              {/* Custom Separator */}
+              <ScrollReveal direction="none">
+                <div className="h-px bg-gradient-to-r from-[#0F2547]/10 via-[#0F2547]/5 to-transparent w-full" />
+              </ScrollReveal>
+
+              <ScrollReveal direction="left" distance={40} delay={0.2}>
+                <div className="space-y-2">
+                  <h3 className="font-cinzel text-xl md:text-2xl font-bold text-[#0F2547]">
+                    Kalıcı ve Güçlü Değişim
+                  </h3>
+                  <p className="font-body text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
+                    Toplumun farklı kesimlerine ulaşarak, kısa vadeli desteklerin ötesinde, uzun soluklu
+                    ve pozitif değişimler yaratmayı hedefleriz. Eşit fırsatlar sunarak toplumsal potansiyeli 
+                    açığa çıkarıyoruz.
+                  </p>
+                </div>
+              </ScrollReveal>
+            </div>
           </div>
 
           {/* Right Column: Transparent Floating Illustration (Col span 6) */}

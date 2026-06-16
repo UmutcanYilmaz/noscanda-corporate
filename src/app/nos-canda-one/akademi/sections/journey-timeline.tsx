@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { ScrollReveal } from '@/components/core/ScrollReveal';
 
 const TIMELINE_STEPS = [
@@ -48,19 +49,23 @@ const PILL_BADGES = [
 
 /**
  * Journey Timeline Section (#gelisim-yolculugu) for Nos Canda One | Akademi.
- * Redesigned to use a fully-visible, beautifully organized vertical timeline layout.
+ * Redesigned to support:
+ * - Alternating bg-[var(--bg-primary)] background.
+ * - 50/50 split column layout.
+ * - Custom pill badge and font-cinzel typography.
+ * - Larger vertical success stairs illustration.
  */
 export function JourneyTimeline() {
   return (
     <section
       id="gelisim-yolculugu"
-      className="py-20 md:py-32 bg-[#F2F2F2] font-poppins relative z-10"
+      className="py-16 md:py-20 bg-[var(--bg-primary)] font-poppins relative z-10 overflow-hidden"
     >
-      <div className="max-w-[1280px] mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+      <div className="max-w-[1320px] mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column: Redesigned Fully-Visible Vertical Timeline (Col span 7) */}
-          <div className="lg:col-span-7 w-full order-last lg:order-first relative pl-6 md:pl-10">
+          {/* Left Column: Vertical Timeline (Col span 6) */}
+          <div className="lg:col-span-6 w-full order-last lg:order-first relative pl-6 md:pl-10">
             {/* Connecting Line Track */}
             <div className="absolute left-[30px] md:left-[34px] top-6 bottom-6 w-0.5 bg-[#BA5225]/20" />
 
@@ -82,10 +87,10 @@ export function JourneyTimeline() {
 
                     {/* Step Content */}
                     <div className={`flex-grow ${isLast ? 'pb-0' : 'pb-10 md:pb-12'}`}>
-                      <h3 className="text-lg md:text-xl font-medium text-[#212121] mb-2 group-hover:text-[#BA5225] transition-colors duration-300 pt-1.5 md:pt-2.5">
+                      <h3 className="font-cinzel text-lg md:text-xl font-bold text-[#212121] mb-2 group-hover:text-[#BA5225] transition-colors duration-300 pt-1.5 md:pt-2.5">
                         {step.title}
                       </h3>
-                      <p className="text-xs sm:text-sm text-[#555555] leading-relaxed font-light">
+                      <p className="font-body text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
                         {step.desc}
                       </p>
                     </div>
@@ -95,13 +100,20 @@ export function JourneyTimeline() {
             </div>
           </div>
 
-          {/* Right Column: Heading + Description + Badges (Col span 5) */}
-          <div className="lg:col-span-5 lg:sticky lg:top-[160px] space-y-8">
+          {/* Right Column: Heading + Description + Badges (Col span 6) */}
+          <div className="lg:col-span-6 lg:sticky lg:top-[160px] space-y-8">
             <ScrollReveal direction="up" distance={30}>
-              <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#BA5225] block mb-3">
+              <span 
+                className="inline-block font-gothic text-[0.65rem] tracking-[0.3em] uppercase px-5 py-2 rounded-full mb-3 font-semibold"
+                style={{
+                  background: 'rgba(186, 82, 37, 0.05)',
+                  color: '#BA5225',
+                  border: '1px solid rgba(186, 82, 37, 0.15)'
+                }}
+              >
                 Süreç & Adımlar
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-[54px] font-medium text-[#212121] leading-[1.2] tracking-tight">
+              <h2 className="font-cinzel text-3xl md:text-4xl lg:text-5xl font-bold text-[#212121] leading-[1.2]">
                 Gelişim Yolculuğunuz
               </h2>
               <div className="h-1 w-16 bg-[#BA5225] rounded-full mt-6 mb-8" />
@@ -124,16 +136,32 @@ export function JourneyTimeline() {
 
             {/* Description Copy */}
             <ScrollReveal direction="up" distance={30} delay={0.2}>
-              <p className="text-sm sm:text-base text-[#333333] leading-relaxed font-light">
-                Gelişim Yolculuğunuz, Nos Canda One Akademi&apos;den genç yetenekleri iş dünyasına hazırlama ve
-                kişisel gelişimlerini destekleme misyonunu yansıtan kapsamlı bir süreçtir. Bu yolculuk, başvuru
-                aşamasından sertifika almaya kadar uzanan adımlarla, teorik bilgiyi pratik deneyimle birleştirir.
-              </p>
-              <p className="text-sm sm:text-base text-[#333333] leading-relaxed font-light mt-4">
-                Katılımcılar, stajlar, mentorluk, atölyeler ve sosyal sorumluluk projeleri aracılığıyla hem mesleki
-                beceriler kazanır hem de profesyonel ağlarını genişletir. Her aşama, katılımcıların potansiyellerini
-                keşfetmelerine ve kariyer hedeflerine ulaşmalarına yardımcı olmak için özenle tasarlanmıştır.
-              </p>
+              <div className="font-body text-base text-[var(--text-secondary)] leading-relaxed space-y-4">
+                <p>
+                  Gelişim Yolculuğunuz, Nos Canda One Akademi&apos;nin genç yetenekleri iş dünyasına hazırlama ve
+                  kişisel gelişimlerini destekleme misyonunu yansıtan kapsamlı bir süreçtir. Bu yolculuk, başvuru
+                  aşamasından sertifika almaya kadar uzanan adımlarla, teorik bilgiyi pratik deneyimle birleştirir.
+                </p>
+                <p>
+                  Katılımcılar, stajlar, mentorluk, atölyeler ve sosyal sorumluluk projeleri aracılığıyla hem mesleki
+                  beceriler kazanır hem de profesyonel ağlarını genişletir. Her aşama, katılımcıların potansiyellerini
+                  keşfetmelerine ve kariyer hedeflerine ulaşmalarına yardımcı olmak için özenle tasarlanmıştır.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            {/* Visual illustration of success stairs */}
+            <ScrollReveal direction="up" distance={30} delay={0.3} className="w-full flex justify-center pt-6">
+              <div className="relative w-full max-w-[340px] xl:max-w-[380px] aspect-[480/880] select-none overflow-hidden transition-transform duration-700 hover:scale-102">
+                <Image
+                  src="/images/akademi/journey-timeline-stairs.png"
+                  alt="Gelişim Yolculuğu Adımları"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 380px"
+                  priority
+                />
+              </div>
             </ScrollReveal>
           </div>
 
