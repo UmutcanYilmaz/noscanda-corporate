@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { ScrollReveal } from '@/components/core/ScrollReveal';
 
 const TIMELINE_STEPS = [
@@ -147,20 +146,6 @@ export function JourneyTimeline() {
                   beceriler kazanır hem de profesyonel ağlarını genişletir. Her aşama, katılımcıların potansiyellerini
                   keşfetmelerine ve kariyer hedeflerine ulaşmalarına yardımcı olmak için özenle tasarlanmıştır.
                 </p>
-              </div>
-            </ScrollReveal>
-
-            {/* Visual illustration of success stairs */}
-            <ScrollReveal direction="up" distance={30} delay={0.3} className="w-full flex justify-center pt-6">
-              <div className="relative w-full max-w-[340px] xl:max-w-[380px] aspect-[480/880] select-none overflow-hidden transition-transform duration-700 hover:scale-102">
-                <Image
-                  src="/images/akademi/journey-timeline-stairs.png"
-                  alt="Gelişim Yolculuğu Adımları"
-                  fill
-                  className="object-contain"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 380px"
-                  priority
-                />
               </div>
             </ScrollReveal>
           </div>

@@ -53,7 +53,7 @@ export function TargetAudience() {
           
           {/* Left Column: Checklist (Col span 6) */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
+            <div className="flex flex-col gap-y-6 md:gap-y-8">
               {AUDIENCE_ITEMS.map((item, idx) => (
                 <ScrollReveal
                   key={idx}
@@ -64,13 +64,13 @@ export function TargetAudience() {
                 >
                   <div className="flex items-start gap-4 w-full group">
                     {/* Custom Checkmark Bullet */}
-                    <div className="w-6 h-6 rounded-full bg-[#BA5225]/10 flex-shrink-0 flex items-center justify-center text-[#BA5225] group-hover:bg-[#BA5225] group-hover:text-white transition-colors duration-300 mt-1">
-                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3.5}>
+                    <div className="w-7 h-7 rounded-full bg-[#BA5225]/10 flex-shrink-0 flex items-center justify-center text-[#BA5225] group-hover:bg-[#BA5225] group-hover:text-white transition-colors duration-300 mt-0.5">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
                     
-                    <p className="font-body text-base text-[var(--text-secondary)] leading-relaxed">
+                    <p className="font-body text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
                       {item}
                     </p>
                   </div>
@@ -78,23 +78,21 @@ export function TargetAudience() {
               ))}
             </div>
           </div>
-
-          {/* Right Column: Tall vertical illustration (Col span 6) */}
-          <div className="lg:col-span-6 flex justify-center w-full">
+          {/* Right Column: 4:3 illustration (Col span 6) */}
+          <div className="lg:col-span-6 flex justify-center w-full items-center">
             <ScrollReveal direction="right" distance={40} delay={0.2} className="w-full flex justify-center">
-              <div className="relative w-full max-w-[340px] xl:max-w-[380px] aspect-[672/1232] select-none overflow-hidden transition-transform duration-700 hover:scale-102">
+              <div className="relative w-full max-w-[580px] xl:max-w-[620px] aspect-[1280/896] select-none overflow-hidden transition-transform duration-700 hover:scale-102">
                 <Image
-                  src="/images/akademi/target-audience-ecosystem.png"
+                  src="/images/akademi/support-program-charity.png"
                   alt="Nos Canda One Akademi Katılım Profili"
                   fill
                   className="object-contain"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 380px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 620px"
                   priority
                 />
               </div>
             </ScrollReveal>
           </div>
-
         </div>
 
       </div>

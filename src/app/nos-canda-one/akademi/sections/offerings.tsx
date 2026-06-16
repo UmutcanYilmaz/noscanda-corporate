@@ -6,8 +6,11 @@ import { ScrollReveal } from '@/components/core/ScrollReveal';
 const OFFERINGS = [
   {
     icon: (
-      <svg className="w-6 h-6 transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 .621-.504 1.125-1.125 1.125H4.875A1.125 1.125 0 013.75 18.4V14.15m16.5 0c0-1.22-.821-2.278-2.002-2.51l-3.32-.65a12.062 12.062 0 00-5.856 0l-3.32.65a2.473 2.473 0 00-2.002 2.51" />
+      <svg className="w-6 h-6 transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+        <rect x="3" y="6" width="18" height="12" rx="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 11v3" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M9 12.5h6" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
     title: 'Staj Programları',
@@ -15,8 +18,11 @@ const OFFERINGS = [
   },
   {
     icon: (
-      <svg className="w-6 h-6 transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.109A11.386 11.386 0 0110.089 20.8M4.121 18.548a9.337 9.337 0 014.121.952 9.38 9.38 0 002.625.372v-.109A11.386 11.386 0 005.088 19.12v.008a4.125 4.125 0 01-7.533-2.493M10.09 16.058a9.38 9.38 0 012.625.372 9.337 9.337 0 014.121-.952 4.125 4.125 0 00-7.533-2.493m0 3.073v-.003c0-1.113-.285-2.16-.786-3.07M8.25 7.5a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm11.25 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-5.25 3a3 3 0 11-6 0 3 3 0 016 0z" />
+      <svg className="w-6 h-6 transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="9" cy="7" r="4" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M23 21v-2a4 4 0 00-3-3.87" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M16 3.13a4 4 0 010 7.75" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
     title: 'Mentörlük Programları',
@@ -24,8 +30,9 @@ const OFFERINGS = [
   },
   {
     icon: (
-      <svg className="w-6 h-6 transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41" />
+      <svg className="w-6 h-6 transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+        <path d="M22 10v6M2 10l10-5 10 5-10 5z" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
     title: 'Eğitim Bursları',
@@ -33,8 +40,11 @@ const OFFERINGS = [
   },
   {
     icon: (
-      <svg className="w-6 h-6 transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
+      <svg className="w-6 h-6 transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+        <path d="M12 20h.01M19 4H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2z" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 17v3" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M9 20h6" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M8 8l3 3 5-5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
     title: 'Seminerler',
@@ -42,8 +52,8 @@ const OFFERINGS = [
   },
   {
     icon: (
-      <svg className="w-6 h-6 transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17L17.25 21A2.67 2.67 0 1021 17.25l-5.83-5.83m-3.75 3.75a2.67 2.67 0 01-3.75-3.75l5.83-5.83M11.42 15.17l3.75-3.75M11.42 15.17l-3.75 3.75m3.75-3.75l3.75 3.75m-7.5-7.5l5.83-5.83A2.67 2.67 0 003 6.75L8.83 12.5m-5.83-5.83a2.67 2.67 0 013.75 3.75m0-3.75l-3.75 3.75m3.75-3.75l3.75 3.75" />
+      <svg className="w-6 h-6 transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+        <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
     title: 'Atölye Çalışmaları',
@@ -51,8 +61,8 @@ const OFFERINGS = [
   },
   {
     icon: (
-      <svg className="w-6 h-6 transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+      <svg className="w-6 h-6 transition-colors duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
     title: 'Sosyal Projeler',
@@ -84,9 +94,8 @@ export function Offerings() {
 
       <div className="relative z-10 max-w-[1320px] mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
           {/* Left Column: Visual Illustration (Col span 6) */}
-          <div className="lg:col-span-6 order-last lg:order-first w-full flex justify-center">
+          <div className="lg:col-span-6 order-last lg:order-first w-full flex justify-center items-center">
             <ScrollReveal direction="left" distance={40} className="w-full max-w-[580px] xl:max-w-[620px]">
               <div className="relative w-full aspect-[1056/576] select-none overflow-hidden transition-transform duration-700 hover:scale-102">
                 <Image

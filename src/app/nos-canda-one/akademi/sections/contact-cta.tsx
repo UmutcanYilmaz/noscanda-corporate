@@ -69,23 +69,21 @@ export function ContactCTA() {
               </div>
             </ScrollReveal>
           </div>
-
           {/* Right Column: Transparent Visual (Col span 6) */}
-          <div className="lg:col-span-6 w-full flex justify-center">
-            <ScrollReveal direction="right" distance={40} className="w-full max-w-[540px] xl:max-w-[580px]">
+          <div className="lg:col-span-6 w-full flex justify-center items-center">
+            <ScrollReveal direction="right" distance={40} className="w-full max-w-[420px] md:max-w-[480px]">
               <div className="relative w-full aspect-square select-none overflow-hidden transition-transform duration-700 hover:scale-102">
                 <Image
                   src="/images/akademi/contact-questions.png"
                   alt="Aklınıza takılanları iletin"
                   fill
                   className="object-contain"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 580px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 480px"
                   priority
                 />
               </div>
             </ScrollReveal>
           </div>
-
         </div>
       </div>
     </section>

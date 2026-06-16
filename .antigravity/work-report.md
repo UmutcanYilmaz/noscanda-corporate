@@ -955,3 +955,47 @@
 - **17 files** in `public/images/akademi/` (16 renamed PNGs + 1 `contact-questions.png`)
 - **17 references** in code across section files
 - **0 unreferenced files** — perfect 1:1 mapping
+
+## Session: 2026-06-16T00:15 — Academy Page Image Proportions and Premium Card Framing
+
+### Completed Tasks
+1. **Aspect Ratio Optimizations & Premium Card Framing**:
+   - Replaced frameless image wrappers with a premium card framing structure using a warm ivory background (`bg-[#FDFBF9]`), soft borders (`border-neutral-200/50`), internal padding, and hover scales/shadows (`hover:scale-102 hover:shadow-lg`).
+   - Applied aspect ratios to match section heights:
+     - `offerings.tsx` (Sunduğumuz İmkanlar): Set image card to `aspect-square`.
+     - `target-audience.tsx` (Kimler Katılabilir?): Set image card to `aspect-[4/3]`.
+     - `support-program.tsx` (Destek Programımız): Set image card to `aspect-[3/4]`.
+     - `journey-timeline.tsx` (Gelişim Yolculuğunuz): Set image card to `aspect-square`.
+     - `contact-cta.tsx` (İletişim): Set image card to `aspect-[4/3]`.
+2. **Context-Native Image Swapping**:
+   - Swapped illustration assets between `target-audience.tsx` and `support-program.tsx` to match the native asset shapes to the user's ratio requests:
+     - `target-audience.tsx` now renders the landscape-oriented `support-program-charity.png` inside the `4:3` container (aspect ratio matches natively).
+     - `support-program.tsx` now renders the portrait-oriented `target-audience-ecosystem.png` inside the `3:4` container (aspect ratio matches natively).
+3. **Audience Checklist Refactoring**:
+   - Restructured checklist grid in `target-audience.tsx` from `sm:grid-cols-2` into a single column (`flex flex-col gap-y-6 md:gap-y-8`) to visually balance the height of the right column card.
+   - Increased checklist text font size to `text-base md:text-lg` for enhanced readability.
+
+### Build Status
+- ✅ `pnpm exec tsc --noEmit` — Checked out successfully with 0 errors.
+- ✅ `pnpm build` — Statically compiled all 44 routes successfully with 0 errors.
+- ✅ Visual validation verified via browser agent. Saved screenshots of all updated sections verifying correct proportions, centered alignment, and premium card layouts.
+
+## Session: 2026-06-16T20:15 — Academy Page Image Proportions and Cardless Optimization
+
+### Completed Tasks
+1. **Removed Card Frames & Set Aspect Ratios to Native Dimensions**:
+   - Replaced the rigid bordered card box enclosures with clean, frameless, transparent illustration wrappers.
+   - Preserved visual scaling by mapping section aspect ratios to the exact native asset dimensions:
+     - `offerings.tsx` (collage): `aspect-[1056/576]`
+     - `target-audience.tsx` (charity): `aspect-[1280/896]`
+     - `support-program.tsx` (ecosystem): `aspect-[672/1232]`
+     - `contact-cta.tsx` (questions): `aspect-square`
+2. **Removed Stairs Illustration**:
+   - `journey-timeline.tsx` (Gelişim Yolculuğu): Completely removed the stairs progression illustration (`journey-timeline-stairs.png`) and clean-up unused imports. The timeline lists now balance with the text description naturally.
+
+### Build Status
+- ✅ `pnpm exec tsc --noEmit` — Exited with code 0 (no errors).
+- ✅ `pnpm build` — Statically built the site with 0 errors.
+- ✅ Visual validation verified via browser agent, capturing screenshots of the clean floating cardless illustration rendering.
+
+

@@ -98,23 +98,21 @@ export function SupportProgram() {
               </ScrollReveal>
             ))}
           </div>
-
           {/* Right Column: Illustration Panel (Col span 6) */}
-          <div className="lg:col-span-6 w-full flex justify-center">
-            <ScrollReveal direction="right" distance={40} className="w-full max-w-[580px] xl:max-w-[620px]">
-              <div className="relative w-full aspect-[1280/896] overflow-hidden transition-transform duration-700 hover:scale-102 select-none">
+          <div className="lg:col-span-6 w-full flex justify-center items-center">
+            <ScrollReveal direction="right" distance={40} className="w-full max-w-[320px] md:max-w-[360px] xl:max-w-[400px]">
+              <div className="relative w-full aspect-[672/1232] select-none overflow-hidden transition-transform duration-700 hover:scale-102">
                 <Image
-                  src="/images/akademi/support-program-charity.png"
+                  src="/images/akademi/target-audience-ecosystem.png"
                   alt="Gençler İçin Destek Programı"
                   fill
                   className="object-contain"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 620px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                   priority
                 />
               </div>
             </ScrollReveal>
           </div>
-
         </div>
       </div>
     </section>
