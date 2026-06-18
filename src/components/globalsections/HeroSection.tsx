@@ -132,7 +132,7 @@ export function HeroSection() {
 
         {/* Dual CTAs */}
         <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 opacity-0">
-          <Button variant="primary" href="/urunlerimiz/reed-diffusers" id="hero-cta-products">
+          <Button variant="primary" href="/olusumlarimiz/nos-canda-shop/urunlerimiz/reed-diffusers" id="hero-cta-products">
             Ürünlerimizi Keşfedin
           </Button>
           <Button variant="secondary" href="/girisimcilik/monolith-kiosk" id="hero-cta-franchise" className="border-white/30 text-white hover:bg-white/10">

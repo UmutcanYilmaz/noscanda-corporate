@@ -15,7 +15,7 @@ export function Header({ product }: HeaderProps) {
       <div className="max-w-[1100px] mx-auto px-6">
         <ScrollReveal direction="up">
           <Link
-            href="/urunlerimiz/reed-diffusers"
+            href="/olusumlarimiz/nos-canda-shop/urunlerimiz/reed-diffusers"
             className="inline-flex items-center text-xs tracking-wider uppercase text-[var(--accent-gold)] hover:text-[var(--text-primary)] transition-colors duration-300 mb-6"
           >
             ← Koleksiyona Geri Dön

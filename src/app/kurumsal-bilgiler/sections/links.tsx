@@ -24,7 +24,7 @@ export function Links() {
                   Görünmeyeni görünür kılma, hisleri koku molekülleriyle kalıcılaştırma amacıyla başlayan yolculuğumuzun tüm aşamaları.
                 </p>
               </div>
-              <Link href="/hakkimizda/hikayemiz" className="btn-primary w-full text-center mt-6">
+              <Link href="/kurumsal-bilgiler/hikayemiz" className="btn-primary w-full text-center mt-6">
                 Hikayemizi Oku
               </Link>
             </div>
@@ -44,7 +44,7 @@ export function Links() {
                   Yüksek esans konsantrasyonu politikamız, duyusal derinliğe dayanan Extrait de Parfum standartlarımız ve manifestomuz.
                 </p>
               </div>
-              <Link href="/hakkimizda/felsefe" className="btn-primary w-full text-center mt-6">
+              <Link href="/kurumsal-bilgiler/felsefe" className="btn-primary w-full text-center mt-6">
                 Felsefemizi İncele
               </Link>
             </div>
@@ -64,7 +64,7 @@ export function Links() {
                   Nos Canda Group bünyesindeki kurumsal faaliyetler, etkinlikler ve en son basın bültenleri.
                 </p>
               </div>
-              <Link href="/hakkimizda/duyurular" className="btn-primary w-full text-center mt-6">
+              <Link href="/kurumsal-bilgiler/duyurular" className="btn-primary w-full text-center mt-6">
                 Duyuruları Gör
               </Link>
             </div>

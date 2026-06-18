@@ -16,7 +16,7 @@ export function CTA() {
           <p className="font-body text-base text-[var(--text-secondary)] mb-8">
             Yüksek konsantrasyon felsefemizi deneyimlemek için ürün koleksiyonumuzu keşfedin.
           </p>
-          <Link href="/urunlerimiz/reed-diffusers" className="btn-primary inline-block">
+          <Link href="/olusumlarimiz/nos-canda-shop/urunlerimiz/reed-diffusers" className="btn-primary inline-block">
             Ürünleri Keşfet
           </Link>
         </ScrollReveal>

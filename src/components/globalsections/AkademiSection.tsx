@@ -166,7 +166,7 @@ export function AkademiSection() {
             </div>
           </div>
           
-          <Link href="/nos-canda-one/akademi" className="btn-primary whitespace-nowrap">
+          <Link href="/olusumlarimiz/nos-canda-one/akademi" className="btn-primary whitespace-nowrap">
             Akademi Portalına Git →
           </Link>
         </div>

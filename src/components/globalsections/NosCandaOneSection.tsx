@@ -115,7 +115,7 @@ export function NosCandaOneSection() {
                 Hayallere Köprü, Hayatlara Dokunuş
               </span>
               <Link 
-                href="/nos-canda-one/vakif" 
+                href="/olusumlarimiz/nos-canda-one/vakif" 
                 className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-[var(--accent-gold-hover)] hover:text-white transition-colors duration-300"
               >
                 Keşfet <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
@@ -146,7 +146,7 @@ export function NosCandaOneSection() {
               </div>
 
               <p className="font-body text-sm md:text-base text-neutral-300 leading-relaxed font-light">
-                Genç yetenekleri sektör liderleriyle buluşturan staj ve mentorluk programları, eğitim bursları, 
+                Genç yetenekleri sektör liderleriyle buluşturan staj and mentorluk programları, eğitim bursları, 
                 atölyeler ve olfaktif sanatlar üzerine akademik iş birlikleri sunuyoruz. Gençlerimizi sadece iş 
                 dünyasına hazırlamakla kalmıyor, liderlik ruhu kazandırıyoruz.
               </p>
@@ -157,7 +157,7 @@ export function NosCandaOneSection() {
                 Geleceğe Sağlam Adım
               </span>
               <Link 
-                href="/nos-canda-one/akademi" 
+                href="/olusumlarimiz/nos-canda-one/akademi" 
                 className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-[#E06E43] hover:text-white transition-colors duration-300"
               >
                 Keşfet <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>

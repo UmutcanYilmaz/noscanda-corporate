@@ -96,14 +96,14 @@ export function Offerings() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Visual Illustration (Col span 6) */}
           <div className="lg:col-span-6 order-last lg:order-first w-full flex justify-center items-center">
-            <ScrollReveal direction="left" distance={40} className="w-full max-w-[580px] xl:max-w-[620px]">
-              <div className="relative w-full aspect-[1056/576] select-none overflow-hidden transition-transform duration-700 hover:scale-102">
+            <ScrollReveal direction="left" distance={40} className="w-full max-w-[360px] md:max-w-[420px] xl:max-w-[450px]">
+              <div className="relative w-full aspect-[672/1232] select-none overflow-hidden transition-transform duration-700 hover:scale-102">
                 <Image
-                  src="/images/akademi/offerings-collage.png"
+                  src="/images/akademi/target-audience-ecosystem.png"
                   alt="Sunduğumuz İmkanlar"
                   fill
                   className="object-contain"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 620px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 450px"
                   priority
                 />
               </div>

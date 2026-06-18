@@ -72,7 +72,7 @@ export function Grid() {
                 {/* Call-to-action buttons */}
                 <div className="grid grid-cols-2 gap-3 mt-auto pt-4 border-t border-[var(--border-subtle)]">
                   <Link
-                    href={`/urunlerimiz/auto-fragrances/${product.slug}`}
+                    href={`/olusumlarimiz/nos-canda-shop/urunlerimiz/auto-fragrances/${product.slug}`}
                     className="btn-secondary text-center text-xs py-2.5 px-4 font-semibold rounded-lg border border-[var(--border-subtle)] hover:bg-[var(--bg-secondary)] transition-all duration-300"
                   >
                     Detayları İncele

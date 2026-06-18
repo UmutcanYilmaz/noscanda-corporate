@@ -126,7 +126,7 @@ export function ManifestoSection() {
                 </div>
               </div>
             </div>
-            <Link href="/hakkimizda/hikayemiz" className="btn-secondary w-full text-center border-white/25 text-white hover:bg-white/10">
+            <Link href="/kurumsal-bilgiler/hikayemiz" className="btn-secondary w-full text-center border-white/25 text-white hover:bg-white/10">
               Hikayemizi Keşfedin
             </Link>
           </div>
@@ -180,7 +180,7 @@ export function ManifestoSection() {
                 </div>
               </div>
             </div>
-            <Link href="/hakkimizda/felsefe" className="btn-secondary w-full text-center border-white/25 text-white hover:bg-white/10">
+            <Link href="/kurumsal-bilgiler/felsefe" className="btn-secondary w-full text-center border-white/25 text-white hover:bg-white/10">
               Manifestomuzu İnceleyin
             </Link>
           </div>

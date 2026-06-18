@@ -20,7 +20,7 @@ export function CTA() {
             <Link href="/iletisim/genel-merkez" className="btn-primary">
               İletişime Geçin
             </Link>
-            <Link href="/hakkimizda/felsefe" className="btn-secondary">
+            <Link href="/kurumsal-bilgiler/felsefe" className="btn-secondary">
               Felsefemiz
             </Link>
           </div>

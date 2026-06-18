@@ -69,7 +69,7 @@ const RECOMMENDATIONS: Record<string, ProductRecommendation> = {
     description: 'Fransız lavantasının sakinleştirici etkisi ile Grasse yasemininin zarafeti. Eviniz için dinlendirici ve lüks bir atmosfer.',
     notes: 'Üst: Lavanta, Lavandin · Orta: Yasemin, Gül · Alt: Beyaz Misk, Sedir',
     image: '/images/placeholders/hero-diffuser.png',
-    link: '/urunlerimiz/reed-diffusers/lavender-jasmine',
+    link: '/olusumlarimiz/nos-canda-shop/urunlerimiz/reed-diffusers/lavender-jasmine',
     matchPercentage: 98
   },
   'home-energetic-citrus': {
@@ -78,7 +78,7 @@ const RECOMMENDATIONS: Record<string, ProductRecommendation> = {
     description: 'Canlandırıcı Akdeniz narenciyelerinin asil yasemin ile buluşması. Yaşam alanınıza tazeleyici bir enerji ve temizlik hissi katar.',
     notes: 'Üst: Portakal, Bergamot · Orta: Yasemin, Portakal Çiçeği · Alt: Hafif Odunsu',
     image: '/images/placeholders/hero-diffuser.png',
-    link: '/urunlerimiz/reed-diffusers/orange-jasmine',
+    link: '/olusumlarimiz/nos-canda-shop/urunlerimiz/reed-diffusers/orange-jasmine',
     matchPercentage: 95
   },
   'car-charismatic-woody': {
@@ -87,7 +87,7 @@ const RECOMMENDATIONS: Record<string, ProductRecommendation> = {
     description: 'Pürüzsüz İtalyan derisi ve derin ağaçsı notaları tatlı pembe biber ve amber akorlarıyla zenginleştiren, sürüşünüze lüks bir hava katan seçkin araç parfümü.',
     notes: 'Üst: Bergamot, Pembe Biber, Kakule · Orta: Yasemin, İris, Amber · Alt: Deri, Sedir Ağacı, Tonka Fasulyesi, Misk',
     image: '/images/placeholders/auto-fragrance.png',
-    link: '/urunlerimiz/auto-fragrances/floral-amber',
+    link: '/olusumlarimiz/nos-canda-shop/urunlerimiz/auto-fragrances/floral-amber',
     matchPercentage: 97
   },
   'car-warm-oriental': {
@@ -96,7 +96,7 @@ const RECOMMENDATIONS: Record<string, ProductRecommendation> = {
     description: 'Egzotik tropikal meyvelerin enerjisini ve orkidenin zarafetini sıcak tonka fasulyesi ve altın kehribarla harmanlayan dinamik, canlandırıcı araç kokusu.',
     notes: 'Üst: Mango, Pasyon Meyvesi, Şeftali · Orta: Orkide, Yasemin, Beyaz Çiçekler · Alt: Tonka Fasulyesi, Kehribar, Vanilya, Sandal Ağacı',
     image: '/images/placeholders/auto-fragrance.png',
-    link: '/urunlerimiz/auto-fragrances/fruity-amber',
+    link: '/olusumlarimiz/nos-canda-shop/urunlerimiz/auto-fragrances/fruity-amber',
     matchPercentage: 99
   },
   // Fallback defaults
@@ -106,7 +106,7 @@ const RECOMMENDATIONS: Record<string, ProductRecommendation> = {
     description: 'Olgun meyve notaları ile tatlı kehribarın sıcacık uyumu. Salonlar ve giriş alanları için davetkar bir atmosfer sunar.',
     notes: 'Üst: Kırmızı Meyveler · Orta: Şeftali, Çiçeksi · Alt: Kehribar, Tatlı Vanilya',
     image: '/images/placeholders/hero-diffuser.png',
-    link: '/urunlerimiz/reed-diffusers/fruity-amber',
+    link: '/olusumlarimiz/nos-canda-shop/urunlerimiz/reed-diffusers/fruity-amber',
     matchPercentage: 92
   },
   'default-car': {
@@ -115,7 +115,7 @@ const RECOMMENDATIONS: Record<string, ProductRecommendation> = {
     description: 'Taze Akdeniz narenciyeleri ve portakal çiçeğinin canlandırıcı esintisini, asil yasemin çiçekleri ve tatlı vanilya dokunuşlarıyla birleştiren ferah araç parfümü.',
     notes: 'Üst: Bergamot, Tatlı Portakal, Neroli · Orta: Yasemin, Portakal Çiçeği · Alt: Vanilya, Beyaz Misk, Sedir Ağacı',
     image: '/images/placeholders/auto-fragrance.png',
-    link: '/urunlerimiz/auto-fragrances/orange-jasmine',
+    link: '/olusumlarimiz/nos-canda-shop/urunlerimiz/auto-fragrances/orange-jasmine',
     matchPercentage: 94
   }
 };
@@ -147,7 +147,7 @@ export function ScentDiscovery() {
             description: 'Değerli öd ağacı ve asil safranın oryantal uyumu. Yakında çıkacak olan özel niş kişisel parfüm koleksiyonumuzun incisi.',
             notes: 'Üst: Safran, Lavanta · Orta: Öd Ağacı (Oud) · Alt: Paçuli, Misk',
             image: '/images/placeholders/perfume-grid.png',
-            link: '/urunlerimiz/parfumler',
+            link: '/olusumlarimiz/nos-canda-shop/urunlerimiz/parfumler',
             matchPercentage: 94
           };
         } else {

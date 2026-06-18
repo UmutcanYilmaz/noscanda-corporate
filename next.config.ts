@@ -6,6 +6,31 @@ const nextConfig: NextConfig = {
     unoptimized: false,
     formats: ['image/avif', 'image/webp'],
   },
+  async redirects() {
+    return [
+      {
+        source: '/urunlerimiz',
+        destination: '/olusumlarimiz/nos-canda-shop/urunlerimiz',
+        permanent: true,
+      },
+      {
+        source: '/urunlerimiz/:path*',
+        destination: '/olusumlarimiz/nos-canda-shop/urunlerimiz/:path*',
+        permanent: true,
+      },
+      {
+        source: '/e-katalog',
+        destination: '/olusumlarimiz/nos-canda-shop/e-katalog',
+        permanent: true,
+      },
+      {
+        source: '/e-katalog/:path*',
+        destination: '/olusumlarimiz/nos-canda-shop/e-katalog/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
+

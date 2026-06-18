@@ -15,7 +15,7 @@ const PRODUCTS_DATA = {
     categoryTitle: 'Premium Reed Diffusers',
     categorySub: 'Evin Görünmez Ruhu · Oda Kokuları',
     description: 'Yüksek esans konsantrasyonu (%25 Extrait de Parfum) ve premium rattan çubuklar ile evinizde 8-16 hafta kesintisiz, dengeli koku salınımı.',
-    href: '/urunlerimiz/reed-diffusers',
+    href: '/olusumlarimiz/nos-canda-shop/urunlerimiz/reed-diffusers',
     image: '/images/placeholders/hero-diffuser.png',
     scents: [
       { name: 'Floral Amber', slug: 'floral-amber', notes: 'Bergamot · Pink Pepper · Jasmine · Amber' },
@@ -28,7 +28,7 @@ const PRODUCTS_DATA = {
     categoryTitle: 'Premium Auto Fragrances',
     categorySub: 'Sürüş Deneyiminin İmzası · Araç Parfümleri',
     description: 'Zarif cam şişe ve doğal ahşap kapak tasarımıyla lüksü yola taşıyan, manyetik deri ve amber notalı kalıcı oto parfümleri.',
-    href: '/urunlerimiz/auto-fragrances',
+    href: '/olusumlarimiz/nos-canda-shop/urunlerimiz/auto-fragrances',
     image: '/images/placeholders/auto-fragrance.png',
     scents: [
       { name: 'Floral Amber', slug: 'floral-amber', notes: 'Bergamot · Pink Pepper · Leather · Amber' },
@@ -136,7 +136,7 @@ export function ProductsOverview() {
                 {PRODUCTS_DATA.diffusers.scents.map((scent) => (
                   <Link
                     key={scent.slug}
-                    href={`/urunlerimiz/reed-diffusers/${scent.slug}`}
+                    href={`/olusumlarimiz/nos-canda-shop/urunlerimiz/reed-diffusers/${scent.slug}`}
                     className="group block p-4 rounded-lg bg-[var(--bg-primary)] border border-transparent hover:border-[var(--accent-gold)] transition-all duration-300"
                   >
                     <div className="flex items-center justify-between mb-1">
@@ -199,7 +199,7 @@ export function ProductsOverview() {
                 {PRODUCTS_DATA.auto.scents.map((scent) => (
                   <Link
                     key={scent.slug}
-                    href={`/urunlerimiz/auto-fragrances/${scent.slug}`}
+                    href={`/olusumlarimiz/nos-canda-shop/urunlerimiz/auto-fragrances/${scent.slug}`}
                     className="group block p-4 rounded-lg bg-[var(--bg-primary)] border border-transparent hover:border-[var(--accent-gold)] transition-all duration-300"
                   >
                     <div className="flex items-center justify-between mb-1">

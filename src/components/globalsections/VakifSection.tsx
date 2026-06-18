@@ -166,7 +166,7 @@ export function VakifSection() {
             </div>
           </div>
           
-          <Link href="/nos-canda-one/vakif" className="btn-primary whitespace-nowrap">
+          <Link href="/olusumlarimiz/nos-canda-one/vakif" className="btn-primary whitespace-nowrap">
             Nos Canda One →
           </Link>
         </div>

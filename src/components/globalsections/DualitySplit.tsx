@@ -81,7 +81,7 @@ export function DualitySplit() {
               />
             </div>
 
-            <Button variant="ghost" href="/urunlerimiz/reed-diffusers" id="duality-cta-diffuser">
+            <Button variant="ghost" href="/olusumlarimiz/nos-canda-shop/urunlerimiz/reed-diffusers" id="duality-cta-diffuser">
               Keşfet <span aria-hidden="true">→</span>
             </Button>
           </div>
@@ -129,7 +129,7 @@ export function DualitySplit() {
             </div>
 
             <div className="lg:text-right">
-              <Button variant="ghost" href="/urunlerimiz/auto-fragrances" id="duality-cta-auto">
+              <Button variant="ghost" href="/olusumlarimiz/nos-canda-shop/urunlerimiz/auto-fragrances" id="duality-cta-auto">
                 Keşfet <span aria-hidden="true">→</span>
               </Button>
             </div>

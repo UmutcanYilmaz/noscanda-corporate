@@ -1,6 +1,13 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollReveal } from '@/components/core/ScrollReveal';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const TIMELINE_STEPS = [
   {
@@ -48,13 +55,71 @@ const PILL_BADGES = [
 
 /**
  * Journey Timeline Section (#gelisim-yolculugu) for Nos Canda One | Akademi.
- * Redesigned to support:
- * - Alternating bg-[var(--bg-primary)] background.
- * - 50/50 split column layout.
- * - Custom pill badge and font-cinzel typography.
- * - Larger vertical success stairs illustration.
+ * 
+ * Why: We implement a scroll-scrubbed timeline animation using GSAP ScrollTrigger to tie step node states 
+ * and line progression directly to viewport scroll coordinates. This provides a premium responsive 
+ * storytelling interaction. We animatively transform node scales and track heights directly via transform scaleY 
+ * to prevent layout reflow thrashing. Garbage collection of triggers is handled dynamically in cleanup.
  */
 export function JourneyTimeline() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const progressLineRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current || !progressLineRef.current) return;
+
+    const steps = containerRef.current.querySelectorAll('.timeline-step');
+
+    const ctx = gsap.context(() => {
+      // Create a master scroll-bound scrub timeline
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 70%',
+          end: 'bottom 70%',
+          scrub: 0.5,
+        },
+      });
+
+      // Animate the height of the orange active line via scaleY
+      tl.to(progressLineRef.current, {
+        scaleY: 1,
+        ease: 'none',
+        duration: 1,
+      }, 0);
+
+      // Distribute animations across steps based on timeline progress
+      steps.forEach((step, idx) => {
+        const circleNode = step.querySelector('.timeline-circle');
+        const contentNode = step.querySelector('.timeline-content');
+        
+        const ratio = idx / (steps.length - 1);
+        const triggerTime = ratio * 0.95;
+
+        // Circle node activation tween
+        tl.to(circleNode, {
+          backgroundColor: '#BA5225',
+          borderColor: '#BA5225',
+          color: '#ffffff',
+          scale: 1.12,
+          boxShadow: '0 0 16px rgba(186, 82, 37, 0.4)',
+          duration: 0.15,
+          ease: 'power1.out',
+        }, triggerTime);
+
+        // Text content fade & slide-in tween
+        tl.to(contentNode, {
+          opacity: 1,
+          x: 0,
+          duration: 0.15,
+          ease: 'power1.out',
+        }, triggerTime);
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
       id="gelisim-yolculugu"
@@ -65,37 +130,43 @@ export function JourneyTimeline() {
           
           {/* Left Column: Vertical Timeline (Col span 6) */}
           <div className="lg:col-span-6 w-full order-last lg:order-first relative pl-6 md:pl-10">
-            {/* Connecting Line Track */}
-            <div className="absolute left-[30px] md:left-[34px] top-6 bottom-6 w-0.5 bg-[#BA5225]/20" />
+            <div ref={containerRef} className="space-y-0 relative">
+              {/* Connecting Line Track (dimmed/gray track) */}
+              <div className="absolute left-[30px] md:left-[34px] top-6 bottom-6 w-0.5 bg-neutral-200" />
 
-            <div className="space-y-0">
-              {TIMELINE_STEPS.map((step, idx) => {
-                const isLast = idx === TIMELINE_STEPS.length - 1;
-                return (
-                  <ScrollReveal
-                    key={step.num}
-                    direction="up"
-                    distance={25}
-                    delay={idx * 0.05}
-                    className="flex gap-6 group"
-                  >
-                    {/* Circle Node */}
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-[#BA5225]/30 bg-white flex-shrink-0 flex items-center justify-center text-[#BA5225] font-semibold text-sm md:text-base relative z-10 group-hover:bg-[#BA5225] group-hover:text-white transition-all duration-300 shadow-sm">
-                      {step.num}
-                    </div>
+              {/* Active Growing progress line (orange track) */}
+              <div
+                ref={progressLineRef}
+                className="absolute left-[30px] md:left-[34px] top-6 bottom-6 w-0.5 bg-[#BA5225] origin-top scale-y-0 z-10"
+                style={{ transformOrigin: 'top' }}
+              />
 
-                    {/* Step Content */}
-                    <div className={`flex-grow ${isLast ? 'pb-0' : 'pb-10 md:pb-12'}`}>
-                      <h3 className="font-cinzel text-lg md:text-xl font-bold text-[#212121] mb-2 group-hover:text-[#BA5225] transition-colors duration-300 pt-1.5 md:pt-2.5">
-                        {step.title}
-                      </h3>
-                      <p className="font-body text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
-                        {step.desc}
-                      </p>
+              <div className="space-y-0">
+                {TIMELINE_STEPS.map((step, idx) => {
+                  const isLast = idx === TIMELINE_STEPS.length - 1;
+                  return (
+                    <div
+                      key={step.num}
+                      className="flex gap-6 group timeline-step relative z-20"
+                    >
+                      {/* Circle Node */}
+                      <div className="timeline-circle w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-neutral-300 bg-white flex-shrink-0 flex items-center justify-center text-neutral-400 font-semibold text-sm md:text-base transition-all duration-300 shadow-sm">
+                        {step.num}
+                      </div>
+
+                      {/* Step Content */}
+                      <div className={`timeline-content flex-grow opacity-30 -translate-x-3 transition-all duration-500 ${isLast ? 'pb-0' : 'pb-10 md:pb-12'}`}>
+                        <h3 className="font-cinzel text-lg md:text-xl font-bold text-[#212121] mb-2 pt-1.5 md:pt-2.5">
+                          {step.title}
+                        </h3>
+                        <p className="font-body text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
+                          {step.desc}
+                        </p>
+                      </div>
                     </div>
-                  </ScrollReveal>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
 

@@ -37,21 +37,21 @@ export const NAV_ITEMS: NavItem[] = [
       },
       {
         label: 'Hikayemiz',
-        href: '/hakkimizda/hikayemiz',
+        href: '/kurumsal-bilgiler/hikayemiz',
         image: '/kokular/parfumler/kadin/goldenchapter/royal-orchid/royal-orchid-1.jpg',
         teaserTitle: 'Hikayemiz',
         teaserDesc: 'Koku sanatını geleneksel esans kalitesi ve modern lüksle harmanlayan köklü hikayemiz.'
       },
       {
         label: 'Felsefemiz',
-        href: '/hakkimizda/felsefe',
+        href: '/kurumsal-bilgiler/felsefe',
         image: '/kokular/parfumler/kadin/goldenchapter/royal-orchid/royal-orchid-4.jpg',
         teaserTitle: 'Yüksek Konsantrasyon',
         teaserDesc: '%25 Extrait de Parfum formülüyle kokunun kalıcılık ve derinliğini yeniden tanımlayan felsefemiz.'
       },
       {
         label: 'Duyurular',
-        href: '/hakkimizda/duyurular',
+        href: '/kurumsal-bilgiler/duyurular',
         image: '/kokular/parfumler/kadin/goldenchapter/royal-orchid/royal-orchid-2.jpg',
         teaserTitle: 'Haberler & Duyurular',
         teaserDesc: 'Noscanda Group bünyesindeki son kurumsal gelişmeler, basın bültenlerimiz ve vizyoner adımlarımız.'
@@ -142,75 +142,51 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    label: 'E-Katalog',
-    href: '/e-katalog',
-    icon: 'book-open',
-    image: '/kokular/setler/odakokususet/revizeolacak/set-gorseller/karisik/floral&fruity/A_luxurious,_high-end_202604270603.jpeg',
-    teaserTitle: 'Ürün Portföyü',
-    teaserDesc: 'Eviniz ve aracınız için Extrait de Parfum konsantrasyonuna sahip lüks koku kataloğu.',
-    children: [
-      {
-        label: 'Elektronik Katalog',
-        href: '/e-katalog',
-        image: '/kokular/setler/odakokususet/revizeolacak/set-gorseller/karisik/floral&fruity/A_luxurious,_high-end_202604270603.jpeg',
-        teaserTitle: 'Ürün Portföyü',
-        teaserDesc: 'Eviniz ve aracınız için Extrait de Parfum konsantrasyonuna sahip lüks koku kataloğu.'
-      },
-      {
-        label: 'Premium Reed Diffusers',
-        href: '/urunlerimiz/reed-diffusers',
-        image: '/kokular/oda-kokulari/gorseller/kutuvesise/floral-amber-kutuvesise.png',
-        teaserTitle: 'Lüks Ev Kokuları',
-        teaserDesc: 'Yüksek konsantrasyonlu bambu çubuklu oda parfümleri ve şık tasarım kutuları.'
-      },
-      {
-        label: 'Premium Auto Fragrances',
-        href: '/urunlerimiz/auto-fragrances',
-        image: '/kokular/oto-kokulari/floral-amber-oto-sise.png',
-        teaserTitle: 'Araç Parfümleri',
-        teaserDesc: 'Doğal ahşap kapaklı ve şık ipli şişe tasarımlı premium araç parfümleri.'
-      },
-      {
-        label: 'Perfume Collection',
-        href: '/urunlerimiz/parfumler',
-        badge: 'Yakında',
-        image: '/kokular/parfumler/erkek/niche/liquid-chrome/Remove_the_selected_reflection_2K_202605050325.jpeg',
-        teaserTitle: 'Perfume Collection',
-        teaserDesc: 'Teninize lüksü fısıldayan, yüksek kalıcılığa sahip Extrait de Parfum koleksiyonumuz.'
-      },
-    ],
-  },
-  {
-    label: 'Nos Canda One',
-    href: '/nos-canda-one',
+    label: 'Oluşumlarımız',
+    href: '/olusumlarimiz',
     icon: 'heart',
     image: '/images/vakif/ana-sayfa-2.png',
-    teaserTitle: 'Nos Canda One',
-    teaserDesc: 'Birleşiyoruz, güçleniyoruz. Toplumsal kalkınma, yeşil gelecek, eğitim ve staj fırsatlarıyla geleceği şekillendiriyoruz.',
+    teaserTitle: 'Nos Canda Oluşumları',
+    teaserDesc: 'Sosyal sorumluluktan yazılım hizmetlerine, kurumsallaştırmadan marka inşasına — Nos Canda Group\'un etki alanları.',
     children: [
       {
-        label: 'Nos Canda One Giriş',
-        href: '/nos-canda-one',
+        label: 'Tüm Oluşumlarımız',
+        href: '/olusumlarimiz',
+        image: '/images/vakif/ana-sayfa-2.png',
+        teaserTitle: 'Nos Canda Oluşumları',
+        teaserDesc: 'Nos Canda One, Tech, Vision ve Shop platformlarının bir arada sunulduğu gateway sayfası.'
+      },
+      {
+        label: 'Nos Canda One',
+        href: '/olusumlarimiz/nos-canda-one',
         image: '/images/vakif/ana-sayfa-2.png',
         teaserTitle: 'Nos Canda One',
-        teaserDesc: 'Nos Canda One platformunun genel vizyonu, geleceğe köprü olan ana kapısı.'
+        teaserDesc: 'Toplumsal kalkınma, yeşil gelecek, eğitim ve staj fırsatlarıyla geleceği şekillendiriyoruz.'
       },
       {
-        label: 'Vakıf',
-        href: '/nos-canda-one/vakif',
+        label: 'Nos Canda Tech',
+        href: '/olusumlarimiz/nos-canda-tech',
         image: '/images/vakif/ana-sayfa-2.png',
-        teaserTitle: 'Nos Canda One Vakfı',
-        teaserDesc: 'Kadın girişimci can suyu destekleri, temel insani yardımlar ve yeşil inisiyatifler.'
+        teaserTitle: 'Nos Canda Tech',
+        teaserDesc: 'Siber güvenlik, full-stack web, mobil uygulama ve veri bilimi alanlarında profesyonel yazılım hizmetleri.'
       },
       {
-        label: 'Akademi',
-        href: '/nos-canda-one/akademi',
-        image: '/images/akademi/hero.png',
-        teaserTitle: 'Nos Canda One Akademi',
-        teaserDesc: 'Genç yetenek eğitim bursları, staj ve mentorluk imkanları, uygulamalı atölyeler.'
-      }
+        label: 'Nos Canda Vision',
+        href: '/olusumlarimiz/nos-canda-vision',
+        image: '/images/vakif/ana-sayfa-2.png',
+        teaserTitle: 'Nos Canda Vision',
+        teaserDesc: 'Marka kimliği oluşturma, kurumsal tasarım, dijital strateji ve kurumsallaştırma hizmetleri.'
+      },
+      {
+        label: 'Nos Canda Shop',
+        href: '/olusumlarimiz/nos-canda-shop',
+        image: '/kokular/setler/odakokususet/revizeolacak/set-gorseller/karisik/floral&fruity/A_luxurious,_high-end_202604270603.jpeg',
+        teaserTitle: 'Nos Canda Shop',
+        teaserDesc: 'Extrait de Parfum konsantrasyonuna sahip lüks koku koleksiyonları ve online mağaza portalı.'
+      },
     ]
   },
+
   {
     label: 'Yatırımcı İlişkileri',
     href: '/yatirimci-iliskileri',
@@ -281,9 +257,9 @@ export const FOOTER_COLUMNS = [
     title: 'Kurumsal Bilgiler',
     links: [
       { label: 'Kurumsal Bilgiler', href: '/kurumsal-bilgiler' },
-      { label: 'Hikayemiz', href: '/hakkimizda/hikayemiz' },
-      { label: 'Yüksek Konsantrasyon', href: '/hakkimizda/felsefe' },
-      { label: 'Duyurular', href: '/hakkimizda/duyurular' },
+      { label: 'Hikayemiz', href: '/kurumsal-bilgiler/hikayemiz' },
+      { label: 'Yüksek Konsantrasyon', href: '/kurumsal-bilgiler/felsefe' },
+      { label: 'Duyurular', href: '/kurumsal-bilgiler/duyurular' },
       { label: 'Yatırımcı İlişkileri', href: '/yatirimci-iliskileri' },
     ],
   },
@@ -307,20 +283,31 @@ export const FOOTER_COLUMNS = [
     ],
   },
   {
-    title: 'E-Katalog',
+    title: 'Nos Canda Shop',
     links: [
-      { label: 'Elektronik Katalog', href: '/e-katalog' },
-      { label: 'Premium Reed Diffusers', href: '/urunlerimiz/reed-diffusers' },
-      { label: 'Premium Auto Fragrances', href: '/urunlerimiz/auto-fragrances' },
-      { label: 'Perfume Collection', href: '/urunlerimiz/parfumler' },
+      { label: 'Online Mağaza & Katalog', href: '/olusumlarimiz/nos-canda-shop' },
+      { label: 'Premium Reed Diffusers', href: '/olusumlarimiz/nos-canda-shop/urunlerimiz/reed-diffusers' },
+      { label: 'Premium Auto Fragrances', href: '/olusumlarimiz/nos-canda-shop/urunlerimiz/auto-fragrances' },
+      { label: 'Perfume Collection', href: '/olusumlarimiz/nos-canda-shop/urunlerimiz/parfumler' },
     ],
   },
   {
-    title: 'Eko-Sosyal',
+    title: 'Oluşumlarımız',
     links: [
-      { label: 'Nos Canda One Giriş', href: '/nos-canda-one' },
-      { label: 'Vakıf', href: '/nos-canda-one/vakif' },
-      { label: 'Akademi', href: '/nos-canda-one/akademi' },
+      { label: 'Tüm Oluşumlarımız', href: '/olusumlarimiz' },
+      { label: 'Nos Canda One', href: '/olusumlarimiz/nos-canda-one' },
+      { label: 'Nos Canda Tech', href: '/olusumlarimiz/nos-canda-tech' },
+      { label: 'Nos Canda Vision', href: '/olusumlarimiz/nos-canda-vision' },
+      { label: 'Nos Canda Shop', href: '/olusumlarimiz/nos-canda-shop' },
+      { label: 'Siber Güvenlik', href: '/olusumlarimiz/nos-canda-tech/siber-guvenlik' },
+      { label: 'Full-Stack Web', href: '/olusumlarimiz/nos-canda-tech/full-stack-web' },
+      { label: 'Mobil Uygulama', href: '/olusumlarimiz/nos-canda-tech/mobil-uygulama' },
+      { label: 'Veri Analizi & Bilimi', href: '/olusumlarimiz/nos-canda-tech/veri-analizi' },
+      { label: 'Bulut & Altyapı', href: '/olusumlarimiz/nos-canda-tech/bulut-ve-altyapi' },
+      { label: 'Yapay Zekâ & Otomasyon', href: '/olusumlarimiz/nos-canda-tech/yapay-zeka-ve-otomasyon' },
+      { label: 'Markalaştırma', href: '/olusumlarimiz/nos-canda-vision/markalastirma' },
+      { label: 'Kurumsallaştırma', href: '/olusumlarimiz/nos-canda-vision/kurumsallastirma' },
+      { label: 'Kurumsal Kimlik', href: '/olusumlarimiz/nos-canda-vision/kurumsal-kimlik' },
     ],
   },
   {

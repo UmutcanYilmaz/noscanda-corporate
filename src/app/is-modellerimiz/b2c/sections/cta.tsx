@@ -15,7 +15,7 @@ export function CTA() {
           <p className="font-body text-base text-[var(--text-secondary)] mb-8">
             Ev and araç parfümlerindeki yüksek konsantrasyonlu eşsiz formüllerimizi inceleyin.
           </p>
-          <Link href="/urunlerimiz/reed-diffusers" className="btn-primary inline-block">Ürünleri Keşfet</Link>
+          <Link href="/olusumlarimiz/nos-canda-shop/urunlerimiz/reed-diffusers" className="btn-primary inline-block">Ürünleri Keşfet</Link>
         </ScrollReveal>
       </div>
     </section>
