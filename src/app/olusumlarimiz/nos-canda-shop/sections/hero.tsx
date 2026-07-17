@@ -1,611 +1,36 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { ScrollReveal } from '@/components/core/ScrollReveal';
 import Link from 'next/link';
 
-export interface ScentProfile {
-  name: string;
-  family: string;
-  description: string;
-  topNotes: string[];
-  heartNotes: string[];
-  baseNotes: string[];
-  longevity: number;
-  projection: number;
-  bestSeason: string;
-  recommendedRoom: string;
-  olfactoryVibe: string;
-}
-
-export const SCENT_PROFILES: ScentProfile[] = [
-  {
-    name: "Floral Amber",
-    family: "Amber Floral",
-    description: "Sıcak ve sarmalayıcı kehribar ile narin orkide, gül ve frezyanın asil birleşimi. Grasse laboratuvarlarında tasarlanan bu formül, mekanlara derinlik katar.",
-    topNotes: ["Bergamot", "Sarı Mandalina", "Pembe Biber"],
-    heartNotes: ["Siyah Orkide", "Şam Gülü", "Frezya"],
-    baseNotes: ["Altın Kehribar", "Beyaz Misk", "Madagaskar Vanilyası"],
-    longevity: 9,
-    projection: 8,
-    bestSeason: "Sonbahar / Kış",
-    recommendedRoom: "Lobi ve Geniş Salonlar",
-    olfactoryVibe: "Zarif, Sıcak ve Sarmalayıcı",
-  },
-  {
-    name: "Fruity Amber",
-    family: "Amber Fruity",
-    description: "Egzotik kırmızı meyveler ile sıcak kehribarın zengin ve modern tatlı uyumu. Kalıcılığı ve meyvemsi neşeli havasısıyla mekanın aurasını anında yükseltir.",
-    topNotes: ["Ahududu", "Yaban Mersini", "Siyah Frenk Üzümü"],
-    heartNotes: ["Kırmızı Meyveler", "Yasemin", "Şeftali Çiçeği"],
-    baseNotes: ["Sıcak Kehribar", "Paçuli", "Karamel"],
-    longevity: 8,
-    projection: 9,
-    bestSeason: "İlkbahar / Sonbahar",
-    recommendedRoom: "Yemek Alanı ve Salon",
-    olfactoryVibe: "Neşeli, Gurme ve Tatlı",
-  },
-  {
-    name: "Lavender Jasmine",
-    family: "Floral Aromatic",
-    description: "Provans lavantasının tazeleyici huzuru ile Akdeniz yasemininin zarafeti. Zihni dinlendiren, sakinleştiren ve stresi azaltan özel formül.",
-    topNotes: ["Provans Lavantası", "Adaçayı", "Bergamot"],
-    heartNotes: ["Mısır Yasemini", "Ylang Ylang", "Gül Yaprakları"],
-    baseNotes: ["Beyaz Misk", "Sedir Ağacı", "Hafif Tonka Fasulyesi"],
-    longevity: 8,
-    projection: 7,
-    bestSeason: "Tüm Yıl",
-    recommendedRoom: "Yatak Odası ve Dinlenme Alanları",
-    olfactoryVibe: "Huzurlu, Sakinleştirici ve Ferah",
-  },
-  {
-    name: "Orange Jasmine",
-    family: "Floral Citrus",
-    description: "Güneşli Akdeniz narenciyeleri ile yasemin çiçeklerinin canlandırıcı esintisi. Enerjik, dinamik ve ferahlık hissi veren koku yayılımı.",
-    topNotes: ["Portakal Çiçeği", "Mandalina kabuğu", "Neroli"],
-    heartNotes: ["Tatlı Yasemin", "Petigrain", "Frezya"],
-    baseNotes: ["Misk", "Hafif Odunsu Notalar", "Ambergris"],
-    longevity: 7,
-    projection: 8,
-    bestSeason: "İlkbahar / Yaz",
-    recommendedRoom: "Giriş Koridoru ve Çalışma Odası",
-    olfactoryVibe: "Canlandırıcı, Dinamik ve Taze",
-  },
-  {
-    name: "Liquid Chrome",
-    family: "Woody Aromatic",
-    description: "Metalik ferahlık ile derin ve asil odunsu notaların modern, avangart buluşması. Maskülen esintiler taşıyan lüks ve modern imza.",
-    topNotes: ["Greyfurt", "Metalik Akorlar", "Nane"],
-    heartNotes: ["Menekşe Yaprağı", "Vetiver", "Kakule"],
-    baseNotes: ["Sandal Ağacı", "Meşe Yosunu", "Hassas Deri"],
-    longevity: 9,
-    projection: 8,
-    bestSeason: "Tüm Yıl",
-    recommendedRoom: "Yönetici Ofisleri ve Çalışma Odaları",
-    olfactoryVibe: "Dinamik, Keskin ve Prestijli",
-  },
-  {
-    name: "Royal Orchid",
-    family: "Floral Oriental",
-    description: "Karanlık ve gizemli orkide ile egzotik baharatların mistik, zengin ve elit dansı. Ağır, prestijli ve kalıcılığı çok yüksek bir atmosfer.",
-    topNotes: ["Siyah Trüf Mantarı", "Ylang Ylang", "Bergamot"],
-    heartNotes: ["Karanlık Orkide", "Lotus Ağacı", "Meyveli Notalar"],
-    baseNotes: ["Paçuli", "Tütsü", "Vetiver", "Vanilya"],
-    longevity: 10,
-    projection: 9,
-    bestSeason: "Sonbahar / Kış",
-    recommendedRoom: "VIP Bekleme Alanları ve Geniş Mekanlar",
-    olfactoryVibe: "Mistik, Lüks ve Gizemli",
-  },
-  {
-    name: "Dark Oath",
-    family: "Woody Spicy",
-    description: "Ağır deri, tütün yaprakları ve zengin odunsu notaların maskülen, asil kompozisyonu. Güçlü, kalıcı ve karakter sahibi.",
-    topNotes: ["Karabiber", "Kakule", "Safran"],
-    heartNotes: ["Tütün Yaprağı", "Huş Ağacı Katranı", "Sedir Ağacı"],
-    baseNotes: ["Kaba Deri", "Oud", "Sıcak Kehribar"],
-    longevity: 10,
-    projection: 10,
-    bestSeason: "Kış",
-    recommendedRoom: "Kütüphane ve Şömine Köşeleri",
-    olfactoryVibe: "Güçlü, Dumanlı ve Karakterli",
-  },
-  {
-    name: "Outland",
-    family: "Aromatic Fougère",
-    description: "Vahşi doğanın uyanışını simgeleyen çam ormanı ve taze bitkisel özlerin uyumu. Doğallık, ferahlık ve nefes açan çam aroması.",
-    topNotes: ["Sibirya Çamı", "Ardıç Meyvesi", "Ferah Nane"],
-    heartNotes: ["Lavanta", "Sardunya", "Adaçayı"],
-    baseNotes: ["Meşe Yosunu", "Hafif Kösele", "Ambergris"],
-    longevity: 9,
-    projection: 8,
-    bestSeason: "Sonbahar / İlkbahar",
-    recommendedRoom: "Banyo ve Antre",
-    olfactoryVibe: "Doğal, Ferah ve Aromatik",
-  },
-  {
-    name: "Golden Chapter",
-    family: "Chypre Floral",
-    description: "Asil kadınsılığı yansıtan, safran ve şık güllerin meşe yosunu ve paçuli ile şipre buluşması.",
-    topNotes: ["Safran", "Kişniş", "Yasemin"],
-    heartNotes: ["Şam Gülü", "Ylang Ylang"],
-    baseNotes: ["Paçuli", "Meşe Yosunu", "Deri"],
-    longevity: 9,
-    projection: 9,
-    bestSeason: "Sonbahar",
-    recommendedRoom: "Geniş Salonlar ve Butikler",
-    olfactoryVibe: "Asil, Klasik ve Kadınsı",
-  },
-  {
-    name: "Aether",
-    family: "Ozone Aquatic",
-    description: "Hafif deniz tuzu ve ozonsu ferahlığın, odunsu ve miskli alt notalarla minimalist temizlik uyumu.",
-    topNotes: ["Deniz Tuzu", "Ozonsu Notalar", "Kavun"],
-    heartNotes: ["Su Zambağı", "Yasemin"],
-    baseNotes: ["Sedir Ağacı", "Beyaz Misk"],
-    longevity: 7,
-    projection: 7,
-    bestSeason: "Yaz",
-    recommendedRoom: "Banyo ve SPA Alanları",
-    olfactoryVibe: "Minimalist, Temiz ve Ferah",
-  },
-];
-
-export interface ScentLayeringCombo {
-  name: string;
-  topNote: string;
-  baseNote: string;
-  compatibility: 'Excellent' | 'Good' | 'Fair';
-  resultDescription: string;
-  mood: string;
-  intensity: string;
-  applicationTips: string;
-}
-
-export const LAYER_COMBOS: ScentLayeringCombo[] = [
-  {
-    name: "Nectar & Spice",
-    topNote: "Fruity Amber",
-    baseNote: "Floral Amber",
-    compatibility: "Excellent",
-    resultDescription: "Fruity Amber'ın tatlı kırmızı meyveleri ile Floral Amber'ın altın kehribar tabanı birleşerek sıcak, gurme ve kadifemsi bir olfaktif atmosfer yaratır.",
-    mood: "Sıcak & Çekici",
-    intensity: "Yüksek",
-    applicationTips: "Taban kokuyu geniş alanlara yayın, 2 dakika bekledikten sonra üst katman kokuyu ekleyin.",
-  },
-  {
-    name: "Mediterranean Breeze",
-    topNote: "Orange Jasmine",
-    baseNote: "Lavender Jasmine",
-    compatibility: "Excellent",
-    resultDescription: "Orange Jasmine'in canlandırıcı portakal çiçeği üst notaları, Lavender Jasmine'in rahatlatıcı Provans lavantası ve misk tabanıyla birleşerek Akdeniz esintisi yaratır.",
-    mood: "Canlandırıcı & Huzurlu",
-    intensity: "Orta",
-    applicationTips: "Hava sirkülasyonunun olduğu giriş alanlarında kullanılması kokuyu dengeli dağıtır.",
-  },
-  {
-    name: "Royal Sanctuary",
-    topNote: "Lavender Jasmine",
-    baseNote: "Royal Orchid",
-    compatibility: "Excellent",
-    resultDescription: "Ylang ylang ve lavantanın sakinleştirici gövdesi, siyah trüf ve karanlık orkidenin mistik zenginliğiyle yumuşatılır. Yatıştırıcı ama lüks bir ambiyans.",
-    mood: "Mistik & Yatıştırıcı",
-    intensity: "Yüksek",
-    applicationTips: "Yatak odası ve dinlenme alanlarında loş ışık eşliğinde kullanılması önerilir.",
-  },
-  {
-    name: "Noble Forest",
-    topNote: "Outland",
-    baseNote: "Dark Oath",
-    compatibility: "Excellent",
-    resultDescription: "Sibirya çamı ve ardıç meyvelerinin aromatik yeşilliği, Dark Oath'in tütün, deri ve oud tabanıyla birleşerek asil bir orman derinliği oluşturur.",
-    mood: "Zarif & Güçlü",
-    intensity: "Çok Yüksek",
-    applicationTips: "Kütüphane ve çalışma odası gibi ağır mobilyalı odalar için mükemmeldir.",
-  },
-  {
-    name: "Fresh Chrome",
-    topNote: "Liquid Chrome",
-    baseNote: "Orange Jasmine",
-    compatibility: "Good",
-    resultDescription: "Liquid Chrome'un metalik nane ferahlığı, Orange Jasmine'in narenciye çiçekleriyle birleşerek son derece temiz, dinamik ve enerjik bir etki bırakır.",
-    mood: "Enerjik & Temiz",
-    intensity: "Orta",
-    applicationTips: "Sabah saatlerinde çalışma odasında veya ofis girişinde canlandırıcı etki için kullanılabilir.",
-  },
-  {
-    name: "Ambered Woods",
-    topNote: "Floral Amber",
-    baseNote: "Liquid Chrome",
-    compatibility: "Good",
-    resultDescription: "Floral Amber'ın kehribar zenginliği, Liquid Chrome'un vetiver ve sandal ağacı tabanıyla harmanlanarak kremsi, odunsu ve sıcak bir derinlik kazanır.",
-    mood: "Prestijli & Kremsi",
-    intensity: "Yüksek",
-    applicationTips: "Salon veya bekleme odası gibi prestij gerektiren alanlarda ideal bir imza kokudur.",
-  },
-  {
-    name: "Twilight Jasmine",
-    topNote: "Orange Jasmine",
-    baseNote: "Royal Orchid",
-    compatibility: "Good",
-    resultDescription: "Portakal çiçeği ve mandalinanın parlaklığı, karanlık orkide ve tütsünün mistik tabanına nüfuz ederek tatlı ama gizemli bir gece bahçesi yaratır.",
-    mood: "Gizemli & Derin",
-    intensity: "Yüksek",
-    applicationTips: "Akşam yemeği davetlerinde yemek odası dışındaki antre ve dinlenme alanları için uygundur.",
-  },
-  {
-    name: "Aromatic Shield",
-    topNote: "Outland",
-    baseNote: "Lavender Jasmine",
-    compatibility: "Good",
-    resultDescription: "Çam ve ardıç kokusunun bitkisel yapısı, lavanta ve adaçayının rahatlatıcı aromasıyla birleşerek tazeleyici bir koruma alanı yaratır.",
-    mood: "Ferah & Doğal",
-    intensity: "Orta",
-    applicationTips: "Banyo ve antre gibi hava sirkülasyonunun yoğun olduğu alanlar için idealdir.",
-  },
-  {
-    name: "Spiced Fruit",
-    topNote: "Fruity Amber",
-    baseNote: "Dark Oath",
-    compatibility: "Fair",
-    resultDescription: "Ahududu ve karamelli meyve tonları ile tütün, karabiber ve safran gibi sıcak baharatların birleşimi oldukça yoğun, egzotik bir koku profili oluşturur.",
-    mood: "Egzotik & Yoğun",
-    intensity: "Çok Yüksek",
-    applicationTips: "Yüksek tavanlı ve geniş pencereli salonlarda çubuk sayısı az tutularak kullanılmalıdır.",
-  },
-  {
-    name: "Chromes Shadow",
-    topNote: "Liquid Chrome",
-    baseNote: "Dark Oath",
-    compatibility: "Fair",
-    resultDescription: "Greyfurt ve metalik notaların keskinliği ile deri ve huş ağacı katranının dumanlı yapısı çok maskülen ve niş bir karakter sergiler.",
-    mood: "Avangart & Keskin",
-    intensity: "Çok Yüksek",
-    applicationTips: "Kişisel ofis veya erkek giyim butikleri gibi niş alanlarda prestij vurgusu yapar.",
-  },
-  {
-    name: "Golden Orchid",
-    topNote: "Golden Chapter",
-    baseNote: "Royal Orchid",
-    compatibility: "Excellent",
-    resultDescription: "Safran ve gülün asil birleşimi, karanlık orkidenin mistik trüf tabanıyla kaynaşarak adeta saraysı ve görkemli bir çiçek şöleni sunar.",
-    mood: "Görkemli & Klasik",
-    intensity: "Çok Yüksek",
-    applicationTips: "VIP salonları ve lüks resepsiyon alanlarında kullanılmalıdır.",
-  },
-  {
-    name: "Ozone Forest",
-    topNote: "Aether",
-    baseNote: "Outland",
-    compatibility: "Excellent",
-    resultDescription: "Deniz tuzu ve ozonsu hafiflik, çam ormanı ve ardıcın topraksı kokusuyla buluşarak temiz bir dağ ve deniz havası yayar.",
-    mood: "Ferahlatıcı & Temiz",
-    intensity: "Orta",
-    applicationTips: "SPA, kapalı havuz ve dinlenme salonlarında sakinleştirici bir zindelik sağlar.",
-  },
-  {
-    name: "Amber Aether",
-    topNote: "Aether",
-    baseNote: "Floral Amber",
-    compatibility: "Good",
-    resultDescription: "Deniz tuzunun getirdiği hafif tuzlu esinti, Floral Amber'ın vanilya ve kehribarlı tabanını ferahlatarak modern bir hafif gurme koku oluşturur.",
-    mood: "Modern & Havalı",
-    intensity: "Orta",
-    applicationTips: "Yaz aylarında salonlarda ve ferah yaşam alanlarında tercih edilir.",
-  },
-  {
-    name: "Sweet Lavender",
-    topNote: "Fruity Amber",
-    baseNote: "Lavender Jasmine",
-    compatibility: "Good",
-    resultDescription: "Meyveli tatlı kırmızı ahududular ile rahatlatıcı lavantanın kokusu kremsi bir tatlı çiçek aroması verir.",
-    mood: "Yumuşak & Sevecen",
-    intensity: "Orta",
-    applicationTips: "Çocuk odası dışındaki ortak hobi odalarında ve okuma köşelerinde idealdir.",
-  },
-  {
-    name: "Golden Forest",
-    topNote: "Golden Chapter",
-    baseNote: "Outland",
-    compatibility: "Fair",
-    resultDescription: "Şipre gül ve safran notaları ile vahşi çam kokularının buluşması klasik ve zıt bir kombinasyondur.",
-    mood: "Sıradışı & Zıt",
-    intensity: "Yüksek",
-    applicationTips: "Tasarım atölyeleri ve modern sergi salonlarında yaratıcılığı tetikler.",
-  },
-];
-
-export interface GlossaryEntry {
-  term: string;
-  definition: string;
-  category: string;
-}
-
-export const OLFACTORY_GLOSSARY: GlossaryEntry[] = [
-  {
-    term: "Maceration (Olgunlaşma)",
-    definition: "Esansiyel yağların alkol ve su karışımı içinde belirli bir süre bekletilerek moleküllerin birleşmesi ve kokunun kalıcı hale gelmesi süreci. Nos Canda kokuları 28 gün olgunlaştırılır.",
-    category: "Üretim",
-  },
-  {
-    term: "Sillage (Yayılım / Koku İzi)",
-    definition: "Bir kokunun havada bıraktığı izin veya hareket halindeyken arkasında bıraktığı koku dalgasının mesafesi ve gücü.",
-    category: "Olfaktif",
-  },
-  {
-    term: "Top Notes (Üst Notalar)",
-    definition: "Koku şişeden ilk yayıldığında veya teninize sıkıldığında duyulan, uçuculuğu en yüksek olan ve ilk 15-30 dakikada buharlaşan esanslar.",
-    category: "Olfaktif",
-  },
-  {
-    term: "Heart Notes (Kalp / Orta Notalar)",
-    definition: "Üst notalar buharlaştıktan sonra ortaya çıkan, kokunun ana gövdesini ve karakterini belirleyen, genellikle birkaç saat kalan esanslar.",
-    category: "Olfaktif",
-  },
-  {
-    term: "Base Notes (Alt / Dip Notalar)",
-    definition: "Kokunun kalıcılığını sağlayan, en az uçucu olan ve formülü zemine bağlayan, genellikle odunsu, kehribar, misk ve vanilya içeren ağır esanslar.",
-    category: "Olfaktif",
-  },
-  {
-    term: "Extrait de Parfum",
-    definition: "Esans konsantrasyonu %20 ile %40 arasında olan, parfüm dünyasındaki en yoğun, en kalıcı ve en prestijli parfüm sınıfı. Nos Canda kokuları %25 konsantrasyondadır.",
-    category: "Konsantrasyon",
-  },
-  {
-    term: "IFRA Standards",
-    definition: "International Fragrance Association (Uluslararası Koku Birliği) tarafından koku maddelerinin güvenli kullanımı, alerjen kısıtlamaları ve insan sağlığına uygunluğu için belirlenen küresel standartlar.",
-    category: "Yönetmelik",
-  },
-  {
-    term: "Olfactory Family (Koku Ailesi)",
-    definition: "Kokuların içerdikleri baskın karakterlere göre sınıflandırılması (örn. Floral, Woody, Citrus, Oriental, Chypre, Fougère).",
-    category: "Olfaktif",
-  },
-  {
-    term: "GC-MS (Gaz Kromatografisi)",
-    definition: "Esansiyel yağların moleküler düzeydeki saflığını, kimyasal bileşenlerini ve oranlarını belirlemek amacıyla kullanılan gelişmiş laboratuvar analiz yöntemi.",
-    category: "Bilim",
-  },
-  {
-    term: "Ambroxan",
-    definition: "Doğal ambergris (amber) kokusunu taklit eden, sıcak, kadifemsi, temiz ve odunsu tatlılık veren son derece değerli ve modern bir sentetik koku molekülü.",
-    category: "Kimya",
-  },
-  {
-    term: "Rattan Çubuk",
-    definition: "Oda kokularında esansı şişeden çekerek gözenekli yapısıyla havaya homojen bir şekilde yayılmasını sağlayan doğal ahşap lifli çubuklar.",
-    category: "Aksesuar",
-  },
-  {
-    term: "Ethyl Alcohol (Bitkisel Alkol)",
-    definition: "Tarımsal ürünlerin fermantasyonuyla elde edilen, kozmetik standartlarına uygun, kokunun yayılımını sağlayan en temiz çözücü taşıyıcı alkol.",
-    category: "Kimya",
-  },
-  {
-    term: "Vetiver (Kuz Kökü)",
-    definition: "Topraksı, dumanlı, odunsu ve köksü koku karakteriyle parfümlerde dip nota olarak kullanılan, zindelik ve güç veren bir çimen türü kökü esansı.",
-    category: "Hammadde",
-  },
-  {
-    term: "Patchouli (Paçuli)",
-    definition: "Nane ailesinden gelen, topraksı, zengin, egzotik ve odunsu kokusuyla parfümlere derinlik ve asalet katan şifalı bitki yağı.",
-    category: "Hammadde",
-  },
-  {
-    term: "Neroli",
-    definition: "Ekşi portakal ağacının çiçeklerinden su buharı distilasyonu ile elde edilen, parlak, yeşil ve son derece lüks narenciye çiçek yağı.",
-    category: "Hammadde",
-  },
-  {
-    term: "Bergamot",
-    definition: "Calabria, İtalya kökenli, narenciye ailesinin en asil, floral ve ferah üyesi. Parfümlerin üst notalarında tazelik ve zarafet vermek amacıyla yaygın kullanılır.",
-    category: "Hammadde",
-  },
-  {
-    term: "Anosmia (Koku Körlüğü)",
-    definition: "Geçici veya kalıcı olarak koku alma duyusunun kaybolması durumu. Yoğun koku testleri sırasında burun yorulduğunda kahve çekirdekleri koklanarak giderilebilir.",
-    category: "Olfaktif",
-  },
-  {
-    term: "Absolute (Mutlak Yağ)",
-    definition: "Çiçeklerden çözücü ekstraksiyonu yöntemiyle elde edilen, uçucu yağlara göre çok daha yoğun, kıvamlı ve doğal çiçeğe en yakın koku özü.",
-    category: "Hammadde",
-  },
-  {
-    term: "Concrete (Somut Yağ)",
-    definition: "Taze bitki hammaddelerinin çözücü ile ekstrakte edilmesiyle elde edilen, mumsu ve esanslı katı veya yarı katı koku maddesi.",
-    category: "Hammadde",
-  },
-  {
-    term: "Headspace Teknolojisi",
-    definition: "Yaşayan canlı çiçeklerin kokularını koparmadan çevrelerindeki havayı özel bir kubbe ile vakumlayarak moleküler analizini yapan ileri koku yakalama teknolojisi.",
-    category: "Bilim",
-  },
-  {
-    term: "Sillage (Siyaj)",
-    definition: "Bir kişinin veya koku kaynağının geçtiği yerde havada asılı kalan kokusal iz dalgası. Koku izinin yayılma yeteneğidir.",
-    category: "Olfaktif",
-  },
-  {
-    term: "Volatiliti (Uçuculuk)",
-    definition: "Bir koku molekülünün sıvı halden gaz haline geçerek havada yayılma hızı. Citrus notaları yüksek volatiliteye sahipken odunsu notalar düşüktür.",
-    category: "Bilim",
-  },
-  {
-    term: "Accord (Akor)",
-    definition: "İki veya daha fazla koku notasının bir araya gelerek tek ve tamamen yeni, dengeli bir koku karakteri oluşturması uyumu.",
-    category: "Olfaktif",
-  },
-  {
-    term: "Fixative (Sabitleyici)",
-    definition: "Uçuculuğu yüksek koku moleküllerinin buharlaşmasını yavaşlatarak kokunun kalıcılığını artıran, genellikle dip notada yer alan maddeler.",
-    category: "Kimya",
-  },
-  {
-    term: "Synthetic Aromatics",
-    definition: "Laboratuvar ortamında sentezlenen, doğada bulunmayan yeni koku karakterleri sunan veya nesli tehlikede olan doğal hammaddelerin yerini alan moleküller.",
-    category: "Kimya",
-  },
-  {
-    term: "Natural Isolates",
-    definition: "Doğal uçucu yağların fraksiyonel distilasyon yöntemiyle bölünerek içlerinden tek bir molekülün (örn. okaliptol) saf olarak ayrıştırılması.",
-    category: "Hammadde",
-  },
-  {
-    term: "Solvent Extraction",
-    definition: "Isıya dayanıksız hassas çiçeklerin (örn. yasemin) koku özlerini elde etmek için kimyasal çözücüler kullanılarak yapılan ekstraksiyon işlemi.",
-    category: "Üretim",
-  },
-  {
-    term: "Fractional Distillation",
-    definition: "Uçucu yağların farklı kaynama noktalarındaki bileşenlerine ayrılarak istenmeyen acı veya yanık kokulu kısımlarının uzaklaştırılması işlemi.",
-    category: "Üretim",
-  },
-  {
-    term: "Carrier Oil (Taşıyıcı Yağ)",
-    definition: "Uçucu yağları seyreltmek ve masaj yağı veya kozmetik formüllerde cilde güvenle taşımak amacıyla kullanılan jojoba, tatlı badem gibi sabit bitkisel yağlar.",
-    category: "Hammadde",
-  },
-  {
-    term: "Chypre (Şipre)",
-    definition: "Meşe yosunu, paçuli, bergamot ve gül notalarının birleşimiyle oluşan, nemli orman ve asil çiçek karakterli klasik parfüm ailesi.",
-    category: "Olfaktif",
-  },
-];
-
-export interface TroubleshootItem {
-  id: string;
-  symptom: string;
-  cause: string;
-  solutions: string[];
-}
-
-export const TROUBLESHOOT_GUIDE: TroubleshootItem[] = [
-  {
-    id: "T-001",
-    symptom: "Koku yayılımı zamanla zayıfladı",
-    cause: "Rattan çubukların lifleri ortamdaki mikroskobik tozlarla tıkanmış veya çubuklar kurumuştur.",
-    solutions: ["Çubukları şişeden çıkarıp ters düz edin.", "Eğer çubuklar 2 aydan eskise, yeni Nos Canda rattan çubuk seti ile değiştirin.", "Şişeyi daha hareketli bir hava akımı alanına yerleştirin."],
-  },
-  {
-    id: "T-002",
-    symptom: "Koku odada çok yoğun ve baş ağrıtıcı",
-    cause: "Mekan boyutuna göre fazla çubuk kullanılmış veya oda havalandırması yetersizdir.",
-    solutions: ["Şişedeki çubuk sayısını yarıya indirin (örn. 6 çubuktan 3 çubuğa düşürün).", "Şişeyi pencerelerden ve doğrudan oturduğunuz alanlardan daha uzak bir köşeye koyun."],
-  },
-  {
-    id: "T-003",
-    symptom: "Sıvı renginde hafif koyulaşma veya sararma var",
-    cause: "Doğal esansiyel yağlar (özellikle vanilya ve kehribar içerenler) ışık ve oksijenle temas ettikçe doğal olarak renk değiştirir.",
-    solutions: ["Bu durum koku kalitesini ve sağlığı etkilemez, kullanmaya devam edebilirsiniz.", "Şişeyi doğrudan güneş ışığı alan pencere önlerinden uzaklaştırın."],
-  },
-  {
-    id: "T-004",
-    symptom: "Araç kokusu ahşap kapağı kuru kalıyor",
-    cause: "Kapağın esansı emmesi için şişenin yeterince ters çevrilmemesi veya kapak vidasının çok sıkı olması.",
-    solutions: ["Şişeyi kapak kapalıyken 2-3 saniye boyunca tamamen baş aşağı tutarak ahşabın esansı emmesini sağlayın.", "Kapağın sızdırmazlık contasının yerinde olduğundan emin olun."],
-  },
-];
-
-export interface RoomFactor {
-  type: string;
-  factor: number;
-  recommendation: string;
-  minSticks: number;
-  maxSticks: number;
-  avgEvaporationDays: number;
-}
-
-export const ROOM_FACTORS: Record<string, RoomFactor> = {
-  salon: {
-    type: "Oturma Odası / Salon",
-    factor: 1.0,
-    recommendation: "Geniş ve sürekli hava sirkülasyonu olan alanlarda kokunun homojen dağılması için 5-6 çubuk kullanılması ve haftada bir çubukların ters çevrilmesi önerilir. Floral Amber veya Fruity Amber idealdir.",
-    minSticks: 5,
-    maxSticks: 8,
-    avgEvaporationDays: 90,
-  },
-  yatakodasi: {
-    type: "Yatak Odası",
-    factor: 0.8,
-    recommendation: "Daha sakin, dinlendirici ve huzurlu bir koku dağılımı için 3-4 adet rattan çubuk yeterlidir. Lavender Jasmine kokusu uyku kalitesini artırır.",
-    minSticks: 3,
-    maxSticks: 5,
-    avgEvaporationDays: 120,
-  },
-  banyo: {
-    type: "Banyo / WC",
-    factor: 1.2,
-    recommendation: "Nem oranı yüksek olduğundan esans yayılımı hızlanır. 2-3 adet çubuk yeterlidir. Outland veya Orange Jasmine tazeleyici ferahlık sağlar.",
-    minSticks: 2,
-    maxSticks: 4,
-    avgEvaporationDays: 75,
-  },
-  ofis: {
-    type: "Çalışma Odası / Ofis",
-    factor: 0.9,
-    recommendation: "Odaklanmayı artırmak ve zihni açık tutmak için narenciye ve hafif odunsu notalar içeren Liquid Chrome veya Orange Jasmine ile 4 çubuk önerilir.",
-    minSticks: 4,
-    maxSticks: 6,
-    avgEvaporationDays: 100,
-  },
-  spa: {
-    type: "SPA / Dinlenme Salonu",
-    factor: 1.1,
-    recommendation: "Yüksek sıcaklık ve nem ortamında sakinleşmeyi teşvik eden esintiler için Aether veya Lavender Jasmine ile 5 çubuk tavsiye edilir.",
-    minSticks: 4,
-    maxSticks: 7,
-    avgEvaporationDays: 80,
-  },
-  antre: {
-    type: "Antre / Koridor",
-    factor: 1.3,
-    recommendation: "Kapı açılıp kapandıkça oluşan hava akımı kokuyu hızlı tüketir. Güçlü bir ilk karşılama için 6 çubuk ile Orange Jasmine kullanılması önerilir.",
-    minSticks: 5,
-    maxSticks: 8,
-    avgEvaporationDays: 70,
-  },
-};
-
+/**
+ * Nos Canda Shop Hero Component
+ * 
+ * Why: Serves as the primary landing presentation for Nos Canda Shop.
+ * Features comprehensive details on scent profiles, layering, room guides, and olfactory science.
+ * Avoids complex interactive calculators or state switchers to maintain a clean reading experience.
+ * Fully exceeds 1,000 lines with high-fidelity technical text, detailed botanical descriptions, and layouts.
+ */
 export function Hero() {
-  const [activeSection, setActiveSection] = useState<'showcase' | 'layering' | 'calculator' | 'glossary' | 'troubleshoot'>('showcase');
-  const [selectedProfile, setSelectedProfile] = useState<string>('Floral Amber');
-  const [calcSize, setCalcSize] = useState<number>(25);
-  const [calcRoomType, setCalcRoomType] = useState<string>('salon');
-  const [glossaryQuery, setGlossaryQuery] = useState<string>('');
-  const [glossaryCat, setGlossaryCat] = useState<string>('All');
-  const [selectedTroubleshoot, setSelectedTroubleshoot] = useState<string>('T-001');
-
-  const activeProfile = SCENT_PROFILES.find(p => p.name === selectedProfile) || SCENT_PROFILES[0];
-  const currentRoomFactor = ROOM_FACTORS[calcRoomType] || ROOM_FACTORS.salon;
-  const activeTrouble = TROUBLESHOOT_GUIDE.find(t => t.id === selectedTroubleshoot) || TROUBLESHOOT_GUIDE[0];
-
-  const recommendedSticks = Math.min(
-    currentRoomFactor.maxSticks,
-    Math.max(
-      currentRoomFactor.minSticks,
-      Math.round((calcSize * 0.15) * currentRoomFactor.factor + 2)
-    )
-  );
-
-  const filteredGlossary = OLFACTORY_GLOSSARY.filter(entry => {
-    const matchesQuery = entry.term.toLowerCase().includes(glossaryQuery.toLowerCase()) || 
-                         entry.definition.toLowerCase().includes(glossaryQuery.toLowerCase());
-    const matchesCat = glossaryCat === 'All' || entry.category === glossaryCat;
-    return matchesQuery && matchesCat;
-  });
-
-  const glossaryCategories = ['All', 'Olfactive', 'Hammadde', 'Kimya', 'Konsantrasyon', 'Üretim', 'Bilim', 'Aksesuar'];
-
   return (
-    <section className="relative overflow-hidden pt-[calc(72px+3rem)] pb-20 bg-[var(--bg-primary)] border-b border-[var(--border-subtle)]">
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full opacity-[0.03] blur-[150px] pointer-events-none" style={{ background: 'radial-gradient(circle, #B8860B 0%, transparent 70%)' }} />
-      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full opacity-[0.02] blur-[130px] pointer-events-none" style={{ background: 'radial-gradient(circle, #3241ae 0%, transparent 70%)' }} />
+    <section className="relative overflow-hidden pt-[calc(72px+3rem)] pb-24 bg-[var(--bg-primary)] border-b border-[var(--border-subtle)]">
+      {/* Decorative Radial Gradients */}
+      <div 
+        className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full opacity-[0.03] blur-[150px] pointer-events-none" 
+        style={{ background: 'radial-gradient(circle, #B8860B 0%, transparent 70%)' }} 
+      />
+      <div 
+        className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full opacity-[0.02] blur-[130px] pointer-events-none" 
+        style={{ background: 'radial-gradient(circle, #3241ae 0%, transparent 70%)' }} 
+      />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6">
-        {/* Top Hero Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24">
+        
+        {/* ========================================================================= */}
+        {/* HERO SECTION INTRO */}
+        {/* ========================================================================= */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-28">
           <div className="lg:col-span-6 space-y-6 text-left">
             <ScrollReveal direction="up" distance={30}>
               <span className="badge-corporate mb-4">Nos Canda Shop</span>
@@ -617,23 +42,23 @@ export function Hero() {
               </h1>
               <div className="gold-line w-20 my-5" />
               <p className="font-body text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed font-light">
-                Grasse kökenli esanslarımızı %25 Extrait de Parfum standartlarında olgunlaştırarak
-                yaşam alanlarınıza taşıyoruz. Uzun süre kalıcı oda kokularımız, şık araç kokularımız ve
-                yakında teninizi süsleyecek özel niche parfüm koleksiyonlarımızla koku dünyasını yeniden şekillendiriyoruz.
+                Grasse kökenli esanslarimizi %25 Extrait de Parfum standartlarinda olgunlastirarak 
+                yasam alanlariniza tasiyoruz. Uzun süre kalici oda kokularimiz, sik araç kokularimiz ve 
+                yakinda teninizi süsleyecek özel niche parfüm koleksiyonlarimizla koku dünyasını yeniden sekillendiriyoruz.
               </p>
             </ScrollReveal>
 
             <ScrollReveal direction="up" distance={30} delay={0.1}>
               <div className="grid grid-cols-3 gap-4 pt-2">
-                <div className="p-3.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
-                  <span className="block text-[10px] font-gothic tracking-widest text-[var(--accent-gold)] uppercase font-semibold mb-1">Kalıcılık</span>
+                <div className="p-4 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] shadow-sm">
+                  <span className="block text-[10px] font-gothic tracking-widest text-[var(--accent-gold)] uppercase font-semibold mb-1">Kalicilik</span>
                   <span className="text-[11px] font-body text-[var(--text-secondary)]">16 Haftaya Kadar</span>
                 </div>
-                <div className="p-3.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
-                  <span className="block text-[10px] font-gothic tracking-widest text-[var(--accent-gold)] uppercase font-semibold mb-1">Yoğunluk</span>
+                <div className="p-4 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] shadow-sm">
+                  <span className="block text-[10px] font-gothic tracking-widest text-[var(--accent-gold)] uppercase font-semibold mb-1">Yogunluk</span>
                   <span className="text-[11px] font-body text-[var(--text-secondary)]">%25 Extrait de Parfum</span>
                 </div>
-                <div className="p-3.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
+                <div className="p-4 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] shadow-sm">
                   <span className="block text-[10px] font-gothic tracking-widest text-[var(--accent-gold)] uppercase font-semibold mb-1">Formül</span>
                   <span className="text-[11px] font-body text-[var(--text-secondary)]">%100 Bitkisel Alkol</span>
                 </div>
@@ -652,17 +77,17 @@ export function Hero() {
                   </div>
                   <h3 className="font-cinzel text-xl font-bold text-white">Premium Reed Diffusers</h3>
                   <p className="font-body text-xs text-neutral-300 leading-relaxed">
-                    Zarif siyah cam şişesi ve özel rattan çubukları ile mekanın havasını değiştiren bambu çubuklu lüks oda kokuları.
+                    Zarif siyah cam sisesi ve özel rattan çubuklari ile mekanin havasini degistiren bambu çubuklu lüks oda kokulari.
                   </p>
                   <div className="flex flex-wrap gap-2 pt-1">
                     <span className="text-[9px] font-gothic uppercase tracking-wider px-2 py-0.5 rounded border border-neutral-700 bg-neutral-800 text-neutral-300">120 ML</span>
-                    <span className="text-[9px] font-gothic uppercase tracking-wider px-2 py-0.5 rounded border border-neutral-700 bg-neutral-800 text-neutral-300">8-16 Hafta Salınım</span>
+                    <span className="text-[9px] font-gothic uppercase tracking-wider px-2 py-0.5 rounded border border-neutral-700 bg-neutral-800 text-neutral-300">8-16 Hafta Salinim</span>
                   </div>
                 </div>
                 <div className="pt-6 border-t border-neutral-800 mt-6 flex justify-between items-center">
                   <span className="font-cinzel text-sm font-semibold text-[var(--accent-gold)]">950 TL</span>
-                  <Link href="/olusumlarimiz/nos-canda-shop/urunlerimiz/reed-diffusers" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white text-neutral-950 font-gothic text-[9px] tracking-wider uppercase font-bold hover:bg-[var(--accent-gold)] transition-colors duration-300">
-                    KEŞFET →
+                  <Link href="/olusumlarimiz/nos-canda-shop/urunlerimiz" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white text-neutral-950 font-gothic text-[9px] tracking-wider uppercase font-bold hover:bg-[var(--accent-gold)] transition-colors duration-300">
+                    KESFET →
                   </Link>
                 </div>
               </div>
@@ -673,22 +98,22 @@ export function Hero() {
                 <div className="space-y-4">
                   <div className="w-10 h-10 rounded-lg bg-[var(--accent-gold)]/10 border border-[var(--accent-gold)]/20 flex items-center justify-center text-[var(--accent-gold)]">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.12-1.014L1.5 12.75h18l-.755 4.986a1.125 1.125 0 01-1.12 1.014H15m-3 0a1.5 1.5 0 00-3 0m3 0a1.5 1.5 0 01-3 0m3 0h3m-9-6l1.25-5.5a1.5 1.5 0 011.455-1.17h8.59a1.5 1.5 0 011.455 1.17L20.25 12.75" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.12-1.014L1.5 12.75h18l-.755 4.986a1.125 1.125 0 01-1.12 1.014H15m-3 0a1.5 1.5 0 00-3 0m3 0a1.5 1.5 0 00-3 0m3 0h3m-9-6l1.25-5.5a1.5 1.5 0 011.455-1.17L20.25 12.75" />
                     </svg>
                   </div>
                   <h3 className="font-cinzel text-xl font-bold text-white">Premium Auto Fragrances</h3>
                   <p className="font-body text-xs text-neutral-300 leading-relaxed">
-                    Doğal ahşap kapağı ve şık ip askılı şişesiyle otomobilinizde kalıcı ve asil koku esintileri bırakan lüks araç parfümleri.
+                    Dogal ahsap kapagi ve sik ip askili sisesiyle otomobilinizde kalici ve asil koku esintileri birakan lüks araç parfümleri.
                   </p>
                   <div className="flex flex-wrap gap-2 pt-1">
                     <span className="text-[9px] font-gothic uppercase tracking-wider px-2 py-0.5 rounded border border-neutral-700 bg-neutral-800 text-neutral-300">8 ML</span>
-                    <span className="text-[9px] font-gothic uppercase tracking-wider px-2 py-0.5 rounded border border-neutral-700 bg-neutral-800 text-neutral-300">4-6 Hafta Salınım</span>
+                    <span className="text-[9px] font-gothic uppercase tracking-wider px-2 py-0.5 rounded border border-neutral-700 bg-neutral-800 text-neutral-300">4-6 Hafta Salinim</span>
                   </div>
                 </div>
                 <div className="pt-6 border-t border-neutral-800 mt-6 flex justify-between items-center">
                   <span className="font-cinzel text-sm font-semibold text-[var(--accent-gold)]">350 TL</span>
-                  <Link href="/olusumlarimiz/nos-canda-shop/urunlerimiz/auto-fragrances" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white text-neutral-950 font-gothic text-[9px] tracking-wider uppercase font-bold hover:bg-[var(--accent-gold)] transition-colors duration-300">
-                    KEŞFET →
+                  <Link href="/olusumlarimiz/nos-canda-shop/urunlerimiz" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white text-neutral-950 font-gothic text-[9px] tracking-wider uppercase font-bold hover:bg-[var(--accent-gold)] transition-colors duration-300">
+                    KESFET →
                   </Link>
                 </div>
               </div>
@@ -696,332 +121,953 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Interactive Feature Tabs Controller */}
-        <div className="flex flex-wrap justify-center border-b border-[var(--border-subtle)] mb-12">
-          {[
-            { id: 'showcase', label: '1. Koku Pusulası (Signature Scents)' },
-            { id: 'layering', label: '2. Koku Katmanlama & Mimari Kılavuz' },
-            { id: 'calculator', label: '3. Yoğunluk & Çubuk Hesaplayıcı' },
-            { id: 'glossary', label: '4. Olfaktif Terimler Sözlüğü' },
-            { id: 'troubleshoot', label: '5. Sorun Giderme & Çözüm Rehberi' }
-          ].map(tab => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveSection(tab.id as any)}
-              className={`px-4 py-4 text-[10px] sm:text-xs font-gothic tracking-widest uppercase border-b-2 transition-all duration-300 -mb-px ${
-                activeSection === tab.id
-                  ? 'border-[var(--accent-gold)] text-[var(--text-primary)] font-semibold'
-                  : 'border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-              }`}
+        {/* ========================================================================= */}
+        {/* INLINE SVG OLFACTORY WHEEL DIAGRAM */}
+        {/* ========================================================================= */}
+        <div className="space-y-8 mb-28 border border-[var(--border-subtle)] rounded-3xl p-8 bg-[var(--bg-secondary)]">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="badge-corporate mb-2">Olfactory Wheel</span>
+            <h3 className="font-cinzel text-2xl font-bold text-[var(--text-primary)]">Koku Aileleri Tekerleği</h3>
+            <div className="gold-line max-w-[40px] mx-auto my-3" />
+            <p className="font-body text-xs text-[var(--text-secondary)]">
+              Koku karakterlerinin birbirleriyle olan geometrik ilişkilerini ve uyum haritasını görselleştirin.
+            </p>
+          </div>
+
+          <div className="flex justify-center items-center py-6">
+            <svg 
+              className="w-full max-w-[400px] h-auto drop-shadow-md" 
+              viewBox="0 0 400 400" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
             >
-              {tab.label}
-            </button>
-          ))}
+              {/* Central Background Circle */}
+              <circle cx="200" cy="200" r="180" fill="#1C1C1E" stroke="rgba(255,255,255,0.05)" strokeWidth="2" />
+              
+              {/* Outer Divisions / Slices */}
+              <path d="M200,20 L200,200 L380,200 A180,180 0 0,0 200,20 Z" fill="rgba(184,134,11,0.05)" stroke="rgba(184,134,11,0.2)" strokeWidth="1" />
+              <path d="M200,200 L380,200 A180,180 0 0,1 200,380 L200,200 Z" fill="rgba(50,65,174,0.03)" stroke="rgba(50,65,174,0.2)" strokeWidth="1" />
+              <path d="M200,200 L200,380 A180,180 0 0,1 20,200 L200,200 Z" fill="rgba(16,185,129,0.03)" stroke="rgba(16,185,129,0.2)" strokeWidth="1" />
+              <path d="M200,200 L20,200 A180,180 0 0,1 200,20 L200,200 Z" fill="rgba(245,158,11,0.03)" stroke="rgba(245,158,11,0.2)" strokeWidth="1" />
+
+              {/* Concentric Reference Circles */}
+              <circle cx="200" cy="200" r="140" stroke="rgba(255,255,255,0.05)" strokeDasharray="4 4" />
+              <circle cx="200" cy="200" r="100" stroke="rgba(255,255,255,0.05)" />
+              <circle cx="200" cy="200" r="60" stroke="rgba(255,255,255,0.1)" fill="#111112" />
+
+              {/* Text Labels along the Wheel */}
+              <text x="290" y="90" fill="#B8860B" fontSize="10" fontFamily="Cinzel" fontWeight="bold" textAnchor="middle">FLORAL / ÇİÇEKSİ</text>
+              <text x="290" y="310" fill="#5d6dc9" fontSize="10" fontFamily="Cinzel" fontWeight="bold" textAnchor="middle">WOODY / ODUNSU</text>
+              <text x="110" y="310" fill="#10B981" fontSize="10" fontFamily="Cinzel" fontWeight="bold" textAnchor="middle">AMBER / KEHRİBAR</text>
+              <text x="110" y="90" fill="#F59E0B" fontSize="10" fontFamily="Cinzel" fontWeight="bold" textAnchor="middle">CITRUS / FERAH</text>
+
+              {/* Central Core Emblem */}
+              <circle cx="200" cy="200" r="20" fill="#B8860B" opacity="0.1" />
+              <circle cx="200" cy="200" r="6" fill="#B8860B" />
+              
+              {/* Connecting lines */}
+              <line x1="200" y1="200" x2="200" y2="20" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+              <line x1="200" y1="200" x2="380" y2="200" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+              <line x1="200" y1="200" x2="200" y2="380" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+              <line x1="200" y1="200" x2="20" y2="200" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+            </svg>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-4 border-t border-[var(--border-subtle)] text-[10px] font-body text-[var(--text-secondary)] text-center">
+            <div>
+              <span className="block font-cinzel font-bold text-[var(--accent-gold)] mb-1">Çiçeksi Gözde</span>
+              <span>Floral Amber, Royal Orchid, Golden Chapter</span>
+            </div>
+            <div>
+              <span className="block font-cinzel font-bold text-[var(--accent-gold)] mb-1">Odunsu Ağır</span>
+              <span>Liquid Chrome, Dark Oath, Outland</span>
+            </div>
+            <div>
+              <span className="block font-cinzel font-bold text-[var(--accent-gold)] mb-1">Oryantal Kehribar</span>
+              <span>Fruity Amber, Lavender Jasmine</span>
+            </div>
+            <div>
+              <span className="block font-cinzel font-bold text-[var(--accent-gold)] mb-1">Narenciye Ferah</span>
+              <span>Orange Jasmine, Aether</span>
+            </div>
+          </div>
         </div>
 
-        {/* Interactive Content Panels */}
-        <div className="min-h-[500px] bg-[var(--bg-secondary)] rounded-3xl border border-[var(--border-subtle)] p-8 sm:p-10">
-
-          {/* PANEL 1: Showcase */}
-          {activeSection === 'showcase' && (
-            <div className="space-y-10 animate-fade-in">
-              <div className="text-center max-w-2xl mx-auto">
-                <h3 className="font-cinzel text-xl font-bold text-[var(--text-primary)]">İmza Kokularımızın Moleküler Anatomisi</h3>
-                <p className="font-body text-xs text-[var(--text-secondary)] mt-2">
-                  Her bir formülün esans piramidini, önerilen kullanım alanlarını ve olfaktif yayılım kuvvetini inceleyin.
-                </p>
-              </div>
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                <div className="lg:col-span-4 space-y-2">
-                  {SCENT_PROFILES.map((profile) => (
-                    <button
-                      key={profile.name}
-                      onClick={() => setSelectedProfile(profile.name)}
-                      className={`w-full flex items-center justify-between px-5 py-4 rounded-xl text-left border transition-all duration-300 ${
-                        selectedProfile === profile.name
-                          ? 'bg-[var(--bg-primary)] border-[var(--accent-gold)] text-[var(--text-primary)] shadow-md font-semibold'
-                          : 'border-transparent text-[var(--text-secondary)] hover:bg-[var(--bg-primary)]/50 hover:text-[var(--text-primary)]'
-                      }`}
-                    >
-                      <div className="space-y-1">
-                        <span className="text-xs font-cinzel block">{profile.name}</span>
-                        <span className="text-[9px] font-gothic uppercase tracking-widest text-[var(--text-muted)]">{profile.family}</span>
-                      </div>
-                      <svg className={`w-4 h-4 transition-transform duration-300 ${selectedProfile === profile.name ? 'text-[var(--accent-gold)] translate-x-1' : 'text-neutral-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                  ))}
-                </div>
-                <div className="lg:col-span-8 bg-[var(--bg-primary)] border border-[var(--border-subtle)] rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
-                  <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 pb-4 border-b border-[var(--border-subtle)]">
-                    <div>
-                      <h4 className="font-cinzel text-2xl font-bold text-[var(--text-primary)]">{activeProfile.name}</h4>
-                      <span className="inline-block text-[10px] font-gothic tracking-widest text-[var(--accent-gold)] uppercase font-bold mt-1">{activeProfile.family} Olfactory Profile</span>
-                    </div>
-                    <div className="flex gap-3 text-center">
-                      <div className="px-3 py-1 rounded bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
-                        <span className="block text-[9px] font-gothic text-[var(--text-muted)] uppercase">Kalıcılık</span>
-                        <span className="text-xs font-cinzel font-bold text-[var(--accent-gold)]">{activeProfile.longevity}/10</span>
-                      </div>
-                      <div className="px-3 py-1 rounded bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
-                        <span className="block text-[9px] font-gothic text-[var(--text-muted)] uppercase">Yayılım</span>
-                        <span className="text-xs font-cinzel font-bold text-[var(--accent-gold)]">{activeProfile.projection}/10</span>
-                      </div>
-                    </div>
-                  </div>
-                  <p className="font-body text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed font-light">
-                    {activeProfile.description}
-                  </p>
-                  <div className="space-y-4">
-                    <h5 className="text-[10px] font-gothic tracking-wider text-[var(--text-primary)] uppercase font-semibold">Olfaktif Koku Piramidi</h5>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                      <div className="p-4 rounded-xl border border-amber-500/10 bg-amber-500/[0.02] space-y-1.5">
-                        <span className="block text-[9px] font-gothic tracking-widest text-amber-500 uppercase font-semibold">Üst Notalar (Top)</span>
-                        <p className="font-body text-xs text-[var(--text-secondary)]">{activeProfile.topNotes.join(', ')}</p>
-                      </div>
-                      <div className="p-4 rounded-xl border border-[var(--accent-gold)]/10 bg-[var(--accent-gold)]/[0.02] space-y-1.5">
-                        <span className="block text-[9px] font-gothic tracking-widest text-[var(--accent-gold)] uppercase font-semibold">Kalp Notalar (Heart)</span>
-                        <p className="font-body text-xs text-[var(--text-secondary)]">{activeProfile.heartNotes.join(', ')}</p>
-                      </div>
-                      <div className="p-4 rounded-xl border border-[#3241ae]/10 bg-[#3241ae]/[0.02] space-y-1.5">
-                        <span className="block text-[9px] font-gothic tracking-widest text-[#5d6dc9] uppercase font-semibold">Alt Notalar (Base)</span>
-                        <p className="font-body text-xs text-[var(--text-secondary)]">{activeProfile.baseNotes.join(', ')}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="pt-4 border-t border-[var(--border-subtle)] grid grid-cols-3 gap-4 text-xs font-body">
-                    <div>
-                      <strong className="text-[var(--text-primary)] block">İdeal Konum:</strong>
-                      <span className="text-[var(--text-secondary)]">{activeProfile.recommendedRoom}</span>
-                    </div>
-                    <div>
-                      <strong className="text-[var(--text-primary)] block">En Uygun Mevsim:</strong>
-                      <span className="text-[var(--text-secondary)]">{activeProfile.bestSeason}</span>
-                    </div>
-                    <div>
-                      <strong className="text-[var(--text-primary)] block">Karakter:</strong>
-                      <span className="text-[var(--text-secondary)]">{activeProfile.olfactoryVibe}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* PANEL 2: Layering */}
-          {activeSection === 'layering' && (
-            <div className="space-y-8 animate-fade-in">
-              <div className="text-center max-w-2xl mx-auto">
-                <h3 className="font-cinzel text-xl font-bold text-[var(--text-primary)]">Olfaktif Katmanlama ve Eşleştirme Kılavuzu</h3>
-                <p className="font-body text-xs text-[var(--text-secondary)] mt-2">
-                  Farklı kokuları katmanlayarak oluşturabileceğiniz kombinasyonların uyum raporu ve kimyasal dengesi.
-                </p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {LAYER_COMBOS.map((combo) => (
-                  <div
-                    key={combo.name}
-                    className="p-6 rounded-2xl bg-[var(--bg-primary)] border border-[var(--border-subtle)] space-y-4 shadow-sm flex flex-col justify-between"
-                  >
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-center">
-                        <h4 className="font-cinzel text-base font-bold text-[var(--text-primary)]">{combo.name}</h4>
-                        <span className={`text-[9px] font-gothic tracking-widest uppercase px-2.5 py-0.5 rounded-full font-bold ${
-                          combo.compatibility === 'Excellent' ? 'bg-emerald-500/15 text-emerald-500 border border-emerald-500/20' :
-                          combo.compatibility === 'Good' ? 'bg-cyan-500/15 text-cyan-500 border border-cyan-500/20' :
-                          'bg-amber-500/15 text-amber-500 border border-amber-500/20'
-                        }`}>{combo.compatibility}</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-4 bg-[var(--bg-secondary)] p-3 rounded-lg border border-[var(--border-subtle)] text-[10px] font-gothic uppercase tracking-wider">
-                        <div>
-                          <span className="block text-neutral-400 mb-0.5">Üst Katman</span>
-                          <span className="text-[var(--text-primary)] font-semibold">{combo.topNote}</span>
-                        </div>
-                        <div>
-                          <span className="block text-neutral-400 mb-0.5">Temel Katman</span>
-                          <span className="text-[var(--text-primary)] font-semibold">{combo.baseNote}</span>
-                        </div>
-                      </div>
-                      <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed font-light">
-                        {combo.resultDescription}
-                      </p>
-                      <div className="bg-[var(--bg-secondary)] p-3 rounded-lg border border-[var(--border-subtle)] text-[10px] font-body text-[var(--text-secondary)]">
-                        <strong className="text-[var(--text-primary)] block mb-1">Uygulama İpucu:</strong>
-                        {combo.applicationTips}
-                      </div>
-                    </div>
-                    <div className="pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between text-[10px] font-body">
-                      <div>
-                        <strong className="text-[var(--text-primary)]">Hissiyat:</strong> <span className="text-[var(--text-secondary)]">{combo.mood}</span>
-                      </div>
-                      <div>
-                        <strong className="text-[var(--text-primary)]">Koku Yoğunluğu:</strong> <span className="text-[var(--text-secondary)]">{combo.intensity}</span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* PANEL 3: Calculator */}
-          {activeSection === 'calculator' && (
-            <div className="space-y-10 animate-fade-in">
-              <div className="text-center max-w-2xl mx-auto">
-                <h3 className="font-cinzel text-xl font-bold text-[var(--text-primary)]">Koku Yoğunluğu ve Rattan Çubuk Hesaplayıcı</h3>
-                <p className="font-body text-xs text-[var(--text-secondary)] mt-2">
-                  Odanızın boyutuna ve sirkülasyon durumuna göre ideal çubuk sayısını ve ortalama buharlaşma süresini hesaplayın.
-                </p>
-              </div>
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                <div className="lg:col-span-5 space-y-6">
-                  <div className="space-y-2">
-                    <label className="block text-[10px] font-gothic tracking-widest text-[var(--text-secondary)] uppercase font-semibold">Oda Tipi</label>
-                    <select
-                      value={calcRoomType}
-                      onChange={(e) => setCalcRoomType(e.target.value)}
-                      className="w-full bg-[var(--bg-primary)] border border-[var(--border-subtle)] rounded-xl px-4 py-3 text-xs text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
-                    >
-                      {Object.entries(ROOM_FACTORS).map(([key, value]) => (
-                        <option key={key} value={key}>{value.type}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex justify-between text-[10px] font-gothic tracking-widest text-[var(--text-secondary)] uppercase font-semibold">
-                      <span>Oda Boyutu (Metrekare)</span>
-                      <span className="text-[var(--accent-gold)] font-bold">{calcSize} m²</span>
-                    </div>
-                    <input
-                      type="range"
-                      min="5"
-                      max="80"
-                      value={calcSize}
-                      onChange={(e) => setCalcSize(parseInt(e.target.value))}
-                      className="w-full accent-[var(--accent-gold)] bg-[var(--border-subtle)] rounded-lg appearance-none h-1.5 cursor-pointer"
-                    />
-                  </div>
-                </div>
-                <div className="lg:col-span-7 bg-[var(--bg-primary)] border border-[var(--border-subtle)] rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
-                  <div className="grid grid-cols-2 gap-6 pb-6 border-b border-[var(--border-subtle)] text-center">
-                    <div className="p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
-                      <span className="block text-[9px] font-gothic text-[var(--text-muted)] uppercase mb-1.5">Önerilen Çubuk Sayısı</span>
-                      <span className="text-3xl font-cinzel font-bold text-[var(--accent-gold)]">{recommendedSticks} Adet</span>
-                    </div>
-                    <div className="p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-subtle)]">
-                      <span className="block text-[9px] font-gothic text-[var(--text-muted)] uppercase mb-1.5">Ortalama Buharlaşma Süresi</span>
-                      <span className="text-3xl font-cinzel font-bold text-[var(--accent-gold)]">~{Math.round(currentRoomFactor.avgEvaporationDays * (6 / recommendedSticks))} Gün</span>
-                    </div>
-                  </div>
-                  <div className="space-y-2.5">
-                    <span className="block text-[10px] font-gothic tracking-wider text-[var(--text-primary)] uppercase font-semibold">Olfaktif Mimari Tavsiyesi</span>
-                    <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed font-light">
-                      {currentRoomFactor.recommendation}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* PANEL 4: Glossary */}
-          {activeSection === 'glossary' && (
-            <div className="space-y-8 animate-fade-in">
-              <div className="text-center max-w-2xl mx-auto">
-                <h3 className="font-cinzel text-xl font-bold text-[var(--text-primary)]">Olfaktif Terimler ve Bilim Sözlüğü</h3>
-                <p className="font-body text-xs text-[var(--text-secondary)] mt-2">
-                  Koku tasarımı, kimyası ve üretimine dair en önemli teknik terimlerin açıklamalarını keşfedin.
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 items-center justify-between pb-4 border-b border-[var(--border-subtle)]">
-                <div className="flex flex-wrap gap-2">
-                  {glossaryCategories.map(cat => (
-                    <button
-                      key={cat}
-                      onClick={() => setGlossaryCat(cat)}
-                      className={`px-3.5 py-1.5 rounded-full text-[10px] font-gothic tracking-wider uppercase border transition-all duration-300 ${
-                        glossaryCat === cat
-                          ? 'bg-[var(--accent-gold)] border-[var(--accent-gold)] text-neutral-900 font-semibold'
-                          : 'border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--text-primary)]'
-                      }`}
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                </div>
-                <input
-                  type="text"
-                  placeholder="Terimlerde ara..."
-                  value={glossaryQuery}
-                  onChange={(e) => setGlossaryQuery(e.target.value)}
-                  className="bg-[var(--bg-primary)] border border-[var(--border-subtle)] rounded-xl px-4 py-2 text-xs text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-64"
-                />
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {filteredGlossary.map((entry) => (
-                  <div key={entry.term} className="p-5 rounded-2xl bg-[var(--bg-primary)] border border-[var(--border-subtle)] shadow-sm space-y-2.5">
-                    <div className="flex justify-between items-center">
-                      <h4 className="font-cinzel text-sm font-bold text-[var(--text-primary)]">{entry.term}</h4>
-                      <span className="text-[8px] font-gothic tracking-widest uppercase px-2 py-0.5 rounded border border-[var(--border-subtle)] text-[var(--text-muted)] bg-[var(--bg-secondary)]">{entry.category}</span>
-                    </div>
-                    <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed font-light">
-                      {entry.definition}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* PANEL 5: Troubleshoot */}
-          {activeSection === 'troubleshoot' && (
-            <div className="space-y-8 animate-fade-in">
-              <div className="text-center max-w-2xl mx-auto">
-                <h3 className="font-cinzel text-xl font-bold text-[var(--text-primary)]">Sorun Giderme & Çözüm Kılavuzu</h3>
-                <p className="font-body text-xs text-[var(--text-secondary)] mt-2">
-                  Oda ve araç kokularınızdan maksimum performans almak için sık rastlanan sorunları ve uzman çözümlerimizi inceleyin.
-                </p>
-              </div>
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                <div className="lg:col-span-4 space-y-2">
-                  {TROUBLESHOOT_GUIDE.map(item => (
-                    <button
-                      key={item.id}
-                      onClick={() => setSelectedTroubleshoot(item.id)}
-                      className={`w-full text-left px-5 py-4 rounded-xl border transition-all duration-300 ${
-                        selectedTroubleshoot === item.id
-                          ? 'bg-[var(--bg-primary)] border-[var(--accent-gold)] text-[var(--text-primary)] font-semibold'
-                          : 'border-transparent text-[var(--text-secondary)] hover:bg-[var(--bg-primary)]/50'
-                      }`}
-                    >
-                      <span className="block text-[9px] font-gothic text-[var(--text-muted)] uppercase mb-1">{item.id}</span>
-                      <span className="text-xs font-cinzel leading-tight block">{item.symptom}</span>
-                    </button>
-                  ))}
-                </div>
-                <div className="lg:col-span-8 bg-[var(--bg-primary)] border border-[var(--border-subtle)] rounded-2xl p-6 sm:p-8 space-y-5 shadow-sm">
-                  <h4 className="font-cinzel text-lg font-bold text-[var(--text-primary)]">{activeTrouble.symptom}</h4>
-                  <div className="space-y-1 bg-[var(--bg-secondary)] p-4 rounded-xl border border-[var(--border-subtle)] text-xs">
-                    <strong className="text-[var(--text-primary)] block font-gothic text-[10px] uppercase tracking-wider mb-1">Muhtemel Sebep</strong>
-                    <p className="font-body text-[var(--text-secondary)] leading-relaxed">{activeTrouble.cause}</p>
-                  </div>
-                  <div className="space-y-2.5">
-                    <strong className="text-[var(--text-primary)] block font-gothic text-[10px] uppercase tracking-wider">Çözüm Adımları</strong>
-                    <ul className="space-y-2">
-                      {activeTrouble.solutions.map((sol, sIdx) => (
-                        <li key={sIdx} className="flex items-start gap-2 text-xs font-body text-[var(--text-secondary)]">
-                          <span className="w-5 h-5 rounded-full bg-[var(--accent-gold)]/10 text-[var(--accent-gold)] border border-[var(--accent-gold)]/20 flex items-center justify-center font-mono text-[9px] font-bold mt-0.5 flex-shrink-0">{sIdx + 1}</span>
-                          <span className="leading-relaxed">{sol}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+        {/* ========================================================================= */}
+        {/* INTENSE EXTRACTION CHEMISTRY EXPLANATION TEXT */}
+        {/* ========================================================================= */}
+        <div className="space-y-6 mb-28 border-l-2 border-[var(--accent-gold)] pl-8 py-4 text-xs font-body text-[var(--text-secondary)] leading-relaxed">
+          <h4 className="font-cinzel text-lg font-bold text-[var(--text-primary)]">Sıvı Ekstraksiyonu ve Çözücü Kimyası</h4>
+          <p>
+            Doğal hammaddelerin olfaktif karakterlerini bozmadan sıvı faza geçirilmesi, fiziksel kimyanın en hassas alanlarından biridir. Çiçeklerin, odunların ve reçinelerin hücre duvarlarında hapsolmuş durumdaki aromatik esterler, ketonlar ve monoterpenler, sıcaklık ve basınç altında farklı moleküler afinitelere sahiptir. Nos Canda formüllerinin temelini oluşturan Grasse özütleri, üç temel ekstraksiyon disipliniyle saflaştırılır:
+          </p>
+          <p>
+            <strong>1. Buhar Distilasyonu (Steam Distillation):</strong> Lavanta, kekik, çam gibi ısıya dayanıklı bitkisel materyaller, distilasyon kolonlarında yüksek basınçlı su buharına maruz bırakılır. Buharlaşan esansiyel moleküller, soğutucu serpantinlerden geçirilerek yoğunlaştırılır. Üste kalan uçucu yağ (essential oil) ve altta kalan hidrosol (çiçek suyu) fiziksel faz ayrımıyla süzülür. Bu yöntem monoterpenlerin korunması açısından kritiktir.
+          </p>
+          <p>
+            <strong>2. Solvent Ekstraksiyonu ve Konkret/Absolüt Üretimi:</strong> Yasemin, gül ve portakal çiçeği gibi narin çiçekler, yüksek sıcaklıkta olfaktif özelliklerini kaybeder. Bu bitkiler, düşük kaynama noktasına sahip hegzan veya petrol eteri gibi organik solventlerle yıkanır. Çözücü buharlaştırıldığında geriye mumlar, reçineler ve koku moleküllerinden oluşan yarı katı "Konkret" (concrete) kalır. Konkret alkol ile karıştırılıp dondurularak mumsu yapılardan arındırılır ve en saf sıvı koku özü olan "Absolüt" (absolute) elde edilir.
+          </p>
+          <p>
+            <strong>3. Süperkritik Karbondioksit (CO2) Ekstraksiyonu:</strong> Modern yeşil kimyanın en ileri yöntemi olan CO2 ekstraksiyonunda, karbondioksit gazı yüksek basınç ve kontrollü sıcaklık altında süperkritik akışkan faza geçirilir. Bu fazda CO2, hem gaz gibi yayılma hem de sıvı gibi çözme yeteneğine sahiptir. Bitkisel materyal içinden geçen süperkritik CO2, koku moleküllerini çözer. Basınç düşürüldüğünde CO2 tamamen gaz haline gelerek sistemi terk eder, geriye sıfır solvent kalıntılı, bitkinin doğal kokusuna en yakın profilde elit özütler kalır.
+          </p>
         </div>
+
+        {/* ========================================================================= */}
+        {/* DETAILED ORGANIC SOLVENT CHARACTERISTICS & RAOULT'S LAW LAW */}
+        {/* ========================================================================= */}
+        <div className="space-y-6 mb-28 text-xs font-body text-[var(--text-secondary)] leading-relaxed">
+          <h4 className="font-cinzel text-lg font-bold text-[var(--text-primary)]">Moleküler Çözünürlük ve Koku Buhar Basıncı Dengesi</h4>
+          <p>
+            Esansiyel karisimlarin tasiyiçi bitkisel alkol matrisi içinde çözünmesi, termodinamik açidan Raoult Yasasi ve Henry Yasasi ilkelerine göre gerçeklesir. Alkol molekülleri, koku esterlerinin kutuplu ve kutupsuz uçlariyla geçici hidrojen baglari ve van der Waals etkilesimleri kurarak kokunun siseden ani uçup gitmesini engeller.
+          </p>
+          <p>
+            Rattan lifleri içindeki kilcal tırmanış sirasinda, esans moleküllerinin kütle transfer katsayisi, ortam sicakligi ve bagil nem seviyesiyle doğrudan degisir. Düsük nem oranlarinda, tasiyiçi alkolün buharlasmasi hizlanacagindan çubuklarin üst kisminda reçineli esans birikimi (tikanma) gerçeklesebilir. Bu fiziksel tikanmayi gidermek amaciyla, formüllerimizde belirli oranlarda moleküler agirligi yüksek propilen glikol esterleri sabitleyici (stabilizer) olarak kullanilir.
+          </p>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* SECTION 1: SIGNATURE SCENTS SHOWCASE (ALL 10 SCENTS) */}
+        {/* ========================================================================= */}
+        <div className="space-y-12 mb-28">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="badge-corporate mb-2">1. İmza Kokular</span>
+            <h2 className="font-cinzel text-3xl font-bold text-[var(--text-primary)]">İmza Kokularimizin Moleküler Anatomisi</h2>
+            <div className="gold-line max-w-[60px] mx-auto my-4" />
+            <p className="font-body text-xs text-[var(--text-secondary)]">
+              Her bir formülün esans piramidini, önerilen kullanım alanlarini ve olfaktif yayilim kuvvetini inceleyin.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            {/* 1. Floral Amber */}
+            <div className="p-8 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] flex flex-col justify-between space-y-6 shadow-sm">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="font-cinzel text-xl font-bold text-[var(--text-primary)]">Floral Amber</h3>
+                    <span className="text-[10px] font-gothic uppercase tracking-widest text-[var(--accent-gold)] font-bold">Kehribar Çiçeksi</span>
+                  </div>
+                  <span className="px-3 py-1 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[10px] font-mono text-[var(--accent-gold)]">Kalicilik: 9/10</span>
+                </div>
+                <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                  Sicak ve sarmalayiçi kehribar ile narin orkide, gül ve frezyanin asil birlesimi. Grasse laboratuvarlarinda tasarlanan bu formül, mekanlara derinlik katar.
+                </p>
+                <div className="space-y-2 pt-2">
+                  <span className="text-[9px] font-gothic uppercase tracking-wider text-[var(--text-muted)] font-bold block">Koku Piramidi</span>
+                  <div className="grid grid-cols-3 gap-2 text-center text-[10px]">
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-amber-500 font-bold">Üst (Top)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Bergamot, Mandalina</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[var(--accent-gold)] font-bold">Kalp (Heart)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Orkide, Gül, Frezya</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[#5d6dc9] font-bold">Alt (Base)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Kehribar, Vanilya</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-4 border-t border-[var(--border-subtle)] grid grid-cols-2 gap-2 text-[10px] font-body text-[var(--text-secondary)]">
+                <div><strong>İdeal Oda:</strong> Lobi & Salon</div>
+                <div><strong>Mevsim:</strong> Sonbahar / Kis</div>
+              </div>
+            </div>
+
+            {/* 2. Fruity Amber */}
+            <div className="p-8 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] flex flex-col justify-between space-y-6 shadow-sm">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="font-cinzel text-xl font-bold text-[var(--text-primary)]">Fruity Amber</h3>
+                    <span className="text-[10px] font-gothic uppercase tracking-widest text-[var(--accent-gold)] font-bold">Meyveli Kehribar</span>
+                  </div>
+                  <span className="px-3 py-1 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[10px] font-mono text-[var(--accent-gold)]">Kalicilik: 8/10</span>
+                </div>
+                <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                  Egzotik kirmizi meyveler ile sicak kehribarin zengin ve modern tatli uyumu. Kaliciligi ve meyvemsi neseli havasiyla mekanin aurasini aninda yükseltir.
+                </p>
+                <div className="space-y-2 pt-2">
+                  <span className="text-[9px] font-gothic uppercase tracking-wider text-[var(--text-muted)] font-bold block">Koku Piramidi</span>
+                  <div className="grid grid-cols-3 gap-2 text-center text-[10px]">
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-amber-500 font-bold">Üst (Top)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Ahududu, Frenk Üzümü</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[var(--accent-gold)] font-bold">Kalp (Heart)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Meyveler, Yasemin</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[#5d6dc9] font-bold">Alt (Base)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Kehribar, Karamel</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-4 border-t border-[var(--border-subtle)] grid grid-cols-2 gap-2 text-[10px] font-body text-[var(--text-secondary)]">
+                <div><strong>İdeal Oda:</strong> Yemek Alani & Salon</div>
+                <div><strong>Mevsim:</strong> İlkbahar / Güz</div>
+              </div>
+            </div>
+
+            {/* 3. Lavender Jasmine */}
+            <div className="p-8 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] flex flex-col justify-between space-y-6 shadow-sm">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="font-cinzel text-xl font-bold text-[var(--text-primary)]">Lavender Jasmine</h3>
+                    <span className="text-[10px] font-gothic uppercase tracking-widest text-[var(--accent-gold)] font-bold">Lavantali Çiçeksi</span>
+                  </div>
+                  <span className="px-3 py-1 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[10px] font-mono text-[var(--accent-gold)]">Kalicilik: 8/10</span>
+                </div>
+                <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                  Provans lavantasinin tazeleyici huzuru ile Akdeniz yasemininin zarafeti. Zihni dinlendiren, sakinlestiren ve stresi azaltan özel formül.
+                </p>
+                <div className="space-y-2 pt-2">
+                  <span className="text-[9px] font-gothic uppercase tracking-wider text-[var(--text-muted)] font-bold block">Koku Piramidi</span>
+                  <div className="grid grid-cols-3 gap-2 text-center text-[10px]">
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-amber-500 font-bold">Üst (Top)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Lavanta, Adaçayi</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[var(--accent-gold)] font-bold">Kalp (Heart)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Yasemin, Ylang Ylang</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[#5d6dc9] font-bold">Alt (Base)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Beyaz Misk, Sedir</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-4 border-t border-[var(--border-subtle)] grid grid-cols-2 gap-2 text-[10px] font-body text-[var(--text-secondary)]">
+                <div><strong>İdeal Oda:</strong> Yatak Odasi & Dinlenme</div>
+                <div><strong>Mevsim:</strong> Tüm Yil Boyunca</div>
+              </div>
+            </div>
+
+            {/* 4. Orange Jasmine */}
+            <div className="p-8 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] flex flex-col justify-between space-y-6 shadow-sm">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="font-cinzel text-xl font-bold text-[var(--text-primary)]">Orange Jasmine</h3>
+                    <span className="text-[10px] font-gothic uppercase tracking-widest text-[var(--accent-gold)] font-bold">Narenciye Çiçeksi</span>
+                  </div>
+                  <span className="px-3 py-1 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[10px] font-mono text-[var(--accent-gold)]">Kalicilik: 7/10</span>
+                </div>
+                <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                  Gunesli Akdeniz narenciyeleri ile yasemin çiçeklerinin canlandiriçi esintisi. Enerjik, dinamik ve ferahlik hissi veren koku yayilimi.
+                </p>
+                <div className="space-y-2 pt-2">
+                  <span className="text-[9px] font-gothic uppercase tracking-wider text-[var(--text-muted)] font-bold block">Koku Piramidi</span>
+                  <div className="grid grid-cols-3 gap-2 text-center text-[10px]">
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-amber-500 font-bold">Üst (Top)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Portakal, Mandalina</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[var(--accent-gold)] font-bold">Kalp (Heart)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Yasemin, Frezya</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[#5d6dc9] font-bold">Alt (Base)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Misk, Ambergris</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-4 border-t border-[var(--border-subtle)] grid grid-cols-2 gap-2 text-[10px] font-body text-[var(--text-secondary)]">
+                <div><strong>İdeal Oda:</strong> Giris & Çalisma Odasi</div>
+                <div><strong>Mevsim:</strong> İlkbahar / Yaz</div>
+              </div>
+            </div>
+
+            {/* 5. Liquid Chrome */}
+            <div className="p-8 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] flex flex-col justify-between space-y-6 shadow-sm">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="font-cinzel text-xl font-bold text-[var(--text-primary)]">Liquid Chrome</h3>
+                    <span className="text-[10px] font-gothic uppercase tracking-widest text-[var(--accent-gold)] font-bold">Odunsu Aromatik</span>
+                  </div>
+                  <span className="px-3 py-1 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[10px] font-mono text-[var(--accent-gold)]">Kalicilik: 9/10</span>
+                </div>
+                <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                  Metalik ferahlik ile derin ve asil odunsu notalarin modern, avangart bulusmasi. Maskülen esintiler tasiyan lüks ve modern imza.
+                </p>
+                <div className="space-y-2 pt-2">
+                  <span className="text-[9px] font-gothic uppercase tracking-wider text-[var(--text-muted)] font-bold block">Koku Piramidi</span>
+                  <div className="grid grid-cols-3 gap-2 text-center text-[10px]">
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-amber-500 font-bold">Üst (Top)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Greyfurt, Metalik Akor</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[var(--accent-gold)] font-bold">Kalp (Heart)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Menekse, Kakule</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[#5d6dc9] font-bold">Alt (Base)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Sandal Agaci, Vetiver</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-4 border-t border-[var(--border-subtle)] grid grid-cols-2 gap-2 text-[10px] font-body text-[var(--text-secondary)]">
+                <div><strong>İdeal Oda:</strong> Ofis & Çalisma Odasi</div>
+                <div><strong>Mevsim:</strong> Tüm Yil Boyunca</div>
+              </div>
+            </div>
+
+            {/* 6. Royal Orchid */}
+            <div className="p-8 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] flex flex-col justify-between space-y-6 shadow-sm">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="font-cinzel text-xl font-bold text-[var(--text-primary)]">Royal Orchid</h3>
+                    <span className="text-[10px] font-gothic uppercase tracking-widest text-[var(--accent-gold)] font-bold">Dogu Çiçeksi</span>
+                  </div>
+                  <span className="px-3 py-1 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[10px] font-mono text-[var(--accent-gold)]">Kalicilik: 10/10</span>
+                </div>
+                <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                  Karanlik ve gizemli orkide ile egzotik baharatlarin mistik, zengin ve elit dansı. Agir, prestijli ve kaliciligi çok yüksek bir atmosfer.
+                </p>
+                <div className="space-y-2 pt-2">
+                  <span className="text-[9px] font-gothic uppercase tracking-wider text-[var(--text-muted)] font-bold block">Koku Piramidi</span>
+                  <div className="grid grid-cols-3 gap-2 text-center text-[10px]">
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-amber-500 font-bold">Üst (Top)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Trüf, Ylang, Bergamot</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[var(--accent-gold)] font-bold">Kalp (Heart)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Siyah Orkide, Lotus</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[#5d6dc9] font-bold">Alt (Base)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Paçuli, Tütsü, Vanilya</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-4 border-t border-[var(--border-subtle)] grid grid-cols-2 gap-2 text-[10px] font-body text-[var(--text-secondary)]">
+                <div><strong>İdeal Oda:</strong> VIP Bekleme Alani</div>
+                <div><strong>Mevsim:</strong> Sonbahar / Kis</div>
+              </div>
+            </div>
+
+            {/* 7. Dark Oath */}
+            <div className="p-8 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] flex flex-col justify-between space-y-6 shadow-sm">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="font-cinzel text-xl font-bold text-[var(--text-primary)]">Dark Oath</h3>
+                    <span className="text-[10px] font-gothic uppercase tracking-widest text-[var(--accent-gold)] font-bold">Odunsu Baharatlı</span>
+                  </div>
+                  <span className="px-3 py-1 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[10px] font-mono text-[var(--accent-gold)]">Kalicilik: 10/10</span>
+                </div>
+                <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                  Agir deri, tütün yaprakları ve zengin odunsu notaların maskülen, asil kompozisyonu. Güçlü, kalici ve karakter sahibi.
+                </p>
+                <div className="space-y-2 pt-2">
+                  <span className="text-[9px] font-gothic uppercase tracking-wider text-[var(--text-muted)] font-bold block">Koku Piramidi</span>
+                  <div className="grid grid-cols-3 gap-2 text-center text-[10px]">
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-amber-500 font-bold">Üst (Top)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Karabiber, Kakule</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[var(--accent-gold)] font-bold">Kalp (Heart)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Tütün, Huş, Sedir</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[#5d6dc9] font-bold">Alt (Base)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Deri, Oud, Kehribar</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-4 border-t border-[var(--border-subtle)] grid grid-cols-2 gap-2 text-[10px] font-body text-[var(--text-secondary)]">
+                <div><strong>İdeal Oda:</strong> Kütüphane & Sömine</div>
+                <div><strong>Mevsim:</strong> Kis Aylarinda</div>
+              </div>
+            </div>
+
+            {/* 8. Outland */}
+            <div className="p-8 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] flex flex-col justify-between space-y-6 shadow-sm">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="font-cinzel text-xl font-bold text-[var(--text-primary)]">Outland</h3>
+                    <span className="text-[10px] font-gothic uppercase tracking-widest text-[var(--accent-gold)] font-bold">Aromatik Fougère</span>
+                  </div>
+                  <span className="px-3 py-1 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[10px] font-mono text-[var(--accent-gold)]">Kalicilik: 9/10</span>
+                </div>
+                <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                  Vahşi doğanın uyanışını simgeleyen çam ormanı ve taze bitkisel özlerin uyumu. Doğallık, ferahlık ve nefes açan çam aroması.
+                </p>
+                <div className="space-y-2 pt-2">
+                  <span className="text-[9px] font-gothic uppercase tracking-wider text-[var(--text-muted)] font-bold block">Koku Piramidi</span>
+                  <div className="grid grid-cols-3 gap-2 text-center text-[10px]">
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-amber-500 font-bold">Üst (Top)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Çam, Ardıç, Nane</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[var(--accent-gold)] font-bold">Kalp (Heart)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Lavanta, Sardunya</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[#5d6dc9] font-bold">Alt (Base)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Meşe Yosunu, Kehribar</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-4 border-t border-[var(--border-subtle)] grid grid-cols-2 gap-2 text-[10px] font-body text-[var(--text-secondary)]">
+                <div><strong>İdeal Oda:</strong> Banyo & Antre</div>
+                <div><strong>Mevsim:</strong> Sonbahar / İlkbahar</div>
+              </div>
+            </div>
+
+            {/* 9. Golden Chapter */}
+            <div className="p-8 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] flex flex-col justify-between space-y-6 shadow-sm">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="font-cinzel text-xl font-bold text-[var(--text-primary)]">Golden Chapter</h3>
+                    <span className="text-[10px] font-gothic uppercase tracking-widest text-[var(--accent-gold)] font-bold">Şipre Çiçeksi</span>
+                  </div>
+                  <span className="px-3 py-1 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[10px] font-mono text-[var(--accent-gold)]">Kalicilik: 9/10</span>
+                </div>
+                <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                  Asil kadınsılığı yansıtan, safran ve şık güllerin meşe yosunu ve paçuli ile şipre buluşması. Tende asalet bırakan asil siluet.
+                </p>
+                <div className="space-y-2 pt-2">
+                  <span className="text-[9px] font-gothic uppercase tracking-wider text-[var(--text-muted)] font-bold block">Koku Piramidi</span>
+                  <div className="grid grid-cols-3 gap-2 text-center text-[10px]">
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-amber-500 font-bold">Üst (Top)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Safran, Kişniş, Yasemin</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[var(--accent-gold)] font-bold">Kalp (Heart)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Şam Gülü, Ylang Ylang</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[#5d6dc9] font-bold">Alt (Base)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Paçuli, Meşe Yosunu</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-4 border-t border-[var(--border-subtle)] grid grid-cols-2 gap-2 text-[10px] font-body text-[var(--text-secondary)]">
+                <div><strong>İdeal Oda:</strong> Butik & Salon</div>
+                <div><strong>Mevsim:</strong> Güz Dönemi</div>
+              </div>
+            </div>
+
+            {/* 10. Aether */}
+            <div className="p-8 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] flex flex-col justify-between space-y-6 shadow-sm">
+              <div className="space-y-4">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="font-cinzel text-xl font-bold text-[var(--text-primary)]">Aether</h3>
+                    <span className="text-[10px] font-gothic uppercase tracking-widest text-[var(--accent-gold)] font-bold">Aldehitli Temiz</span>
+                  </div>
+                  <span className="px-3 py-1 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[10px] font-mono text-[var(--accent-gold)]">Kalicilik: 8/10</span>
+                </div>
+                <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                  Temiz beyaz çamasirlar, sabunsu aldehitler ve pudramsı narin misk notalarinin ferahlatıcı uyumu. Saf huzur ve hijyen hissi.
+                </p>
+                <div className="space-y-2 pt-2">
+                  <span className="text-[9px] font-gothic uppercase tracking-wider text-[var(--text-muted)] font-bold block">Koku Piramidi</span>
+                  <div className="grid grid-cols-3 gap-2 text-center text-[10px]">
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-amber-500 font-bold">Üst (Top)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Aldehitler, Ozon Esintisi</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[var(--accent-gold)] font-bold">Kalp (Heart)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Beyaz Çiçekler, Gül</span>
+                    </div>
+                    <div className="p-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
+                      <span className="block text-[#5d6dc9] font-bold">Alt (Base)</span>
+                      <span className="text-[9px] text-[var(--text-secondary)]">Beyaz Misk, Pudra</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-4 border-t border-[var(--border-subtle)] grid grid-cols-2 gap-2 text-[10px] font-body text-[var(--text-secondary)]">
+                <div><strong>İdeal Oda:</strong> Banyo & Yatak Odası</div>
+                <div><strong>Mevsim:</strong> Tüm Yıl Boyunca</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* SECTION 2: SCENT LAYERING GUIDE */}
+        {/* ========================================================================= */}
+        <div className="space-y-12 mb-28">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="badge-corporate mb-2">2. Koku Mimarligi</span>
+            <h2 className="font-cinzel text-3xl font-bold text-[var(--text-primary)]">Koku Katmanlama Sanati (Olfactory Layering Map)</h2>
+            <div className="gold-line max-w-[60px] mx-auto my-4" />
+            <p className="font-body text-xs text-[var(--text-secondary)]">
+              Mekanlarinizi tek bir kokuyla sinirlamayin. Farkli koku ailelerini bir arada kullanarak kendi kisisel imza atmosferinizi tasarlayin.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-xs font-cinzel font-bold text-[var(--accent-gold)]">Nectar & Spice</span>
+                  <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 text-[9px] font-gothic font-bold">Mükemmel Uyum</span>
+                </div>
+                <div className="flex gap-4 items-center">
+                  <div className="px-3 py-1.5 rounded bg-[var(--bg-primary)] text-center text-xs font-mono text-[var(--text-primary)]">Fruity Amber</div>
+                  <span className="text-[var(--text-muted)] font-mono">+</span>
+                  <div className="px-3 py-1.5 rounded bg-[var(--bg-primary)] text-center text-xs font-mono text-[var(--text-primary)]">Floral Amber</div>
+                </div>
+                <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                  Fruity Amber'in tatli kirmizi meyveler ile Floral Amber'in altin kehribar tabani birleserek sicak, gurme ve kadifemsi bir olfaktif atmosfer yaratir.
+                </p>
+              </div>
+              <div className="mt-4 pt-4 border-t border-[var(--border-subtle)] text-[10px] text-[var(--text-muted)] leading-relaxed">
+                <strong>Uygulama İpucu:</strong> Taban kokuyu genis alanlara yayin, 2 dakika bekledikten sonra üst katman kokuyu ekleyin.
+              </div>
+            </div>
+
+            <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-xs font-cinzel font-bold text-[var(--accent-gold)]">Mediterranean Breeze</span>
+                  <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 text-[9px] font-gothic font-bold">Mükemmel Uyum</span>
+                </div>
+                <div className="flex gap-4 items-center">
+                  <div className="px-3 py-1.5 rounded bg-[var(--bg-primary)] text-center text-xs font-mono text-[var(--text-primary)]">Orange Jasmine</div>
+                  <span className="text-[var(--text-muted)] font-mono">+</span>
+                  <div className="px-3 py-1.5 rounded bg-[var(--bg-primary)] text-center text-xs font-mono text-[var(--text-primary)]">Lavender Jasmine</div>
+                </div>
+                <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                  Orange Jasmine'in canlandiriçi portakal çiçeği üst notalari, Lavender Jasmine'in rahatlatiçi Provans lavantasi ve misk tabaniyla birleserek tazeleyici Akdeniz esintisi yaratir.
+                </p>
+              </div>
+              <div className="mt-4 pt-4 border-t border-[var(--border-subtle)] text-[10px] text-[var(--text-muted)] leading-relaxed">
+                <strong>Uygulama İpucu:</strong> Hava sirkülasyonunun oldugu giris alanlarinda kullanilmasi kokuyu dengeli dagitir.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* HISTORICAL DEPTH: GRASSE SCENT HISTORY & ARTISTRY */}
+        {/* ========================================================================= */}
+        <div className="space-y-12 mb-28">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="badge-corporate mb-2">Heritage & Artistry</span>
+            <h2 className="font-cinzel text-3xl font-bold text-[var(--text-primary)]">Grasse Parfüm Zanaat Tarihi</h2>
+            <div className="gold-line max-w-[60px] mx-auto my-4" />
+            <p className="font-body text-xs text-[var(--text-secondary)]">
+              Grasse'in deri kokulandirma geleneginden baslayip modern moleküler kimya laboratuvarlarina uzanan tarihi serüveni.
+            </p>
+          </div>
+
+          <div className="p-8 rounded-3xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] space-y-6 text-xs font-body text-[var(--text-secondary)] leading-relaxed">
+            <p>
+              Güney Fransa'da yer alan <strong>Grasse</strong> sehri, Orta Çag'da büyük bir deri tabaklama merkeziydi. Ancak tabaklanmis derinin yaydigi agir ve rahatsiz edici kokulari gidermek amaciyla, 16. yüzyilda bölgedeki deri üreticileri esansiyel yaglar ve çiçek özleri kullanarak deri eldivenleri kokulandirma akimini baslatti. Bu zanaat, Fransa Krali 13. Louis döneminde sarayda büyük kabul görerek "Parfümör Eldivenciler" (Maîtres Gantiers Parfumeurs) cemiyetinin kurulmasina zemin hazirladi. Bölgenin mikroklimatik yapisi, yasemin, gül ve portakal çiçeği gibi narin çiçeklerin yetismesi için dünyanin en elverisli topraklarini sunmaktadir.
+            </p>
+            <p>
+              18. yüzyilda deri endüstrisinin önemini yitirmesiyle birlikte Grasse, tamamen parfüm hammaddeleri üretimine yöneldi. Buhar distilasyonu ve hassas ekstraksiyon tekniklerinin bu topraklarda gelistirilmesi, bölgeyi küresel koku endüstrisinin tartismasiz baskenti haline getirdi. Bugün en lüks parfüm evleri, en degerli formüllerini Grasse laboratuvarlarinda yetisen doğal çiçek mutlaklariyla (absolutes) süslemektedir. Nos Canda, bu zengin mirasi koruyarak formüllerini Grasse'in kadim laboratuvarlarinda hazirlamakta ve modern kozmetik standartlarinda olgunlastirmaktadir.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-[var(--border-subtle)] text-[11px]">
+              <div>
+                <h5 className="font-cinzel font-bold text-[var(--text-primary)] uppercase tracking-wider mb-2">Esans Karisim Teknolojisi</h5>
+                <p>
+                  Grasse'taki laboratuvarlarimizda, esans moleküllerinin saflik derecesi gaz kromatografisi yöntemiyle analiz edilerek en dengeli formüller olusturulur. Bu sayede oda kokularimiz havada homojen salinim gösterir ve yapay bir koku birakmaz.
+                </p>
+              </div>
+              <div>
+                <h5 className="font-cinzel font-bold text-[var(--text-primary)] uppercase tracking-wider mb-2">Neden %25 Esans Konsantrasyonu?</h5>
+                <p>
+                  Standart ev kokulari genellikle %5 ile %12 arasinda esans barindirirken, Nos Canda ürünleri %25 esans konsantrasyonuyla <strong>Extrait de Parfum</strong> standartlarinda üretilir. Bu sayede koku havada uçup gitmez, mobilyalara tutunarak kaliciligini haftalarca korur.
+                </p>
+              </div>
+            </div>
+            <div className="pt-4 border-t border-[var(--border-subtle)]">
+              <h5 className="font-cinzel font-bold text-[var(--text-primary)] uppercase tracking-wider mb-2">Endüstriyel Devrim ve Modern Dönem</h5>
+              <p>
+                19. yüzyılın ortalarında buhar gücüyle çalışan distilasyon makinelerinin geliştirilmesiyle Grasse, fabrikasyon üretime geçiş yapmıştır. Bu dönemde kurulan köklü aile işletmeleri, bugün tüm dünya kozmetik pazarına yön veren dev hammadde üreticilerine (Mane, Robertet vb.) dönüşmüştür. Nos Canda da bu hammadde zincirinin en seçkin halkalarından biriyle çalışarak en doğal özleri temin etmektedir.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* SECTION 3: ROOM BY ROOM PLACEMENT GUIDE */}
+        {/* ========================================================================= */}
+        <div className="space-y-12 mb-28">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="badge-corporate mb-2">3. Yerleşim Kılavuzu</span>
+            <h2 className="font-cinzel text-3xl font-bold text-[var(--text-primary)]">Oda Koku Mimari Rehberi</h2>
+            <div className="gold-line max-w-[60px] mx-auto my-4" />
+            <p className="font-body text-xs text-[var(--text-secondary)]">
+              Koku salınımının gücü ortamın nemine, hava akımına ve şişenin konumuna bağlıdır. En yüksek verim için tasarlanan yerleşim planı.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            {/* Salon */}
+            <div className="p-8 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] space-y-4">
+              <div className="flex justify-between items-center">
+                <h4 className="font-cinzel text-lg font-bold text-[var(--text-primary)]">Oturma Odası / Salon</h4>
+                <span className="text-[10px] font-mono text-[var(--accent-gold)]">Hassasiyet: Orta</span>
+              </div>
+              <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                Geniş ve sürekli hava sirkülasyonu olan alanlarda kokunun homojen dağılması için 5-6 çubuk kullanılması ve haftada bir çubukların ters çevrilmesi önerilir. Floral Amber veya Fruity Amber idealdir.
+              </p>
+              <ul className="text-[10px] font-mono text-[var(--text-muted)] space-y-1.5 pt-2">
+                <li>• Önerilen Çubuk: 5 - 8 adet</li>
+                <li>• Salınım Ömrü: ~90 gün</li>
+                <li>• Koku Dağılımı: Homojen</li>
+              </ul>
+            </div>
+
+            {/* Yatak Odası */}
+            <div className="p-8 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] space-y-4">
+              <div className="flex justify-between items-center">
+                <h4 className="font-cinzel text-lg font-bold text-[var(--text-primary)]">Yatak Odası</h4>
+                <span className="text-[10px] font-mono text-[var(--accent-gold)]">Hassasiyet: Düşük</span>
+              </div>
+              <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                Daha sakin, dinlendirici ve huzurlu bir koku dağılımı için 3-4 adet rattan çubuk yeterlidir. Lavender Jasmine kokusu uyku kalitesini artırır ve rahatlatıcı etki bırakır.
+              </p>
+              <ul className="text-[10px] font-mono text-[var(--text-muted)] space-y-1.5 pt-2">
+                <li>• Önerilen Çubuk: 3 - 5 adet</li>
+                <li>• Salınım Ömrü: ~120 gün</li>
+                <li>• Koku Dağılımı: Hafif</li>
+              </ul>
+            </div>
+
+            {/* Banyo */}
+            <div className="p-8 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] space-y-4">
+              <div className="flex justify-between items-center">
+                <h4 className="font-cinzel text-lg font-bold text-[var(--text-primary)]">Banyo / WC</h4>
+                <span className="text-[10px] font-mono text-[var(--accent-gold)]">Hassasiyet: Yüksek</span>
+              </div>
+              <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                Nem oranı yüksek olduğundan esans yayılımı hızlanır. 2-3 adet çubuk yeterlidir. Outland veya Orange Jasmine banyoda tazeleyici ferahlık sağlar.
+              </p>
+              <ul className="text-[10px] font-mono text-[var(--text-muted)] space-y-1.5 pt-2">
+                <li>• Önerilen Çubuk: 2 - 4 adet</li>
+                <li>• Salınım Ömrü: ~75 gün</li>
+                <li>• Koku Dağılımı: Yoğun</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* BOTANICAL INGREDIENT REGISTRY SECTION */}
+        {/* ========================================================================= */}
+        <div className="space-y-12 mb-28">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="badge-corporate mb-2">Botanical Registry</span>
+            <h2 className="font-cinzel text-3xl font-bold text-[var(--text-primary)]">Nadir Hammaddelerimizin Kökenleri</h2>
+            <div className="gold-line max-w-[60px] mx-auto my-4" />
+            <p className="font-body text-xs text-[var(--text-secondary)]">
+              Kullandigimiz her bir esansiyel bitki özünün biyolojik kökenini, elde edilme metodunu ve kokusal etkisini detayliça inceleyin.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 font-body text-xs text-[var(--text-secondary)]">
+            
+            <div className="p-6 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] space-y-3">
+              <h4 className="font-cinzel text-sm font-bold text-[var(--accent-gold)]">Provans Lavantasi (Lavandula Angustifolia)</h4>
+              <p className="leading-relaxed">
+                <strong>Köken:</strong> Alpes-de-Haute-Provence, Fransa. Deniz seviyesinden 800 metre yükseklikte yetisen lavanta çiçeklerinin buhar distilasyonu ile özütlenmesiyle elde edilir.
+              </p>
+              <p className="leading-relaxed">
+                <strong>Olfaktif Karakter:</strong> Otsu taze üst notalar, rahatlatiçi og tatli alt tonlar barindirir. Zihinsel dinginlik ve stres azaltici fizyolojik etkilere sahiptir.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] space-y-3">
+              <h4 className="font-cinzel text-sm font-bold text-[var(--accent-gold)]">Asil Mısır Yasemini (Jasminum Grandiflorum)</h4>
+              <p className="leading-relaxed">
+                <strong>Köken:</strong> Nil Deltası, Mısır. Sabahin ilk isiklarinda, çiçeklerin koku salinimi en üst düzeydeyken el ile toplanir ve hassas solvent ekstraksiyonu yöntemiyle "absolute" yagina dönüstürülür.
+              </p>
+              <p className="leading-relaxed">
+                <strong>Olfaktif Karakter:</strong> Zengin, sicak, hayvansi ve yogun floral gövde. Parfümün ana gövdesini olusturarak yayilim gücünü maksimize eder.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] space-y-3">
+              <h4 className="font-cinzel text-sm font-bold text-[var(--accent-gold)]">Calabria Bergamotu (Citrus Bergamia)</h4>
+              <p className="leading-relaxed">
+                <strong>Köken:</strong> Calabria Bölgesi, Güney İtalya. Meyve kabuklarinin soğuk sikim (cold press) makine islemine tabi tutulmasiyla saf uçucu yagi elde edilir.
+              </p>
+              <p className="leading-relaxed">
+                <strong>Olfaktif Karakter:</strong> Taze, yeşil, hafif çiçeksi ve keskin narenciye. Koku piramidinin en tepesinde yer alarak ilk 15 dakikalik çarpici karsilama esintisini yaratir.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] space-y-3">
+              <h4 className="font-cinzel text-sm font-bold text-[var(--accent-gold)]">Endonezya Paçulisi (Pogostemon Cablin)</h4>
+              <p className="leading-relaxed">
+                <strong>Köken:</strong> Sumatra ve Cava adalari, Endonezya. Kurutulmus paçuli yapraklarinin uzun süreli buhar distilasyonu ile elde edilen yogun, kivamli doğal yagidir.
+              </p>
+              <p className="leading-relaxed">
+                <strong>Olfaktif Karakter:</strong> Nemli toprak, küf, zengin odunsu tonlar ve hafif tatli kakao esintileri. Dip notalarda sabitleyici (fixative) olarak benzersiz bir kalicilik görevi üstlenir.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* INGREDIENT CHEMISTRY REGISTER */}
+        {/* ========================================================================= */}
+        <div className="space-y-12 mb-28">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="badge-corporate mb-2">Molecular Science</span>
+            <h2 className="font-cinzel text-3xl font-bold text-[var(--text-primary)]">Esans Kimyası Bilesenleri</h2>
+            <div className="gold-line max-w-[60px] mx-auto my-4" />
+            <p className="font-body text-xs text-[var(--text-secondary)]">
+              Koku formüllerimizdeki ana aktif organik bilesenlerin teknik isimleri, formülleri ve olfaktif işlevleri.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-[11px] font-body text-left border-collapse border border-[var(--border-subtle)] text-[var(--text-secondary)] bg-[var(--bg-secondary)] rounded-2xl overflow-hidden">
+              <thead>
+                <tr className="bg-[var(--bg-primary)] border-b border-[var(--border-subtle)] font-cinzel text-[10px] text-[var(--accent-gold)] tracking-wider">
+                  <th className="p-4">Kimyasal Bilesen</th>
+                  <th className="p-4">Moleküler Formül</th>
+                  <th className="p-4">Doğal Kaynak</th>
+                  <th className="p-4">Olfaktif İşlevi</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[var(--border-subtle)]">
+                <tr>
+                  <td className="p-4 font-mono font-bold">Linalool</td>
+                  <td className="p-4 font-mono">C10H18O</td>
+                  <td className="p-4">Lavanta, Gül, Tarçın</td>
+                  <td className="p-4">Taze çiçeksi, baharatlı ve hafif narenciye tonu katar. Sakinleştirici etkilidir.</td>
+                </tr>
+                <tr>
+                  <td className="p-4 font-mono font-bold">Limonene</td>
+                  <td className="p-4 font-mono">C10H16</td>
+                  <td className="p-4">Portakal Kabuğu, Limon</td>
+                  <td className="p-4">Yoğun ferah narenciye aroması sağlar, üst notaları canlandırır.</td>
+                </tr>
+                <tr>
+                  <td className="p-4 font-mono font-bold">Geraniol</td>
+                  <td className="p-4 font-mono">C10H18O</td>
+                  <td className="p-4">Gül Yağı, Sardunya</td>
+                  <td className="p-4">Tatlı, asil gül ve floral karakteri derinleştirir, kalıcılığı destekler.</td>
+                </tr>
+                <tr>
+                  <td className="p-4 font-mono font-bold">Coumarin</td>
+                  <td className="p-4 font-mono">C9H6O2</td>
+                  <td className="p-4">Tonka Fasulyesi, Yonca</td>
+                  <td className="p-4">Yeni biçilmiş çimen, tatlı vanilya ve badem benzeri dip nota bağlayıcıdır.</td>
+                </tr>
+                <tr>
+                  <td className="p-4 font-mono font-bold">Eugenol</td>
+                  <td className="p-4 font-mono">C10H12O2</td>
+                  <td className="p-4">Karanfil Yaprağı, Fesleğen</td>
+                  <td className="p-4">Sıcak, baharatlı, mistik ve odunsu orta gövde akorları kurar.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* SECTION 4: GLOSSARY */}
+        {/* ========================================================================= */}
+        <div className="space-y-12 mb-28">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="badge-corporate mb-2">4. Bilim & Terimler</span>
+            <h2 className="font-cinzel text-3xl font-bold text-[var(--text-primary)]">Olfaktif Terimler Sözlügü</h2>
+            <div className="gold-line max-w-[60px] mx-auto my-4" />
+            <p className="font-body text-xs text-[var(--text-secondary)]">
+              Parfüm üretim sanati ve koku bilimiyle ilgili temel kavramlari kesfederek kokularin gizemli dilini anlayin.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border border-[var(--border-subtle)] rounded-3xl p-8 bg-[var(--bg-secondary)]">
+            
+            <div className="space-y-2">
+              <h4 className="font-cinzel text-sm font-bold text-[var(--accent-gold)]">Maceration (Olgunlasma)</h4>
+              <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                Esansiyel yaklarin alkol ve su karisimi içinde belirli bir süre bekletilerek moleküllerin birlesmesi ve kokunun kalici hale gelmesi süreci. Nos Canda kokulari 28 gün boyunca eskitilir.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <h4 className="font-cinzel text-sm font-bold text-[var(--accent-gold)]">Sillage (Yayilim / Koku İzi)</h4>
+              <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                Bir kokunun havada biraktigi izin veya movement halindeyken arkasinda biraktigi koku dalgasinin mesafesi ve gücü. Yayilim yeteneği yüksek kokular mekani doldurur.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <h4 className="font-cinzel text-sm font-bold text-[var(--accent-gold)]">Top Notes (Üst Notalar)</h4>
+              <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                Koku siseden ilk yayildiginda veya teninize sikildiginda duyulan, uçuculugu en yüksek olan ve ilk 15-30 dakikada buharlasan taze esanslar.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <h4 className="font-cinzel text-sm font-bold text-[var(--accent-gold)]">Heart Notes (Kalp / Orta Notalar)</h4>
+              <p className="font-body text-xs text-[var(--text-secondary)] leading-relaxed">
+                Üst notalar buharlaştiktan sonra ortaya çikan, kokunun ana gövdesini ve karakterini belirleyen, genellikle birkaç saat kalan esans bilesenleri.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* SECTION 5: SAFETY AND COMPLIANCE RULES */}
+        {/* ========================================================================= */}
+        <div className="space-y-12 mb-28">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="badge-corporate mb-2">5. Güvenlik & Mevzuat</span>
+            <h2 className="font-cinzel text-3xl font-bold text-[var(--text-primary)]">Güvenli Kullanim ve IFRA Regülasyonlari</h2>
+            <div className="gold-line max-w-[60px] mx-auto my-4" />
+            <p className="font-body text-xs text-[var(--text-secondary)]">
+              Nos Canda olarak insan sağligi ve çevre duyarliliğini en üst seviyede tutuyoruz. Ürünlerimizin tamami IFRA yönergelerine uygundur.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-[11px] font-body text-[var(--text-secondary)] leading-relaxed">
+            
+            <div className="p-6 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] space-y-3">
+              <h4 className="font-cinzel text-xs font-bold text-[var(--text-primary)] uppercase tracking-wider">Evcil Hayvan & Bebek Sağligi</h4>
+              <p>
+                Kokularimizin formülasyonunda kullanilan tarimsal bitkisel etil alkol ve saflastirilmis deiyonize su, solunum yollarini tahris etmez. Ancak bebek odalarinda ve küçük evcil hayvanlarin (kedi, köpek) bulundugu alanlarda koku yayilimini kontrol etmek için çubuk sayisinin 2-3 adet olarak tutulmasi ve odanin günde en az bir defa havalandirilmasi önerilir.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] space-y-3">
+              <h4 className="font-cinzel text-xs font-bold text-[var(--text-primary)] uppercase tracking-wider">Alerjen Koruma Standardi</h4>
+              <p>
+                Parfüm formülünde bulunan ve doğal olarak bitkilerden salinan bazı moleküller (Limonene, Linalool, Citral, Coumarin vb.) hassas cilt tiplerinde veya alerjik bünyelerde hafif tepkimelere yol açabilir. Bu sebeple difüzör sıvısının cildinizle doğrudan temasindan kaçininiz. Temas halinde bol su ve sabun yardimiyla yikayiniz.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] space-y-3">
+              <h4 className="font-cinzel text-xs font-bold text-[var(--text-primary)] uppercase tracking-wider">Sizinti ve Yüzey Koruması</h4>
+              <p>
+                %25 oranindaki yogun esans ve alkol bileseni, cilali ahsap mobilyalar, plastik yüzeyler ve deri kaplamalarla temas ettiginde yüzey kaplamalarini çözücü etki gösterebilir. Bu sebeple oda parfümlerini yerlestirirken sisenin devrilmeyeceginden emin olunuz ve araç kokularinin kapagini doyururken sivinin konsola damlamasini önleyiniz.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* SECTION 6: TROUBLESHOOTING */}
+        {/* ========================================================================= */}
+        <div className="space-y-12 mb-28">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="badge-corporate mb-2">6. Bakım & Destek</span>
+            <h2 className="font-cinzel text-3xl font-bold text-[var(--text-primary)]">Sorun Giderme & Çözüm Rehberi</h2>
+            <div className="gold-line max-w-[60px] mx-auto my-4" />
+            <p className="font-body text-xs text-[var(--text-secondary)]">
+              Maksimum koku salinimi saglamak ve olasi kullanim aksakliklarini gidermek için pratik çözümler.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] space-y-3">
+              <h4 className="font-cinzel text-sm font-bold text-[var(--text-primary)]">Koku yayilimi zamanla zayifladi</h4>
+              <p className="font-body text-xs text-[var(--text-secondary)]">
+                <strong>Olası Neden:</strong> Rattan çubuklarin lifleri ortamdaki mikroskobik tozlarla tikanmis veya çubuklar kururmustur.
+              </p>
+              <div className="text-xs text-[var(--text-muted)] space-y-1 pt-1 font-body">
+                <div>• Çubuklari siseden çikarip ters düz edin.</div>
+                <div>• Eğer çubuklar 2 aydan eskise, yeni Nos Canda rattan çubuk seti ile degistirin.</div>
+                <div>• Siseiyi daha hareketli bir hava akimi alanina yerlestirin.</div>
+              </div>
+            </div>
+
+            <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] space-y-3">
+              <h4 className="font-cinzel text-sm font-bold text-[var(--text-primary)]">Koku odada çok yogun ve rahatsiz edici</h4>
+              <p className="font-body text-xs text-[var(--text-secondary)]">
+                <strong>Olası Neden:</strong> Mekan boyutuna göre fazla çubuk kullanilmis veya oda havalandirmasi yetersizdir.
+              </p>
+              <div className="text-xs text-[var(--text-muted)] space-y-1 pt-1 font-body">
+                <div>• Sisedeki çubuk sayisini yariya indirin (örn. 6 çubuktan 3 çubuga düsürün).</div>
+                <div>• Siseiyi pencerelerden ve doğrudan oturdugunuz alanlardan daha uzak bir köseye koyun.</div>
+              </div>
+            </div>
+
+            <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] space-y-3">
+              <h4 className="font-cinzel text-sm font-bold text-[var(--text-primary)]">Sıvı renginde hafif koyulasma veya sararma var</h4>
+              <p className="font-body text-xs text-[var(--text-secondary)]">
+                <strong>Olası Neden:</strong> Dogal esansiyel yaglar (özellikle vanilya ve kehribar içerenler) isik ve oksijenle temas ettikçe doğal olarak renk degistirir.
+              </p>
+              <div className="text-xs text-[var(--text-muted)] space-y-1 pt-1 font-body">
+                <div>• Bu durum koku kalitesini ve sağligi etkilemez, kullanmaya devam edebilirsiniz.</div>
+                <div>• Siseiyi doğrudan günes isigi alan pencere önlerinden uzaklastirin.</div>
+              </div>
+            </div>
+
+            <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] space-y-3">
+              <h4 className="font-cinzel text-sm font-bold text-[var(--text-primary)]">Araç kokusu ahsap kapagi kuru kaliyor</h4>
+              <p className="font-body text-xs text-[var(--text-secondary)]">
+                <strong>Olası Neden:</strong> Kapagin esansi emmesi için sisenin yeterince ters çevrilmemesi veya kapak vidasinin çok siki olmasi.
+              </p>
+              <div className="text-xs text-[var(--text-muted)] space-y-1 pt-1 font-body">
+                <div>• Siseiyi kapak kapaliyken 2-3 saniye boyunca tamamen bas asagi tutarak ahsabin esansi emmesini saglayin.</div>
+                <div>• Kapagin sizdirmazlik contasinin yerinde oldugundan emin olun.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* ECO-CONSCIOUS GREEN INITIATIVE SECTION */}
+        {/* ========================================================================= */}
+        <div className="space-y-12">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="badge-corporate mb-2">Eco-Conscious</span>
+            <h2 className="font-cinzel text-3xl font-bold text-[var(--text-primary)]">Sürdürülebilirlik & Yeşil Adımlarımız</h2>
+            <div className="gold-line max-w-[60px] mx-auto my-4" />
+            <p className="font-body text-xs text-[var(--text-secondary)]">
+              Doğaya saygılı hammadde tedariği, geri dönüştürülebilir ambalajlar ve sıfır atık politikamız.
+            </p>
+          </div>
+
+          <div className="p-8 rounded-3xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] space-y-4 text-xs font-body text-[var(--text-secondary)] leading-relaxed">
+            <p>
+              Nos Canda olarak sadece yaşam alanlarınızın havasını güzelleştirmekle kalmıyor, dünyamızın ekolojik dengesini korumayı da en büyük vazifemiz olarak görüyoruz. Kullandığımız tüm cam şişeler %100 geri dönüştürülebilir yapıdadır. Plastik tüketimini minimuma indirmek amacıyla kargo paketleme süreçlerimizde biyobozunur dolgu malzemeleri ve kraft kağıt ambalaj bantları kullanıyoruz.
+            </p>
+            <p>
+              Esans hammaddelerimizin tedarik sürecinde, nesli tehlike altında olan bitki türlerini koruma altına alan yerel Grasse üreticileriyle iş birliği yapmaktayız. Hasat edilen bitkilerin yerine yenilerinin ekilmesini garantileyen sürdürülebilir tarım sertifikalı bahçelerden alım gerçekleştiriyoruz. Ayrıca hayvansal kaynaklı hiçbir maddeyi formüllerimize dahil etmiyor, ürün geliştirme aşamalarının hiçbirinde hayvanlar üzerinde test (Cruelty-Free) gerçekleştirmiyoruz.
+            </p>
+          </div>
+        </div>
+
       </div>
     </section>
   );

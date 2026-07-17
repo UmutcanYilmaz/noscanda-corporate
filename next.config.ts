@@ -28,6 +28,26 @@ const nextConfig: NextConfig = {
         destination: '/olusumlarimiz/nos-canda-shop/e-katalog/:path*',
         permanent: true,
       },
+      {
+        source: '/dmo-katalogu',
+        destination: '/is-modellerimiz/b2g',
+        permanent: true,
+      },
+      {
+        source: '/felsefe',
+        destination: '/kurumsal-bilgiler/felsefe',
+        permanent: true,
+      },
+      {
+        source: '/hakkimizda/vakif',
+        destination: '/olusumlarimiz/nos-canda-one/vakif',
+        permanent: true,
+      },
+      {
+        source: '/vakif',
+        destination: '/olusumlarimiz/nos-canda-one/vakif',
+        permanent: true,
+      },
     ];
   },
 };

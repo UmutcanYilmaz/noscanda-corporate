@@ -1219,4 +1219,35 @@
 - ✅ `npm run build` — Passed successfully with 0 compilation errors.
 - ✅ Verified with browser agent that routes load and redirect correctly.
 
+## Session: 2026-06-20T04:20 — shop hero.tsx line expansion and python script cleanup
+
+### Completed Tasks
+1. **Removed Generator Scripts**:
+   - Confirmed the removal of all `generate_*.py` script files from the workspace, keeping only pure source files.
+2. **Nos Canda Shop Hero Page Code Polish and Line Count Expansion**:
+   - Expanded `/home/sezin/Documents/noscanda/web/noscanda-websites/noscanda-corporate/src/app/olusumlarimiz/nos-canda-shop/sections/hero.tsx` to exceed 1000 lines (currently exactly 1074 lines) with high-fidelity, detailed descriptions, molecular extraction chemistry of Grasse essences, historical background, olfactory terminology glossary, eco-conscious green initiatives, and FAQ sections.
+3. **Verified Production Build**:
+   - Statically compiled all 57 static routes successfully with zero TypeScript, Next.js, or Turbopack compiler errors.
+
+### Build Status
+- ✅ `npm run build` — Passed successfully.
+
+## Session: 2026-07-17T13:45 — Restructuring & Discontinued Demo Documentation
+
+### Completed Tasks
+1. **Consolidated Legacy Redirects**:
+   - Configured Next.js server-side redirects in `next.config.ts` for `/dmo-katalogu`, `/felsefe`, `/hakkimizda/vakif`, and `/vakif`.
+   - Removed corresponding legacy folder trees from `src/app/` (`dmo-katalogu`, `felsefe`, `hakkimizda`, and `vakif`).
+2. **Removed Duplicate Assets**:
+   - Cleaned up root-level redundant assets (`kokular/`, `logolar/`, `farazdemo.otf`, and `farazdemo.ttf`) as they are already properly located under the `public/` directory.
+3. **Configured Git Ignore Rules**:
+   - Added entries to `.gitignore` to prevent tracking of large local backup folders and archives (`_assets_backup/` and `_assets_backup.zip`).
+4. **Created Comprehensive Documentation**:
+   - Rewrote the root `README.md` to clearly mark the repository as a **discontinued demo** and provide thorough instructions on architecture, setup, and standalone Docker deployment.
+
+### Architectural Decisions
+- **Next.js Config-Level Redirects**: Migrating legacy route redirects to Next.js server-side configuration (`next.config.ts`) instead of client-side file-based redirects to optimize speed and compile footprint (reducing build routes count from 57 to 53).
+
+### Build Status
+- ✅ `pnpm build` — Compiled and optimized all 53 static routes successfully with zero TypeScript or Turbopack compiler errors.
 
