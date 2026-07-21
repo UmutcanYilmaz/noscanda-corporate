@@ -1251,3 +1251,22 @@
 ### Build Status
 - ✅ `pnpm build` — Compiled and optimized all 53 static routes successfully with zero TypeScript or Turbopack compiler errors.
 
+## Session: 2026-07-21T22:05 — Next.js Standalone Build & Module Not Found Fix
+
+### Completed Tasks
+1. **Enabled Standalone Build Target**:
+   - Uncommented `output: 'standalone'` in `next.config.ts`.
+2. **Explicit Workspace Root Alignment**:
+   - Added `outputFileTracingRoot: path.join(__dirname)` and `turbopack: { root: path.join(__dirname) }` in `next.config.ts` to ensure build traces lock strictly to the project directory.
+   - Cleared stray lockfile in home folder causing root path inference shift.
+3. **Verification**:
+   - Verified `.next/standalone/server.js` generation upon running `pnpm build`.
+   - Tested runtime execution of `node .next/standalone/server.js` — verified zero `MODULE_NOT_FOUND` errors and HTTP server bound successfully on `0.0.0.0:3000`.
+
+### Architectural Decisions
+- **Standalone Docker Alignment**: Docker container runner stage executes `CMD ["node", "server.js"]` from the standalone output (`/app/.next/standalone`), requiring `output: 'standalone'` in `next.config.ts`.
+
+### Build Status
+- ✅ `pnpm build` — Standalone bundle compiled and verified at `.next/standalone/server.js`.
+
+
