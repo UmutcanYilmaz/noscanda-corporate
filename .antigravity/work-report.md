@@ -1251,22 +1251,22 @@
 ### Build Status
 - ✅ `pnpm build` — Compiled and optimized all 53 static routes successfully with zero TypeScript or Turbopack compiler errors.
 
-## Session: 2026-07-21T22:05 — Next.js Standalone Build & Module Not Found Fix
+## Session: 2026-07-21T22:22 — Standard Production Server (`pnpm start` / `next start`) Setup
 
 ### Completed Tasks
-1. **Enabled Standalone Build Target**:
-   - Uncommented `output: 'standalone'` in `next.config.ts`.
-2. **Explicit Workspace Root Alignment**:
-   - Added `outputFileTracingRoot: path.join(__dirname)` and `turbopack: { root: path.join(__dirname) }` in `next.config.ts` to ensure build traces lock strictly to the project directory.
-   - Cleared stray lockfile in home folder causing root path inference shift.
+1. **Configured Standard Next Server Target**:
+   - Removed `output: 'standalone'` from [`next.config.ts`](file:///home/sezin/Documents/noscanda/web/noscanda-websites/noscanda-corporate/next.config.ts) to eliminate the Next.js standard server warning (`"next start" does not work with "output: standalone"`).
+2. **Updated Docker Container Execution**:
+   - Modified [`Dockerfile`](file:///home/sezin/Documents/noscanda/web/noscanda-websites/noscanda-corporate/Dockerfile) runner stage to copy full `.next` build output and `node_modules` and set `CMD ["pnpm", "start"]`.
 3. **Verification**:
-   - Verified `.next/standalone/server.js` generation upon running `pnpm build`.
-   - Tested runtime execution of `node .next/standalone/server.js` — verified zero `MODULE_NOT_FOUND` errors and HTTP server bound successfully on `0.0.0.0:3000`.
+   - Compiled production build using `pnpm build`.
+   - Executed `pnpm start` (`next start`) — server booted cleanly in 80ms on `http://localhost:3000` with zero warnings.
 
 ### Architectural Decisions
-- **Standalone Docker Alignment**: Docker container runner stage executes `CMD ["node", "server.js"]` from the standalone output (`/app/.next/standalone`), requiring `output: 'standalone'` in `next.config.ts`.
+- **Standard Next Server**: Replaced standalone execution with native Next.js production server startup (`pnpm start` / `next start`) across both local development and Docker deployment targets.
 
 ### Build Status
-- ✅ `pnpm build` — Standalone bundle compiled and verified at `.next/standalone/server.js`.
+- ✅ `pnpm build` -> `pnpm start` verified and functional.
+
 
 
