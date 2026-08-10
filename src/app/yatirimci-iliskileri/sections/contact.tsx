@@ -16,7 +16,7 @@ export function Contact() {
             ilişkileri masamızla irtibat kurabilirsiniz.
           </p>
           <div className="inline-block px-6 py-4 rounded-xl border border-[var(--border-gold)] bg-[var(--bg-primary)] font-body text-sm text-[var(--text-primary)] magnetic-hover">
-            <p className="mb-1"><strong>E-posta:</strong> ir@noscanda.com</p>
+            <p className="mb-1"><strong>E-posta:</strong> ir@noscanda.group</p>
             <p><strong>Tel:</strong> 0545 301 6605</p>
           </div>
         </div>

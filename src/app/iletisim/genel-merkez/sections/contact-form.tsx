@@ -7,16 +7,16 @@ const INITIAL_FORM = { name: '', email: '', subject: 'Genel Bilgi', message: '' 
 
 const INFO_ITEMS = [
   { label: "Genel Merkez", value: "Yeni Bağlıca Mahallesi, Karatuz Caddesi 77/7 Etimesgut Ankara", icon: "📍" },
-  { label: "E-posta", value: "info@noscanda.com", icon: "✉️" },
+  { label: "E-posta", value: "info@noscanda.group", icon: "✉️" },
   { label: "Telefon", value: "0545 301 6605", icon: "📞" },
   { label: "Çalışma Saatleri", value: "Pazartesi - Cuma, 09:00 - 18:00", icon: "🕐" },
 ];
 
 const DEPARTMENTS = [
-  { dept: "Bayilik & Franchise", email: "franchise@noscanda.com" },
-  { dept: "B2B & Kurumsal", email: "b2b@noscanda.com" },
-  { dept: "DMO & Kamu", email: "dmo@noscanda.com" },
-  { dept: "Basın & İletişim", email: "press@noscanda.com" },
+  { dept: "Bayilik & Franchise", email: "franchise@noscanda.group" },
+  { dept: "B2B & Kurumsal", email: "b2b@noscanda.group" },
+  { dept: "DMO & Kamu", email: "dmo@noscanda.group" },
+  { dept: "Basın & İletişim", email: "press@noscanda.group" },
 ];
 
 /**

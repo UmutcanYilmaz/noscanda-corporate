@@ -1,9 +1,9 @@
 import { ScrollReveal } from '@/components/core/ScrollReveal';
 
 const DEPTS = [
-  { name: "Kurumsal İletişim & Basın", desc: "Basın bültenleri, sponsorluk talepleri and etkinlik koordinasyonları için.", email: "media@noscanda.com" },
-  { name: "Ortaklıklar & B2B/B2G", desc: "Kamu tedarik süreçleri, özel üretimler and toptan satın alımlar için.", email: "b2b@noscanda.com" },
-  { name: "Lojistik & Müşteri İlişkileri", desc: "Sipariş sevkiyat durumları, tedarikçi ilişkileri and genel destek için.", email: "destek@noscanda.com" }
+  { name: "Kurumsal İletişim & Basın", desc: "Basın bültenleri, sponsorluk talepleri and etkinlik koordinasyonları için.", email: "media@noscanda.group" },
+  { name: "Ortaklıklar & B2B/B2G", desc: "Kamu tedarik süreçleri, özel üretimler and toptan satın alımlar için.", email: "b2b@noscanda.group" },
+  { name: "Lojistik & Müşteri İlişkileri", desc: "Sipariş sevkiyat durumları, tedarikçi ilişkileri and genel destek için.", email: "destek@noscanda.group" }
 ];
 
 /**

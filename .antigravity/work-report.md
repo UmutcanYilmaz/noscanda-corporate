@@ -1285,5 +1285,26 @@
 - ✅ `npm run build` — Clean production build.
 
 
+## Session: 2026-08-10T19:58 — Domain Migration (noscanda.group & noscanda.net)
+
+### Completed Tasks
+1. **Migrated E-mail and Corporate Web Domains**:
+   - Replaced all legacy `@noscanda.com` e-mail domain references across the corporate portal with official corporate e-mail domain `@noscanda.group`:
+     - `ContactSection.tsx`: `info@noscanda.group`
+     - `YatirimciIliskileriSection.tsx`: `ir@noscanda.group`
+     - `contact.tsx` (`src/app/yatirimci-iliskileri/sections/`): `ir@noscanda.group`
+     - `departments.tsx` (`src/app/iletisim/sections/`): `media@noscanda.group`, `b2b@noscanda.group`, `destek@noscanda.group`
+     - `contact-form.tsx` (`src/app/iletisim/genel-merkez/sections/`): `info@noscanda.group`, `franchise@noscanda.group`, `b2b@noscanda.group`, `dmo@noscanda.group`, `press@noscanda.group`
+     - `OffCanvasMenu.tsx`: `info@noscanda.group`
+   - Ensured consumer storefront links and e-commerce transactions remain mapped to `noscanda.net`.
+
+### Verification
+- Ran full production build (`npm run build`). All 53 static routes compiled cleanly in 1.8s with 0 TypeScript/lint errors.
+
+### Build Status
+- ✅ `npm run build` — Clean production build.
+
+
+
 
 

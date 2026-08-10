@@ -78,7 +78,7 @@ export function ContactSection() {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="font-semibold text-[var(--accent-gold)]">E-posta:</span>
-                  info@noscanda.com
+                  info@noscanda.group
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="font-semibold text-[var(--accent-gold)]">Telefon:</span>

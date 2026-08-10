@@ -374,10 +374,10 @@ export function OffCanvasMenu({ isOpen, onClose }: OffCanvasMenuProps) {
                     E-Posta
                   </span>
                   <a 
-                    href="mailto:info@noscanda.net" 
+                    href="mailto:info@noscanda.group" 
                     className="font-body text-xs sm:text-sm text-neutral-300 hover:text-[var(--accent-gold)] focus-visible:text-[var(--accent-gold)] focus-visible:outline-none transition-colors"
                   >
-                    info@noscanda.net
+                    info@noscanda.group
                   </a>
                 </div>
                 <div>

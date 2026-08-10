@@ -117,11 +117,11 @@ export function YatirimciIliskileriSection() {
                 Yatırımcı İrtibat
               </h3>
               <p className="font-body text-sm text-[var(--text-secondary)] leading-relaxed mb-6">
-                Hissedar takvimimiz, genel kurul bilgilendirmelerimiz ve ir@noscanda.com üzerinden doğrudan iletişim hattımız.
+                Hissedar takvimimiz, genel kurul bilgilendirmelerimiz ve ir@noscanda.group üzerinden doğrudan iletişim hattımız.
               </p>
             </div>
             <span className="font-gothic text-[0.6rem] tracking-widest text-[var(--text-muted)] uppercase">
-              ir@noscanda.com
+              ir@noscanda.group
             </span>
           </div>
 
