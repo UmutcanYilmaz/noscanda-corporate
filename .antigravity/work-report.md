@@ -1269,4 +1269,21 @@
 - ✅ `pnpm build` -> `pnpm start` verified and functional.
 
 
+## Session: 2026-08-10T19:54 — Corporate Communication Channels Update
+
+### Completed Tasks
+1. **Updated Corporate Address & Phone Number Across All Channels**:
+   - `src/components/globalsections/ContactSection.tsx`: Updated headquarters city/address to `Yeni Bağlıca Mahallesi, Karatuz Caddesi 77/7 Etimesgut Ankara` and phone number to `0545 301 6605`.
+   - `src/components/layout/OffCanvasMenu.tsx`: Updated phone link to `tel:+905453016605`, displayed phone to `0545 301 6605`, and headquarters address to `Yeni Bağlıca Mahallesi, Karatuz Caddesi 77/7 Etimesgut Ankara`.
+   - `src/app/iletisim/genel-merkez/sections/contact-form.tsx`: Updated `INFO_ITEMS` array with the new Ankara address and phone number `0545 301 6605`.
+   - `src/app/yatirimci-iliskileri/sections/contact.tsx`: Updated Investor Relations telephone number to `0545 301 6605`.
+
+### Verification
+- Ran full production build (`npm run build`). All 53 static routes compiled successfully with 0 TypeScript/lint errors.
+
+### Build Status
+- ✅ `npm run build` — Clean production build.
+
+
+
 

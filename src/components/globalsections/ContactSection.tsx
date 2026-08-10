@@ -68,13 +68,13 @@ export function ContactSection() {
                 Nos Canda Genel Merkez
               </h3>
               <p className="font-body text-sm text-[var(--text-secondary)] leading-relaxed mb-6">
-                İdari işler, kamu tedariki ve toptan satış koordinasyonu için İstanbul genel merkez ofisimizle iletişime geçebilirsiniz.
+                İdari işler, kamu tedariki ve toptan satış koordinasyonu için Ankara genel merkez ofisimizle iletişime geçebilirsiniz.
               </p>
               
               <div className="space-y-3 font-body text-xs text-[var(--text-secondary)] mb-8">
                 <div className="flex items-center gap-2">
                   <span className="font-semibold text-[var(--accent-gold)]">Adres:</span>
-                  Atatürk Caddesi No:42, Ataşehir / İstanbul
+                  Yeni Bağlıca Mahallesi, Karatuz Caddesi 77/7 Etimesgut Ankara
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="font-semibold text-[var(--accent-gold)]">E-posta:</span>
@@ -82,7 +82,7 @@ export function ContactSection() {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="font-semibold text-[var(--accent-gold)]">Telefon:</span>
-                  +90 216 555 55 55
+                  0545 301 6605
                 </div>
               </div>
             </div>

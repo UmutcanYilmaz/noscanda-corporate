@@ -385,10 +385,10 @@ export function OffCanvasMenu({ isOpen, onClose }: OffCanvasMenuProps) {
                     Telefon
                   </span>
                   <a 
-                    href="tel:+902120000000" 
+                    href="tel:+905453016605" 
                     className="font-body text-xs sm:text-sm text-neutral-300 hover:text-[var(--accent-gold)] focus-visible:text-[var(--accent-gold)] focus-visible:outline-none transition-colors"
                   >
-                    +90 212 000 0000
+                    0545 301 6605
                   </a>
                 </div>
               </div>
@@ -398,7 +398,7 @@ export function OffCanvasMenu({ isOpen, onClose }: OffCanvasMenuProps) {
                   Genel Merkez
                 </span>
                 <p className="font-body text-xs text-neutral-300 leading-relaxed">
-                  Noscanda Tower, Maslak, İstanbul, Türkiye
+                  Yeni Bağlıca Mahallesi, Karatuz Caddesi 77/7 Etimesgut Ankara
                 </p>
               </div>
 

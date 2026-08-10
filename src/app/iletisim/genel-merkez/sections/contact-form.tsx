@@ -6,9 +6,9 @@ import { ScrollReveal } from '@/components/core/ScrollReveal';
 const INITIAL_FORM = { name: '', email: '', subject: 'Genel Bilgi', message: '' };
 
 const INFO_ITEMS = [
-  { label: "Genel Merkez", value: "İstanbul, Türkiye", icon: "📍" },
+  { label: "Genel Merkez", value: "Yeni Bağlıca Mahallesi, Karatuz Caddesi 77/7 Etimesgut Ankara", icon: "📍" },
   { label: "E-posta", value: "info@noscanda.com", icon: "✉️" },
-  { label: "Telefon", value: "+90 (212) 000 00 00", icon: "📞" },
+  { label: "Telefon", value: "0545 301 6605", icon: "📞" },
   { label: "Çalışma Saatleri", value: "Pazartesi - Cuma, 09:00 - 18:00", icon: "🕐" },
 ];
 
